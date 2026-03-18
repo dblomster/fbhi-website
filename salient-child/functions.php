@@ -429,3 +429,47 @@ add_action( 'wp_footer', function () {
 	})();
 	</script>';
 }, 90 );
+
+/* ========================================================================
+   The Events Calendar: Inject Salient Global Sections before/after list
+   ======================================================================== */
+
+/**
+ * Render a Salient Global Section by ID (WPML-aware).
+ *
+ * @param int    $original_section_id Section post ID (in default language).
+ * @param string $wrapper_class       CSS class(es) for the wrapper div.
+ * @param string $inner_html_open     Optional extra opening markup inside the wrapper.
+ * @param string $inner_html_close    Optional extra closing markup inside the wrapper.
+ */
+function fbhi_render_global_section( $original_section_id, $wrapper_class, $inner_html_open = '', $inner_html_close = '' ) {
+	$section_id = apply_filters( 'wpml_object_id', $original_section_id, 'salient_g_sections', true );
+	$section    = get_post( $section_id );
+
+	if ( ! $section || 'salient_g_sections' !== $section->post_type ) {
+		return;
+	}
+
+	echo '<div class="' . esc_attr( $wrapper_class ) . '">' . $inner_html_open;
+	echo apply_filters( 'the_content', $section->post_content );
+	echo $inner_html_close . '</div>';
+}
+
+/* Global Section post IDs (default language). */
+$fbhi_events_section_before = 13868;
+$fbhi_events_section_after  = 7011;
+
+/* Section before the events list. */
+add_action( 'tribe_template_before_include:events/v2/list', function ( $file, $name, $template ) use ( $fbhi_events_section_before ) {
+	fbhi_render_global_section( $fbhi_events_section_before, 'events-global-section before-events' );
+}, 10, 3 );
+
+/* Section after the events list. */
+add_action( 'tribe_template_after_include:events/v2/list', function ( $file, $name, $template ) use ( $fbhi_events_section_after ) {
+	fbhi_render_global_section(
+		$fbhi_events_section_after,
+		'events-global-section after-events',
+		'<div class="container normal-container row">',
+		'</div>'
+	);
+}, 10, 3 );
