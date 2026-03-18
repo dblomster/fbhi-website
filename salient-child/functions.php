@@ -456,7 +456,7 @@ function fbhi_render_global_section( $original_section_id, $wrapper_class, $inne
 }
 
 /* Global Section post IDs (default language). */
-$fbhi_events_section_before = 13868;
+$fbhi_events_section_before = 14102;
 $fbhi_events_section_after  = 7011;
 
 /* Section before the events list. */
