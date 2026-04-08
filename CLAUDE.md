@@ -22,6 +22,10 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - PHP 8.0+ — use modern PHP features where appropriate
 - Follow [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/) for all PHP code
 
+## Reference Files
+
+`reference/` contains WordPress core and plugin source files for looking up hooks, filters, and internal APIs. **Read-only** — never modify these files. Use them to find the right hooks and understand WP internals when implementing features in the child theme.
+
 ## Architecture
 
 - **Parent theme**: Salient (premium WordPress theme)
