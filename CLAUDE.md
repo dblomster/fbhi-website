@@ -58,3 +58,7 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - **Advanced Custom Fields** — Header hero image and font color
 - **WPML** — Multilingual support
 - **Nginx Helper** — Cache purging on production
+
+### Planned Work
+
+- **Reusable CPT prev/next navigation** — see [docs/cpt-navigation.md](docs/cpt-navigation.md)
