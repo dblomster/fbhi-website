@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REMOTE="fbhi.se:/www/webvol53/ww/lh9azq37w77rgig/fbhi.se/public_html/wp-content/themes/"
+REMOTE="fbhi.se:/www/webvol28/ww/lh9azq37w77rgig/fbhi.se/public_html/wp-content/themes/"
 LOCAL="/home/dblom/wsl-projects/fbhi-website/salient-child"
 
 RED='\033[0;31m'
@@ -15,6 +15,13 @@ echo ""
 HAS_CHANGES=false
 
 OUTPUT=$(rsync -avzn --delete --itemize-changes "$LOCAL" "$REMOTE" 2>&1)
+RSYNC_EXIT=$?
+
+if [ $RSYNC_EXIT -ne 0 ]; then
+  echo -e "${RED}${BOLD}Dry-run failed (rsync exit code $RSYNC_EXIT):${RESET}"
+  echo "$OUTPUT"
+  exit 1
+fi
 
 while IFS= read -r line; do
   [[ -z "$line" ]] && continue

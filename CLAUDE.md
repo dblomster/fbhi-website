@@ -33,14 +33,15 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - **ACF (Advanced Custom Fields)**: Used for hero images and font colors in the header
 - **Custom post type**: `network-project` with taxonomy `network-project-category`, registered in `functions.php`
 - **WPML**: Site is multilingual — custom code must be WPML-aware (use `wpml_object_id` filter for post lookups, `wpml_element_language_details` / `wpml_get_element_translations` for source post resolution)
-- **CSS**: Pre-compiled and committed directly — no Sass/PostCSS build step
+- **CSS**: `css/build/` contains Salient-generated compiled styles — **do not add custom CSS there** as it may be overwritten when theme options are re-exported. All custom CSS goes in `css/custom.css`
 
 ### Key Files
 
 - `functions.php` — Registers custom post type, taxonomy, enqueues stylesheets, WW-Fingers feature, and Events Calendar integration
 - `header.php` — Custom header with ACF-driven hero image and font color
 - `single-network-project.php` — Template for individual network project posts, uses partials from `includes/partials/single-network-project/`
-- `css/build/style.css` — Main compiled stylesheet (large, ~7K lines)
+- `css/build/style.css` — Salient-generated compiled stylesheet (~7K lines) — do not edit
+- `css/custom.css` — All custom FBHI styles (enqueued after main-styles, cache-busted via filemtime)
 - `css/fonts/` — Custom icomoon icon font
 
 ### Template Partials

@@ -13,6 +13,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
 function enqueue_parent_styles() {
 	wp_enqueue_style( 'main-styles', get_stylesheet_directory_uri() . '/css/build/style.css' );
 	wp_enqueue_style( 'nectar-blog-standard-featured-left', get_stylesheet_directory_uri() . '/css/build/blog/standard-featured-left.css' );
+	wp_enqueue_style( 'fbhi-custom', get_stylesheet_directory_uri() . '/css/custom.css', array( 'main-styles' ), filemtime( get_stylesheet_directory() . '/css/custom.css' ) );
 
 	if ( is_singular( 'network-project' ) ) {
 		wp_enqueue_style( 'portfolio', get_site_url() . '/wp-content/plugins/salient-portfolio/css/portfolio.css' );
@@ -442,11 +443,16 @@ add_action( 'wp_footer', function () {
  * @param string $inner_html_open     Optional extra opening markup inside the wrapper.
  * @param string $inner_html_close    Optional extra closing markup inside the wrapper.
  */
-function fbhi_render_global_section( $original_section_id, $wrapper_class, $inner_html_open = '', $inner_html_close = '' ) {
+function fbhi_render_global_section( $original_section_id, $wrapper_class = '', $inner_html_open = '', $inner_html_close = '', $no_wrap = false ) {
 	$section_id = apply_filters( 'wpml_object_id', $original_section_id, 'salient_g_sections', true );
 	$section    = get_post( $section_id );
 
 	if ( ! $section || 'salient_g_sections' !== $section->post_type ) {
+		return;
+	}
+
+	if ( $no_wrap ) {
+		echo apply_filters( 'the_content', $section->post_content );
 		return;
 	}
 
@@ -461,7 +467,7 @@ $fbhi_events_section_after  = 7011;
 
 /* Section before the events list. */
 add_action( 'tribe_template_before_include:events/v2/list', function ( $file, $name, $template ) use ( $fbhi_events_section_before ) {
-	fbhi_render_global_section( $fbhi_events_section_before, 'events-global-section before-events' );
+	fbhi_render_global_section( $fbhi_events_section_before, '', '', '', true );
 }, 10, 3 );
 
 /* Section after the events list. */
