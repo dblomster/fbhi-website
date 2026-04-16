@@ -4,6 +4,36 @@
 
 Make the bottom previous/next navigation (currently only on `network-project`) reusable for any custom post type.
 
+## Broader context: adding a second CPT
+
+This refactor is now motivated by a concrete need: a second CPT with the same feature set as `network-project` (same Salient blog-style single layout, same prev/next nav, possibly taxonomy, admin columns, etc.).
+
+### What `network-project` currently ships
+
+1. `register_post_type` + `network-project-category` taxonomy (`functions.php:27-71`)
+2. `single-network-project.php` — copy of Salient's blog `single.php` plus one line calling the bottom-nav partial
+3. `bottom-project-navigation.php` partial (this doc's subject)
+4. WW-Fingers custom meta: admin column, quick edit, bulk edit, sortable, front-end display (`functions.php:73-400+`)
+5. Conditional enqueue of Salient Portfolio's `portfolio.css` on single views (`functions.php:18-20`)
+
+### Open question — must be answered before proceeding
+
+Which of the above does the new CPT actually need? Specifically:
+
+- [ ] Same Salient blog-style single layout?
+- [ ] Bottom prev/next navigation?
+- [ ] A category taxonomy (shared with network-project, or its own)?
+- [ ] WW-Fingers meta field and admin UI? (This looks network-project-specific — worth confirming.)
+- [ ] Custom admin columns / filters?
+- [ ] What's the CPT slug, labels, and "back to all" archive URL?
+
+The answer determines whether we copy-paste (fast, ~400 lines of near-duplication) or generalize further (more work upfront, cheap for CPT #3+).
+
+### Recommended approach once answered
+
+- **If WW-Fingers is network-project-only**: do the prev/next refactor described below, then copy-paste the ~30-line CPT registration block for the new CPT. The single-template itself is thin enough to duplicate.
+- **If WW-Fingers (or other admin features) is shared**: also extract those into a reusable module that opts-in per CPT, before adding the second CPT.
+
 ## Current Implementation
 
 ### How it works
