@@ -1,14 +1,41 @@
 #!/usr/bin/env bash
 
-REMOTE="fbhi.se:/www/webvol28/ww/lh9azq37w77rgig/fbhi.se/public_html/wp-content/themes/"
+PROD_REMOTE="fbhi.se:/www/webvol28/ww/lh9azq37w77rgig/fbhi.se/public_html/wp-content/themes/"
+DEV_REMOTE="fbhi.devcx.com:/home/devfbhi/public_html/wp-content/themes/"
 LOCAL="/home/dblom/wsl-projects/fbhi-website/salient-child"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
+TARGET="${1:-}"
+if [[ -z "$TARGET" ]]; then
+  echo -e "${BOLD}Select deployment target:${RESET}"
+  echo -e "  ${CYAN}[p]${RESET} Production  (fbhi.se)"
+  echo -e "  ${CYAN}[d]${RESET} Dev         (fbhi.devcx.com)"
+  read -rp "Choice [p/d]: " TARGET
+fi
+
+case "$TARGET" in
+  p|prod|production)
+    REMOTE="$PROD_REMOTE"
+    LABEL="${RED}${BOLD}PRODUCTION${RESET} (fbhi.se)"
+    ;;
+  d|dev|development)
+    REMOTE="$DEV_REMOTE"
+    LABEL="${CYAN}${BOLD}DEV${RESET} (fbhi.devcx.com)"
+    ;;
+  *)
+    echo -e "${RED}Unknown target: '$TARGET'. Use 'p' (prod) or 'd' (dev).${RESET}"
+    exit 1
+    ;;
+esac
+
+echo ""
+echo -e "${BOLD}Target:${RESET} $LABEL"
 echo -e "${BOLD}Comparing local with remote... (dry-run)${RESET}"
 echo ""
 
@@ -58,6 +85,7 @@ if [ "$HAS_CHANGES" = false ]; then
   exit 0
 fi
 
+echo -e "${BOLD}Target:${RESET} $LABEL"
 read -rp "Proceed with deploy? [y/N] " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo ""
