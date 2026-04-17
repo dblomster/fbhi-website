@@ -479,3 +479,25 @@ add_action( 'tribe_template_after_include:events/v2/list', function ( $file, $na
 		'</div>'
 	);
 }, 10, 3 );
+
+/**
+ * Make The Events Calendar single options translatable via WPML String Translation.
+ */
+add_filter( 'tribe_get_single_option', 'tribe_options_multilingual', 20, 3 );
+
+function tribe_options_multilingual( $option, $default, $option_name ) {
+	if ( ! has_filter( 'wpml_translate_single_string' ) ) {
+		return $option;
+	}
+
+	if ( is_string( $option ) && $option !== '' ) {
+		return apply_filters(
+			'wpml_translate_single_string',
+			$option,
+			'admin_texts_tribe_events_calendar_options',
+			'[tribe_events_calendar_options]|' . $option_name
+		);
+	}
+
+	return $option;
+}
