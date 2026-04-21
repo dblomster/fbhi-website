@@ -6,6 +6,30 @@
  */
 
 /* ========================================================================
+   Blog-like CPT registry
+   ------------------------------------------------------------------------
+   Single source of truth for CPTs that use the Salient blog-style single
+   layout plus the shared bottom prev/next navigation. Adding a new CPT to
+   this array wires up:
+     - conditional enqueue of Salient Portfolio's portfolio.css
+     - archive URL ("back to all" link) in the shared bottom-nav partial
+       (single-{CPT}.php must still exist and require includes/single-blog-like-cpt.php)
+   ======================================================================== */
+
+function fbhi_blog_like_cpts() {
+	return array(
+		'network-project' => array(
+			'archive_url'    => site_url( '/network-projects/' ),
+			'adjacent_order' => 'title',
+		),
+		'kommuner' => array(
+			'archive_url'    => site_url( '/kommuner/' ),
+			'adjacent_order' => 'title',
+		),
+	);
+}
+
+/* ========================================================================
    Enqueue Styles
    ======================================================================== */
 
@@ -15,10 +39,74 @@ function enqueue_parent_styles() {
 	wp_enqueue_style( 'nectar-blog-standard-featured-left', get_stylesheet_directory_uri() . '/css/build/blog/standard-featured-left.css' );
 	wp_enqueue_style( 'fbhi-custom', get_stylesheet_directory_uri() . '/css/custom.css', array( 'main-styles' ), filemtime( get_stylesheet_directory() . '/css/custom.css' ) );
 
-	if ( is_singular( 'network-project' ) ) {
+	if ( is_singular( array_keys( fbhi_blog_like_cpts() ) ) ) {
 		wp_enqueue_style( 'portfolio', get_site_url() . '/wp-content/plugins/salient-portfolio/css/portfolio.css' );
 	}
 }
+
+/* ========================================================================
+   Previous / Next post ordering for blog-like CPTs
+   ------------------------------------------------------------------------
+   WP core's previous_post_link() / next_post_link() always order by
+   post_date. For CPTs whose archive listing is sorted alphabetically by
+   title, that produces a confusing prev/next walk. Each CPT in the
+   registry can set 'adjacent_order' to pick the ordering:
+     - 'date'  (default) — WP core behavior, no override
+     - 'title' — walk alphabetically by post_title
+   ======================================================================== */
+
+function fbhi_adjacent_order_for_post( $post ) {
+	if ( ! $post || empty( $post->post_type ) ) {
+		return 'date';
+	}
+	$cpts = fbhi_blog_like_cpts();
+	if ( empty( $cpts[ $post->post_type ]['adjacent_order'] ) ) {
+		return 'date';
+	}
+	return $cpts[ $post->post_type ]['adjacent_order'];
+}
+
+function fbhi_adjacent_post_title_where( $where, $post, $op ) {
+	if ( 'title' !== fbhi_adjacent_order_for_post( $post ) ) {
+		return $where;
+	}
+
+	global $wpdb;
+	$title = $wpdb->prepare( '%s', $post->post_title );
+
+	// Replace the single post_date comparison WP core emits at the head of
+	// the WHERE clause; leaves post_type / post_status / taxonomy / WPML
+	// clauses intact.
+	return preg_replace(
+		"/p\.post_date\s*[<>]\s*'[^']*'/",
+		"p.post_title $op $title",
+		$where,
+		1
+	);
+}
+
+function fbhi_adjacent_post_title_sort( $order_by, $post, $direction ) {
+	if ( 'title' !== fbhi_adjacent_order_for_post( $post ) ) {
+		return $order_by;
+	}
+	return "ORDER BY p.post_title $direction LIMIT 1";
+}
+
+add_filter( 'get_previous_post_where', function ( $where, $in_same_term, $excluded_terms, $taxonomy, $post ) {
+	return fbhi_adjacent_post_title_where( $where, $post, '<' );
+}, 10, 5 );
+
+add_filter( 'get_next_post_where', function ( $where, $in_same_term, $excluded_terms, $taxonomy, $post ) {
+	return fbhi_adjacent_post_title_where( $where, $post, '>' );
+}, 10, 5 );
+
+add_filter( 'get_previous_post_sort', function ( $order_by, $post ) {
+	return fbhi_adjacent_post_title_sort( $order_by, $post, 'DESC' );
+}, 10, 2 );
+
+add_filter( 'get_next_post_sort', function ( $order_by, $post ) {
+	return fbhi_adjacent_post_title_sort( $order_by, $post, 'ASC' );
+}, 10, 2 );
 
 /* ========================================================================
    Custom Post Type: Network Projects
@@ -69,6 +157,56 @@ function network_project_category() {
 	);
 }
 add_action( 'init', 'network_project_category' );
+
+/* ========================================================================
+   Custom Post Type: Kommuner
+   ======================================================================== */
+
+function kommuner_cpt() {
+	$labels = array(
+		'name'          => _x( 'Kommuner', '' ),
+		'singular_name' => _x( 'Kommun', '' ),
+		'menu_name'     => __( 'Kommuner' ),
+	);
+	$args = array(
+		'label'               => __( 'Kommuner' ),
+		'description'         => __( '' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ),
+		'taxonomies'          => array( '' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 11,
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => false,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'kommuner', $args );
+}
+add_action( 'init', 'kommuner_cpt', 0 );
+
+/* ========================================================================
+   Taxonomy: Kommuner Category
+   ======================================================================== */
+
+function kommuner_category() {
+	register_taxonomy(
+		'kommuner-category',
+		'kommuner',
+		array(
+			'hierarchical' => true,
+			'label'        => 'Categories',
+			'query_var'    => true,
+		)
+	);
+}
+add_action( 'init', 'kommuner_category' );
 
 /* ========================================================================
    WW-Fingers: Admin Column, Quick Edit, Bulk Edit & Front-end

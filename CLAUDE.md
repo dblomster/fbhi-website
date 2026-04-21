@@ -31,34 +31,25 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - **Parent theme**: Salient (premium WordPress theme)
 - **Child theme**: `salient-child/` — all custom code lives here
 - **ACF (Advanced Custom Fields)**: Used for hero images and font colors in the header
-- **Custom post type**: `network-project` with taxonomy `network-project-category`, registered in `functions.php`
+- **Custom post types**: `network-project` (with taxonomy `network-project-category`) and `kommuner` (with taxonomy `kommuner-category`), registered in `functions.php`. Both use the Salient blog-style single layout via `includes/single-blog-like-cpt.php` and share the bottom prev/next nav. CPTs using this layout are listed in `fbhi_blog_like_cpts()` — see [docs/cpt-navigation.md](docs/cpt-navigation.md) to add another.
 - **WPML**: Site is multilingual — custom code must be WPML-aware (use `wpml_object_id` filter for post lookups, `wpml_element_language_details` / `wpml_get_element_translations` for source post resolution)
 - **CSS**: `css/build/` contains Salient-generated compiled styles — **do not add custom CSS there** as it may be overwritten when theme options are re-exported. All custom CSS goes in `css/custom.css`
 
 ### Key Files
 
-- `functions.php` — Registers custom post type, taxonomy, enqueues stylesheets, WW-Fingers feature, and Events Calendar integration
+- `functions.php` — Registers blog-like CPT registry (`fbhi_blog_like_cpts()`), CPTs and taxonomies, enqueues stylesheets, WW-Fingers feature (network-project-only), and Events Calendar integration
 - `header.php` — Custom header with ACF-driven hero image and font color
-- `single-network-project.php` — Template for individual network project posts, uses partials from `includes/partials/single-network-project/`
+- `single-network-project.php` / `single-kommuner.php` — Thin per-CPT single templates that each `require` `includes/single-blog-like-cpt.php` (the shared Salient blog-style body)
+- `includes/single-blog-like-cpt.php` — Shared single-template body for blog-like CPTs; looks up the archive URL for the bottom nav from `fbhi_blog_like_cpts()`
+- `includes/partials/shared/bottom-post-navigation.php` — Reusable prev/next + "back to all" partial (accepts `archive_url` and optional `prev_label` / `next_label` / `back_title` via args)
 - `css/build/style.css` — Salient-generated compiled stylesheet (~7K lines) — do not edit
 - `css/custom.css` — All custom FBHI styles (enqueued after main-styles, cache-busted via filemtime)
 - `css/fonts/` — Custom icomoon icon font
 
-### Template Partials
-
-`includes/partials/single-network-project/` contains:
-- `content-area.php` — Project content display
-- `sidebar.php` — Project metadata sidebar
-- `bottom-project-navigation.php` — Previous/next project navigation
-
 ### Plugin Dependencies
 
-- **Salient Portfolio** — Portfolio CSS conditionally loaded for network-project posts
+- **Salient Portfolio** — Portfolio CSS conditionally loaded for every CPT listed in `fbhi_blog_like_cpts()` (provides the bottom-nav styling)
 - **The Events Calendar** — Global sections injected before/after event list via `tribe_template` hooks
 - **Advanced Custom Fields** — Header hero image and font color
 - **WPML** — Multilingual support
 - **Nginx Helper** — Cache purging on production
-
-### Planned Work
-
-- **Reusable CPT prev/next navigation** — see [docs/cpt-navigation.md](docs/cpt-navigation.md)

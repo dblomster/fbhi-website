@@ -1,6 +1,6 @@
 <?php
 /**
- * Single-template for the network-project CPT.
+ * Single-template for the kommuner CPT.
  *
  * @package Salient-Child
  */

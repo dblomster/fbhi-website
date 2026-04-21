@@ -41,7 +41,7 @@ echo ""
 
 HAS_CHANGES=false
 
-OUTPUT=$(rsync -avzn --delete --itemize-changes "$LOCAL" "$REMOTE" 2>&1)
+OUTPUT=$(rsync -avzn --delete --chmod=F644,D755 --itemize-changes "$LOCAL" "$REMOTE" 2>&1)
 RSYNC_EXIT=$?
 
 if [ $RSYNC_EXIT -ne 0 ]; then
@@ -76,6 +76,19 @@ while IFS= read -r line; do
     HAS_CHANGES=true
     continue
   fi
+
+  # Metadata-only change (e.g. permissions from --chmod). Itemize format:
+  # positions 2-10 are c,s,t,p,o,g,.,a,x — any non-dot means an attr changed.
+  meta="${flags:2:9}"
+  if [[ "$meta" != "........." ]]; then
+    attrs=""
+    [[ "${flags:5:1}" == "p" ]] && attrs+="perms "
+    [[ "${flags:6:1}" == "o" ]] && attrs+="owner "
+    [[ "${flags:7:1}" == "g" ]] && attrs+="group "
+    [[ -z "$attrs" ]] && attrs="metadata"
+    echo -e "  ${YELLOW}WILL UPDATE      ${file}${RESET}  (${attrs% })"
+    HAS_CHANGES=true
+  fi
 done <<< "$OUTPUT"
 
 echo ""
@@ -89,7 +102,7 @@ echo -e "${BOLD}Target:${RESET} $LABEL"
 read -rp "Proceed with deploy? [y/N] " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo ""
-  rsync -avz --progress --delete "$LOCAL" "$REMOTE"
+  rsync -avz --progress --delete --chmod=F644,D755 "$LOCAL" "$REMOTE"
 else
   echo "Deploy cancelled."
 fi
