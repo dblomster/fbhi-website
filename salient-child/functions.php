@@ -12,21 +12,50 @@
    layout plus the shared bottom prev/next navigation. Adding a new CPT to
    this array wires up:
      - conditional enqueue of Salient Portfolio's portfolio.css
-     - archive URL ("back to all" link) in the shared bottom-nav partial
+     - "Back to all" URL in the shared bottom-nav partial, resolved via
+       fbhi_get_blog_like_cpt_archive_url() from the WP page ID (WPML-aware)
        (single-{CPT}.php must still exist and require includes/single-blog-like-cpt.php)
    ======================================================================== */
 
 function fbhi_blog_like_cpts() {
 	return array(
 		'network-project' => array(
-			'archive_url'    => site_url( '/network-projects/' ),
-			'adjacent_order' => 'title',
+			// /network-projects/ (en) — Swedish translation lives at /sv/forskningsprojekt/.
+			'archive_page_id' => 7360,
+			'adjacent_order'  => 'title',
 		),
 		'kommuner' => array(
-			'archive_url'    => site_url( '/kommuner/' ),
-			'adjacent_order' => 'title',
+			// /sv/kommuner/ — Swedish page (no English translation exists yet).
+			'archive_page_id' => 14055,
+			'adjacent_order'  => 'title',
 		),
 	);
+}
+
+/**
+ * Resolve the "back to all" archive URL for a blog-like CPT.
+ *
+ * Looks up the archive WP page ID from the registry, translates it to the
+ * active WPML language via the `wpml_object_id` filter (returns the original
+ * ID if no translation exists — fourth arg `true`), and returns its permalink.
+ *
+ * Safe when WPML is disabled: `apply_filters` with no registered callbacks
+ * returns the value unchanged, so the original ID is used.
+ */
+function fbhi_get_blog_like_cpt_archive_url( $cpt ) {
+	$config = fbhi_blog_like_cpts();
+	if ( empty( $config[ $cpt ]['archive_page_id'] ) ) {
+		return home_url();
+	}
+
+	$page_id      = (int) $config[ $cpt ]['archive_page_id'];
+	$localized_id = apply_filters( 'wpml_object_id', $page_id, 'page', true );
+	if ( $localized_id ) {
+		$page_id = (int) $localized_id;
+	}
+
+	$url = get_permalink( $page_id );
+	return $url ? $url : home_url();
 }
 
 /* ========================================================================

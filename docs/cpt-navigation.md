@@ -14,12 +14,12 @@ Single source of truth:
 function fbhi_blog_like_cpts() {
     return array(
         'network-project' => array(
-            'archive_url'    => site_url( '/network-projects/' ),
-            'adjacent_order' => 'title',
+            'archive_page_id' => 7360, // /network-projects/ archive page
+            'adjacent_order'  => 'title',
         ),
         'kommuner' => array(
-            'archive_url'    => site_url( '/kommuner/' ),
-            'adjacent_order' => 'title',
+            'archive_page_id' => 14055, // /sv/kommuner/ archive page
+            'adjacent_order'  => 'title',
         ),
     );
 }
@@ -27,7 +27,7 @@ function fbhi_blog_like_cpts() {
 
 The registry drives three things:
 - **Conditional enqueue** of Salient Portfolio's `portfolio.css` on single views — the stylesheet provides the `.bottom_controls` / `#portfolio-nav` / `#prev-link` etc. classes the partial uses.
-- **"Back to all" URL** in the shared bottom-nav partial, looked up by current post type.
+- **"Back to all" URL** in the shared bottom-nav partial, resolved at render time by `fbhi_get_blog_like_cpt_archive_url()`. The helper translates the configured page ID to the active language via WPML's `wpml_object_id` filter and returns `get_permalink()` for the result — so Swedish visitors land on the Swedish archive page even when the slug is translated (e.g. `/sv/forskningsprojekt/` for `network-project`). Falls back to `home_url()` if the page is missing; works unchanged when WPML is disabled.
 - **Prev/next ordering** for the bottom nav (see below).
 
 #### `adjacent_order` — prev/next walk order
@@ -47,7 +47,7 @@ Contains the full Salient blog-style single-post body (a copy of Salient's blog 
 
 ```php
 get_template_part( 'includes/partials/shared/bottom-post-navigation', null, array(
-    'archive_url' => $fbhi_archive_url, // looked up from fbhi_blog_like_cpts()
+    'archive_url' => fbhi_get_blog_like_cpt_archive_url( get_post_type() ),
 ) );
 ```
 
@@ -70,8 +70,8 @@ Reuses Salient Portfolio's CSS classes. Accepts via `$args`:
 ## Adding another blog-like CPT
 
 1. Register the CPT (and any taxonomy) in `functions.php` — copy an existing block as a template.
-2. Add it to `fbhi_blog_like_cpts()` with its archive URL.
-3. Create `single-{cpt}.php` at the theme root as a one-liner that `require`s `includes/single-blog-like-cpt.php`.
-4. Build the archive page in WP admin at the configured URL.
+2. Build the archive page in WP admin (and its WPML translations, if any).
+3. Add the CPT to `fbhi_blog_like_cpts()` with `archive_page_id` set to the WP post ID of that archive page. Find it in WP admin: edit the page and read `post=<id>` from the URL. Any language's ID works — WPML translates across the translation group at runtime.
+4. Create `single-{cpt}.php` at the theme root as a one-liner that `require`s `includes/single-blog-like-cpt.php`.
 
 If the new CPT needs admin features that are currently network-project-specific (WW-Fingers meta/column/bulk edit/frontend logo), extract those into a reusable module before wiring the new CPT — they are intentionally not part of this shared layer.

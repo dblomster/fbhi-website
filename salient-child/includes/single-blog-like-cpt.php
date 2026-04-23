@@ -176,14 +176,8 @@ if ( true === $fullscreen_header ) {
 	</div><!--/container main-content-->
 
 	<?php
-	$fbhi_blog_like_cpts_config = fbhi_blog_like_cpts();
-	$fbhi_current_cpt           = get_post_type();
-	$fbhi_archive_url           = isset( $fbhi_blog_like_cpts_config[ $fbhi_current_cpt ]['archive_url'] )
-		? $fbhi_blog_like_cpts_config[ $fbhi_current_cpt ]['archive_url']
-		: home_url();
-
 	get_template_part( 'includes/partials/shared/bottom-post-navigation', null, array(
-		'archive_url' => $fbhi_archive_url,
+		'archive_url' => fbhi_get_blog_like_cpt_archive_url( get_post_type() ),
 	) );
 	?>
 
