@@ -122,13 +122,3 @@
    layout holds regardless of which link is present. */
 .bottom_controls #portfolio-nav .controls #prev-link { float: left; }
 .bottom_controls #portfolio-nav .controls #next-link { float: right; }
-
-/* ==========================================================================
-   Per-CPT overrides
-   ========================================================================== */
-
-/* Kommuner posts ship a WPBakery-built heading inside the content, so Salient's
-   page-header entry-title is redundant. Add other CPT selectors here to opt in. */
-.single-kommuner .entry-title {
-  display: none;
-}
