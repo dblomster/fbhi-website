@@ -1,0 +1,52 @@
+/* ============================================================
+   FAQ accordion - yellow question bars (matches the classic
+   "Fragor och svar om FINGER" page).
+   Enable by adding the class  faq-accordion  to the outer
+   WPBakery Row (Row settings -> Extra class name).
+
+   This is a reference copy. The live copy lives in
+   WP Admin -> Appearance -> Customize -> Additional CSS.
+   Keep both in sync by hand.
+   ============================================================ */
+
+/* Spacing between question bars; drop Salient's minimal divider line */
+.faq-accordion .toggles .toggle { margin-bottom: 10px; border-bottom: 0; }
+.faq-accordion .toggles .toggle-title { margin: 0; }
+
+/* The clickable question bar (the old yellow question box) */
+.faq-accordion .toggles .toggle-title .toggle-heading {
+  position: relative;            /* anchor the +/- icon */
+  display: block;
+  background-color: #fee6ac;
+  border-radius: 3px;
+  padding: 10px 52px 10px 14px;  /* right room for the icon */
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #000;
+  transition: background-color .15s ease;
+}
+.faq-accordion .toggles .toggle-title .toggle-heading:hover {
+  background-color: #fbdc92;
+  color: #000;
+}
+
+/* Plus/minus icon: pinned right, vertically centered */
+.faq-accordion .toggles .toggle-title .toggle-heading i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 18px;
+  color: #006885;
+}
+
+/* Answer body: gap below the bar + indent aligned under the bar text.
+   Selector mirrors Salient's minimal-style rule so it wins on specificity. */
+.faq-accordion div[data-style="minimal"] .toggle[data-inner-wrap="true"] > div .inner-toggle-wrap {
+  padding: 16px 14px 18px;
+}
+
+/* Gap between each accordion group and the next green section header */
+.faq-accordion .toggles { margin-bottom: 28px; }
