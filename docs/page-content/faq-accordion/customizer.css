@@ -1,26 +1,19 @@
-/* ============================================================
-   FAQ accordion - yellow question bars (matches the classic
-   "Fragor och svar om FINGER" page).
-   Enable by adding the class  faq-accordion  to the outer
-   WPBakery Row (Row settings -> Extra class name).
+/* FAQ accordion styles — see docs/page-content/faq-accordion/README.md for rationale.
+   Reference copy; live copy lives in WP Customize -> Additional CSS. Keep in sync.
+   No HTML tags in comments (the Customizer sanitizer strips them). */
 
-   This is a reference copy. The live copy lives in
-   WP Admin -> Appearance -> Customize -> Additional CSS.
-   Keep both in sync by hand.
-   ============================================================ */
-
-/* Spacing between question bars; drop Salient's minimal divider line */
+/* Question bar spacing (drop Salient's divider line) */
 .faq-accordion .toggles .toggle { margin-bottom: 10px; border-bottom: 0; }
 .faq-accordion .toggles .toggle-title { margin: 0; }
 
-/* The clickable question bar (the old yellow question box) */
+/* Question bar (yellow box) */
 .faq-accordion .toggles .toggle-title .toggle-heading {
-  position: relative;            /* anchor the +/- icon */
+  position: relative;
   display: block;
   background-color: #fee6ac;
   border-radius: 3px;
-  padding: 10px 52px 10px 14px;  /* right room for the icon */
-  font-size: 20px;
+  padding: 10px 52px 10px 14px;
+  font-size: 18px;
   line-height: 1.3;
   font-weight: 500;
   color: #000;
@@ -31,7 +24,7 @@
   color: #000;
 }
 
-/* Plus/minus icon: pinned right, vertically centered */
+/* Plus/minus icon */
 .faq-accordion .toggles .toggle-title .toggle-heading i {
   position: absolute;
   right: 16px;
@@ -42,11 +35,13 @@
   color: #006885;
 }
 
-/* Answer body: gap below the bar + indent aligned under the bar text.
-   Selector mirrors Salient's minimal-style rule so it wins on specificity. */
+/* Answer body */
 .faq-accordion div[data-style="minimal"] .toggle[data-inner-wrap="true"] > div .inner-toggle-wrap {
   padding: 16px 14px 18px;
 }
 
-/* Gap between each accordion group and the next green section header */
+/* Green section heading — !important needed to beat WPBakery (see README) */
+.faq-accordion .wpb_text_column:has(> .wpb_wrapper > h4) { padding: 10px 14px !important; }
+
+/* Gap before the next section heading */
 .faq-accordion .toggles { margin-bottom: 34px; }

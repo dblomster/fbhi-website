@@ -35,19 +35,38 @@ green category headings are kept as-is between the groups.
 
 3. **Styles** — paste `customizer.css` into
    **Appearance → Customize → Additional CSS** (alongside the other site CSS).
-   Note: the WP Customizer sanitizer rejects `<...>`-style text, so keep
-   comments free of angle brackets.
+
+   > ⚠️ **Keep `customizer.css` comments free of HTML tags / angle brackets.**
+   > Write `h4`, not the angle-bracket tag form. The WP Customizer "Additional
+   > CSS" sanitizer rejects `<...>`-style text and will mangle the CSS that
+   > follows such a comment.
 
 After deploying/editing on production, purge the Nginx cache (Nginx Helper).
 
 ## Notes / knobs
 
-- Bar look matches the classic page: `#fee6ac` fill, black 20px text, radius 3px.
+- Bar look matches the classic page: `#fee6ac` fill, black 18px text, radius 3px.
 - Question text colour can be switched to brand teal by changing `color: #000`
   to `color: #006885` in the `.toggle-heading` rule.
 - Multiple panels can be open at once (typical for an FAQ). Single-open
   behaviour would be a Toggle-group setting, not CSS.
-- The answer-body rule intentionally mirrors Salient's
+
+## CSS rule notes
+
+The `customizer.css` comments are kept terse for production (the live copy is
+pasted into the Customizer). The rationale lives here, rule by rule:
+
+- **Question bar (`.toggle-heading`)** — `font-size: 18px` sits just below the
+  ~19px green section heading so the section reads as the dominant level. The
+  `52px` right padding reserves room for the absolutely-positioned `+/-` icon.
+- **Answer body** — the rule intentionally mirrors Salient's
   `div[data-style="minimal"] .toggle[data-inner-wrap="true"] > div .inner-toggle-wrap`
-  selector, prefixed with `.faq-accordion`, so it wins on specificity. If
-  answer padding ever looks wrong after a Salient update, check that selector.
+  selector, prefixed with `.faq-accordion`, so it wins on specificity. If answer
+  padding ever looks wrong after a Salient update, check that selector.
+- **Green section heading** — each green bar is a WPBakery text column wrapping
+  an `h4`. The rule targets that `h4` (stable) rather than the per-element
+  `vc_custom_*` class, which WPBakery regenerates whenever the page is edited.
+  Padding `10px 14px` matches the question bars' top/bottom (10px) and aligns
+  the heading text to the question text (14px left). `!important` is required
+  because WPBakery emits the column's per-element padding with `!important`, so
+  a plain rule — even at higher specificity — cannot override it.
