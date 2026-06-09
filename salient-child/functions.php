@@ -15,6 +15,9 @@
      - "Back to all" URL in the shared bottom-nav partial, resolved via
        fbhi_get_blog_like_cpt_archive_url() from the WP page ID (WPML-aware)
        (single-{CPT}.php must still exist and require includes/single-blog-like-cpt.php)
+     - nav-menu highlighting on CPT singles: the 'archive_page_id' page doubles
+       as the menu parent, so a single highlights that page's menu item (and its
+       menu ancestors) — see fbhi_highlight_blog_like_cpt_menu_parent()
    ======================================================================== */
 
 function fbhi_blog_like_cpts() {
@@ -33,29 +36,125 @@ function fbhi_blog_like_cpts() {
 }
 
 /**
- * Resolve the "back to all" archive URL for a blog-like CPT.
+ * Resolve a blog-like CPT's archive WP page ID for the active language.
  *
- * Looks up the archive WP page ID from the registry, translates it to the
- * active WPML language via the `wpml_object_id` filter (returns the original
- * ID if no translation exists — fourth arg `true`), and returns its permalink.
+ * Looks up 'archive_page_id' from the registry and translates it to the active
+ * WPML language via the `wpml_object_id` filter (returns the original ID if no
+ * translation exists — fourth arg `true`). Returns 0 when the CPT has no
+ * configured archive page.
  *
  * Safe when WPML is disabled: `apply_filters` with no registered callbacks
  * returns the value unchanged, so the original ID is used.
  */
-function fbhi_get_blog_like_cpt_archive_url( $cpt ) {
+function fbhi_get_blog_like_cpt_archive_page_id( $cpt ) {
 	$config = fbhi_blog_like_cpts();
 	if ( empty( $config[ $cpt ]['archive_page_id'] ) ) {
-		return home_url();
+		return 0;
 	}
 
 	$page_id      = (int) $config[ $cpt ]['archive_page_id'];
 	$localized_id = apply_filters( 'wpml_object_id', $page_id, 'page', true );
-	if ( $localized_id ) {
-		$page_id = (int) $localized_id;
+
+	return $localized_id ? (int) $localized_id : $page_id;
+}
+
+/**
+ * Resolve the "back to all" archive URL for a blog-like CPT.
+ *
+ * Returns the permalink of the (WPML-localized) archive page, or the site home
+ * URL when the CPT has no configured archive page.
+ */
+function fbhi_get_blog_like_cpt_archive_url( $cpt ) {
+	$page_id = fbhi_get_blog_like_cpt_archive_page_id( $cpt );
+	if ( ! $page_id ) {
+		return home_url();
 	}
 
 	$url = get_permalink( $page_id );
 	return $url ? $url : home_url();
+}
+
+/* ========================================================================
+   Nav-menu highlighting for blog-like CPT singles
+   ------------------------------------------------------------------------
+   A single CPT post is never itself a menu item, so WP core can't anchor it
+   in the menu tree. Instead it falls back to flagging the "Posts page"
+   (Settings → Reading) item as current_page_parent on every non-Page
+   singular — which wrongly highlights that item (e.g. "Nyheter") on these
+   CPTs.
+
+   We fix it the same way core highlights a child page whose parent is in the
+   menu: treat the registry's archive_page_id page as the CPT's parent, find
+   its menu item, and mark it + its menu ancestors current. The ancestor walk
+   follows the menu's stored parent/child links (db_id / menu_item_parent), so
+   a custom-link section heading (href="#") highlights correctly too.
+
+   Precedence: if the post is linked directly in a menu (core already set
+   current-menu-item on it), we leave that as-is.
+   ======================================================================== */
+
+add_filter( 'wp_nav_menu_objects', 'fbhi_highlight_blog_like_cpt_menu_parent', 10, 2 );
+function fbhi_highlight_blog_like_cpt_menu_parent( $items, $args ) {
+	if ( ! is_singular( array_keys( fbhi_blog_like_cpts() ) ) ) {
+		return $items;
+	}
+
+	// Drop core's spurious Posts-page fallback so it can't double-highlight.
+	foreach ( $items as $item ) {
+		$item->classes = array_values( array_diff( (array) $item->classes, array( 'current_page_parent' ) ) );
+	}
+
+	// If the post is linked directly in this menu, core flagged it — respect that.
+	foreach ( $items as $item ) {
+		if ( in_array( 'current-menu-item', (array) $item->classes, true ) ) {
+			return $items;
+		}
+	}
+
+	$parent_page_id = fbhi_get_blog_like_cpt_archive_page_id( get_post_type() );
+	if ( ! $parent_page_id ) {
+		return $items;
+	}
+
+	// Find the menu item pointing at the configured parent page.
+	$target = null;
+	foreach ( $items as $item ) {
+		if ( 'page' === $item->object && (int) $item->object_id === $parent_page_id ) {
+			$target = $item;
+			break;
+		}
+	}
+	if ( ! $target ) {
+		return $items; // Parent page isn't in this menu — nothing to highlight.
+	}
+
+	$target->classes[] = 'current-menu-item';
+	$target->classes[] = 'current_page_item';
+
+	// Walk up the menu's stored hierarchy, flagging each ancestor.
+	$parent_db_id     = (int) $target->menu_item_parent;
+	$is_direct_parent = true;
+	while ( $parent_db_id ) {
+		$matched = false;
+		foreach ( $items as $item ) {
+			if ( (int) $item->db_id !== $parent_db_id ) {
+				continue;
+			}
+			$item->classes[] = 'current-menu-ancestor';
+			if ( $is_direct_parent ) {
+				$item->classes[] = 'current-menu-parent';
+			}
+			$parent_db_id     = (int) $item->menu_item_parent;
+			$is_direct_parent = false;
+			$matched          = true;
+			break;
+		}
+		if ( ! $matched ) {
+			break; // Broken parent link — stop rather than loop.
+		}
+	}
+
+	return $items;
 }
 
 /* ========================================================================

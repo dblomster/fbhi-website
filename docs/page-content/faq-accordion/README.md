@@ -1,17 +1,20 @@
 # FAQ accordion page ("Frågor och svar om FINGER")
 
-Reference copies of the WPBakery page content and Customizer CSS for the
-accordion version of the FAQ page. These live in WordPress, **not** in the
-theme — this folder is just a tracked, deployable-free copy so the markup and
-styles are reviewable and diffable in git.
+Docs for the accordion version of the FAQ page. The page **body** lives in
+WordPress (WPBakery), so this folder keeps a tracked, diffable copy of it. The
+**styles** now live in the theme at `salient-child/css/custom.css` (group 2,
+"FAQ accordion") — version-controlled and deployed by `upload.sh`, not in the
+Customizer.
 
 - `shortcode.txt` — the full WPBakery shortcode for the page body.
-- `customizer.css` — the Additional CSS that styles the accordion.
+- Styles → `salient-child/css/custom.css` (search "FAQ accordion").
 
-## Pages
+## Page
 
-- Live (classic, non-accordion): https://fbhi.se/sv/fragor-och-svar-om-finger/
-- Test (accordion):              https://fbhi.se/sv/fragor-och-svar-test/
+- Live (accordion): https://fbhi.se/sv/fragor-och-svar-om-finger/
+
+The accordion shipped to the live FAQ page (the old `…-test` staging page is
+gone). The page carries the `faq-accordion` el_class, so the styles below apply.
 
 ## How it works
 
@@ -33,13 +36,10 @@ green category headings are kept as-is between the groups.
    - Visual editor: outer Row → pencil → **General** → **Extra class name** →
      `faq-accordion`.
 
-3. **Styles** — paste `customizer.css` into
-   **Appearance → Customize → Additional CSS** (alongside the other site CSS).
-
-   > ⚠️ **Keep `customizer.css` comments free of HTML tags / angle brackets.**
-   > Write `h4`, not the angle-bracket tag form. The WP Customizer "Additional
-   > CSS" sanitizer rejects `<...>`-style text and will mangle the CSS that
-   > follows such a comment.
+3. **Styles** — already in `salient-child/css/custom.css` (group 2, "FAQ
+   accordion"). Nothing to paste; deploying the theme via `upload.sh` ships
+   them. (They previously lived in the Customizer's Additional CSS and were
+   migrated into the theme on 2026-06-10.)
 
 After deploying/editing on production, purge the Nginx cache (Nginx Helper).
 
@@ -53,8 +53,8 @@ After deploying/editing on production, purge the Nginx cache (Nginx Helper).
 
 ## CSS rule notes
 
-The `customizer.css` comments are kept terse for production (the live copy is
-pasted into the Customizer). The rationale lives here, rule by rule:
+The comments in `custom.css` are kept terse. The rationale lives here, rule by
+rule:
 
 - **Question bar (`.toggle-heading`)** — `font-size: 18px` sits just below the
   ~19px green section heading so the section reads as the dominant level. The

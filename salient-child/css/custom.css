@@ -1,13 +1,213 @@
 /**
  * FBHI child theme custom styles.
  *
- * Keep all custom CSS here — the files in css/build/ are Salient-generated
- * and may be overwritten when theme options are re-exported.
+ * All custom CSS lives in this file (version-controlled, deployed by upload.sh).
+ * Do NOT use Appearance → Customizer → Additional CSS, and never edit css/build/
+ * (Salient-generated — overwritten when theme options are re-exported).
+ *
+ * Two groups, kept separate on purpose:
+ *   1. THEME OVERRIDES — general tweaks to the Salient parent theme itself, not
+ *      tied to any custom child-theme code (menus, accordions, typography…).
+ *      Migrated here from the Customizer's Additional CSS so it lives in git.
+ *   2. CUSTOM FEATURES — CSS that supports this child theme's bespoke code
+ *      (CPT single templates, Events Calendar integration, shared partials…).
+ *
+ * Put new rules in the matching group.
  */
 
 /* ==========================================================================
-   Events page – global section rows injected outside .container-wrap
+   1. THEME OVERRIDES
+   General Salient appearance tweaks with no custom-code dependency.
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Archive page headings
+   -------------------------------------------------------------------------- */
+html body.archive .row .col.section-title h1 {
+  color: #006885 !important;
+}
+/* NOTE: the bare `subheader` selector matches no element (likely intended
+   `.subheader`); kept verbatim from the Customizer so behaviour is unchanged. */
+html body.archive .row .col.section-title subheader {
+  color: #006885 !important;
+}
+.row.page-header-no-bg .section-title .subheader {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Small-screen menu + caption tweaks (<= 768px)
+   NOTE: the caption rule below is intentionally left inside this query as it
+   was in the Customizer (so it only applies <= 768px). The font-family value
+   `'Monstserrat', Normal 400` is malformed and ignored by the browser; the
+   colour/size still apply. Both kept verbatim — fix separately if desired.
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  .c-toppnav__item {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .c-toppnav__item > a {
+    display: block;
+    padding: 10px 0;
+  }
+  p.wp-caption-text {
+    font-family: 'Monstserrat', Normal 400;
+    color: #006885;
+    font-size: 13px !important;
+  }
+}
+
+/* Page-header subheader sizing on small screens */
+@media only screen and (max-width: 690px) {
+  body #page-header-bg.fullscreen-header .span_6 span.subheader,
+  .overlaid-content .subheader {
+    font-size: 37px !important;
+    line-height: 37px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Pill button (bordered, fills on hover)
+   -------------------------------------------------------------------------- */
+.button {
+  display: table;
+  height: 48px;
+  color: #006885;
+  line-height: 48px;
+  border: 2px solid #006885;
+  border-radius: 200px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+.button:hover {
+  background: #006885;
+  color: white;
+  transition: all .45s cubic-bezier(0.25, 1, 0.33, 1), transform .45s cubic-bezier(0.25, 1, 0.33, 1), border-color .45s cubic-bezier(0.25, 1, 0.33, 1), color .45s cubic-bezier(0.25, 1, 0.33, 1), background-color .45s cubic-bezier(0.25, 1, 0.33, 1), box-shadow .45s cubic-bezier(0.25, 1, 0.33, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Single blog post title letter-spacing
+   -------------------------------------------------------------------------- */
+.single.single-post .heading-title[data-header-style=default] h1 {
+  letter-spacing: -1px;
+}
+@media (min-width: 1000px) {
+  .single.single-post .heading-title[data-header-style=default] h1 {
+    letter-spacing: -3px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Research results section spacing
+   -------------------------------------------------------------------------- */
+@media (min-width: 1000px) and (max-width: 1299px) {
+  #research-results {
+    padding-top: 65px !important;
+  }
+}
+@media (min-width: 1300px) {
+  #research-results .vc_column-inner {
+    margin-top: -45px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page-header chrome
+   -------------------------------------------------------------------------- */
+/* Hide the fixed (floating) social bar */
+.nectar-social.fixed {
+  display: none;
+}
+/* Page-header H1 colour */
+#page-header-bg h1 {
+  color: #006885 !important;
+}
+.home #page-header-bg h1 {
+  /* color: white !important; */
+}
+
+/* Shrink menu labels in a narrow desktop band so they don't wrap */
+@media (min-width: 1180px) and (max-width: 1320px) {
+  #header-outer[data-lhe="animated_underline"] li > a .menu-title-text {
+    font-size: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   External-link menu items — show an outbound-link icon
+   Trigger: add the `external-link` class to a menu item (Appearance -> Menus).
+   -------------------------------------------------------------------------- */
+li.external-link {
+  --ext-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA2ODg1IiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTggMTN2NmEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY4YTIgMiAwIDAgMSAyLTJoNiIvPjxwb2x5bGluZSBwb2ludHM9IjE1IDMgMjEgMyAyMSA5Ii8+PGxpbmUgeDE9IjEwIiB5MT0iMTQiIHgyPSIyMSIgeTI9IjMiLz48L3N2Zz4=");
+}
+/* Desktop menu: text is wrapped in .menu-title-text */
+li.external-link > a .menu-title-text {
+  padding-right: 1.1em;
+  background-image: var(--ext-icon);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 0.9em 0.9em;
+}
+/* Mobile menu: text is directly inside the anchor — append icon via pseudo-element */
+li.external-link > a:not(:has(.menu-title-text))::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.2em;
+  background-image: var(--ext-icon);
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: -0.1em;
+}
+
+/* --------------------------------------------------------------------------
+   Dropdown submenu — underline every line of a wrapping label
+   Salient's underline is one absolutely-positioned ::after bar, so a label that
+   wraps (e.g. "Kommuner och regioner") only gets a line beneath the last row.
+   Replace it with a per-line gradient underline (box-decoration-break: clone) —
+   the technique Salient itself uses for ext-menu items — revealed on
+   hover / focus / current, matching Salient's own trigger states.
+   -------------------------------------------------------------------------- */
+#header-outer .sf-menu ul.sub-menu li > a .menu-title-text::after,
+header .sf-menu ul.sub-menu li > a .menu-title-text::after {
+  display: none; /* drop the single-bar underline for submenu items */
+}
+#header-outer .sf-menu ul.sub-menu li > a .menu-title-text,
+header .sf-menu ul.sub-menu li > a .menu-title-text {
+  display: inline; /* keep inline so the label wraps per line */
+  background-image: linear-gradient(rgb(0, 104, 133), rgb(0, 104, 133));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.35s cubic-bezier(0.52, 0.01, 0.16, 1);
+}
+#header-outer .sf-menu ul.sub-menu li > a:hover .menu-title-text,
+#header-outer .sf-menu ul.sub-menu li > a:focus .menu-title-text,
+#header-outer .sf-menu ul.sub-menu li.sfHover > a .menu-title-text,
+#header-outer .sf-menu ul.sub-menu li[class*="current-"] > a .menu-title-text,
+header .sf-menu ul.sub-menu li > a:hover .menu-title-text,
+header .sf-menu ul.sub-menu li > a:focus .menu-title-text,
+header .sf-menu ul.sub-menu li.sfHover > a .menu-title-text,
+header .sf-menu ul.sub-menu li[class*="current-"] > a .menu-title-text {
+  background-size: 100% 2px;
+}
+
+
+/* ==========================================================================
+   2. CUSTOM FEATURES
+   CSS coupled to this child theme's custom code / templates / partials.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Events page – global section rows injected outside .container-wrap
+   Supports the Events Calendar tribe_template integration in functions.php.
+   -------------------------------------------------------------------------- */
 
 /* Force full viewport width */
 #ajax-content-wrap > .wpb_row.full-width-section {
@@ -112,9 +312,10 @@
   }
 }
 
-/* ==========================================================================
+/* --------------------------------------------------------------------------
    Shared bottom prev/next navigation
-   ========================================================================== */
+   Supports includes/partials/shared/bottom-post-navigation.php.
+   -------------------------------------------------------------------------- */
 
 /* Salient Portfolio's CSS pushes the "next" link right via
    `li:last-child { float: right }`. When only prev exists, it becomes the
@@ -122,3 +323,78 @@
    layout holds regardless of which link is present. */
 .bottom_controls #portfolio-nav .controls #prev-link { float: left; }
 .bottom_controls #portfolio-nav .controls #next-link { float: right; }
+
+/* --------------------------------------------------------------------------
+   Network Projects grid (network-project CPT listing)
+   Rounded, teal-bordered post-grid cards. `.network-projects` is the Extra
+   class set on the Salient post grid that lists network-project posts
+   (e.g. the Forskningsprojekt page).
+   -------------------------------------------------------------------------- */
+.network-projects .inner {
+  border: 1px solid #006885;
+  border-radius: 15px !important;
+  height: 100% !important;
+}
+.network-projects .nectar-post-grid-item {
+  /* transition: none !important; */
+}
+.network-projects .nectar-post-grid-item-bg {
+  border-radius: 15px !important;
+}
+.network-projects .nectar-post-grid-item-bg-wrap {
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ accordion ("Frågor och svar") — see docs/page-content/faq-accordion/
+   Styles the Salient Toggle-panel FAQ; scoped to a `faq-accordion` el_class on
+   the page's outer row. This is the live, single source for these styles;
+   per-rule rationale lives in that folder's README.md.
+   -------------------------------------------------------------------------- */
+
+/* Question bar spacing (drop Salient's divider line) */
+.faq-accordion .toggles .toggle { margin-bottom: 10px; border-bottom: 0; }
+.faq-accordion .toggles .toggle-title { margin: 0; }
+
+/* Question bar (yellow box) */
+.faq-accordion .toggles .toggle-title .toggle-heading {
+  position: relative;
+  display: block;
+  background-color: #fee6ac;
+  border-radius: 3px;
+  padding: 10px 52px 10px 14px;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #000;
+  transition: background-color .15s ease;
+}
+.faq-accordion .toggles .toggle-title .toggle-heading:hover {
+  background-color: #fbdc92;
+  color: #000;
+}
+
+/* Plus/minus icon */
+.faq-accordion .toggles .toggle-title .toggle-heading i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 18px;
+  color: #006885;
+}
+
+/* Answer body */
+.faq-accordion div[data-style="minimal"] .toggle[data-inner-wrap="true"] > div .inner-toggle-wrap {
+  padding: 16px 14px 18px;
+}
+
+/* Green section heading — !important needed to beat WPBakery (see README) */
+.faq-accordion .wpb_text_column:has(> .wpb_wrapper > h4) { padding: 10px 14px !important; }
+
+/* Gap before the next section heading */
+.faq-accordion .toggles { margin-bottom: 34px; }

@@ -33,7 +33,9 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - **ACF (Advanced Custom Fields)**: Used for hero images and font colors in the header
 - **Custom post types**: `network-project` (with taxonomy `network-project-category`) and `kommuner` (with taxonomy `kommuner-category`), registered in `functions.php`. Both use the Salient blog-style single layout via `includes/single-blog-like-cpt.php` and share the bottom prev/next nav. CPTs using this layout are listed in `fbhi_blog_like_cpts()` — see [docs/cpt-navigation.md](docs/cpt-navigation.md) to add another.
 - **WPML**: Site is multilingual — custom code must be WPML-aware (use `wpml_object_id` filter for post lookups, `wpml_element_language_details` / `wpml_get_element_translations` for source post resolution)
-- **CSS**: `css/build/` contains Salient-generated compiled styles — **do not add custom CSS there** as it may be overwritten when theme options are re-exported. All custom CSS goes in `css/custom.css`
+- **CSS**: `css/build/` contains Salient-generated compiled styles — **do not add custom CSS there** as it may be overwritten when theme options are re-exported. **All** custom CSS goes in `css/custom.css` (version-controlled, deployed by `upload.sh`). **Do not use Appearance → Customizer → Additional CSS** — it lives in the DB, outside git and the deploy pipeline. `custom.css` is split into two clearly-banner'd groups, and new rules go in the matching one:
+  - **1. Theme overrides** — general tweaks to the Salient parent theme itself, not tied to any custom code (menus, accordions, typography…).
+  - **2. Custom features** — CSS coupled to this child theme's bespoke code (CPT single templates, Events Calendar integration, shared partials…).
 
 ### Key Files
 
@@ -43,7 +45,7 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 - `includes/single-blog-like-cpt.php` — Shared single-template body for blog-like CPTs; looks up the archive URL for the bottom nav from `fbhi_blog_like_cpts()`
 - `includes/partials/shared/bottom-post-navigation.php` — Reusable prev/next + "back to all" partial (accepts `archive_url` and optional `prev_label` / `next_label` / `back_title` via args)
 - `css/build/style.css` — Salient-generated compiled stylesheet (~7K lines) — do not edit
-- `css/custom.css` — All custom FBHI styles (enqueued after main-styles, cache-busted via filemtime)
+- `css/custom.css` — **All** custom FBHI styles (enqueued after main-styles, cache-busted via filemtime), split into two groups: "1. Theme overrides" (general Salient tweaks) and "2. Custom features" (CSS for CPT templates, Events integration, shared partials)
 - `css/fonts/` — Custom icomoon icon font
 
 ### Plugin Dependencies
