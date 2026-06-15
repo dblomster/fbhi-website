@@ -36,6 +36,18 @@ html body.archive .row .col.section-title subheader {
 }
 
 /* --------------------------------------------------------------------------
+   Single post heading
+   Salient caps the single-post title at max-width: 800px (tightening to 620px
+   / 490px at smaller breakpoints) in css/src/single.css. Let it use the full
+   content-column width at every resolution instead; the column's own gutter is
+   preserved, so the title stays within the container. The `html body` prefix
+   out-specifies Salient's responsive `body.single…` rules at all breakpoints.
+   -------------------------------------------------------------------------- */
+html body.single.single-post .section-title h1 {
+  max-width: none;
+}
+
+/* --------------------------------------------------------------------------
    Small-screen menu + caption tweaks (<= 768px)
    NOTE: the caption rule below is intentionally left inside this query as it
    was in the Customizer (so it only applies <= 768px). The font-family value
