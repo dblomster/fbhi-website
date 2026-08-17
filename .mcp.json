@@ -8,6 +8,19 @@
         "--executablePath=/usr/bin/google-chrome"
       ],
       "env": {}
+    },
+    "novamira-fbhi-prod": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@automattic/mcp-wordpress-remote@latest"
+      ],
+      "env": {
+        "WP_API_URL": "https://fbhi.se/wp-json/mcp/novamira",
+        "WP_API_USERNAME": "Daniel",
+        "WP_API_PASSWORD": "${WP_API_PASSWORD_PROD}"
+      }
     }
   }
 }

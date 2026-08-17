@@ -17,6 +17,16 @@ This rsyncs `salient-child/` to the remote server at `fbhi.se`, using `--delete`
 
 **Caching**: Production runs behind Nginx caching. WP-level cache clearing is not enough — use the **Nginx Helper** plugin to purge the Nginx cache after deploying changes.
 
+## Novamira MCP (PRODUCTION — handle with care)
+
+The `novamira-fbhi-prod` MCP server (configured in `.mcp.json`) connects **directly to the live fbhi.se production site** via the Novamira / Novamira Pro plugins, authenticated as WordPress user ID 6 ("Daniel"). There is no staging in between — every write lands on prod immediately.
+
+- **Read-only by default.** Freely use read abilities (list/get/inspect/check-setup). Any write ability (create/update/edit/delete/write/set/apply/activate) requires explicit user confirmation first — per-operation, not blanket.
+- **Extra caution with the sharp tools**: `novamira/execute-php`, `novamira/run-wp-cli`, and `novamira/write-file` / `edit-file` / `delete-file` / `disable-file` are full code execution on the live server. Use them only when the user explicitly asks, never speculatively, and never for anything destructive without spelling out exactly what will run.
+- **Never touch the connection itself**: do not update, deactivate, or delete the Novamira / Novamira Pro plugins, and do not modify user ID 6's credentials, application passwords, or Novamira OAuth connections — doing so severs the MCP connection.
+- **Theme code still goes through git.** Do not use Novamira's file tools to edit `salient-child` on the server — that bypasses version control and gets clobbered by `upload.sh --delete`. Theme changes are made locally and deployed via `./upload.sh`.
+- **Cache after writes**: content/settings changes on prod may be masked by Nginx caching — purge via Nginx Helper when verifying.
+
 ## Coding Standards
 
 - PHP 8.0+ — use modern PHP features where appropriate
