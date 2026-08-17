@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress child theme ("salient-child") for **fbhi.se**, built on the Salient parent theme (v13.1+).
+WordPress child theme ("salient-child") for **fbhi.se**, built on the Salient parent theme (v15.0.9 as of 2026-08; officially WP 7.0 support starts at Salient 18.2, but 15.0.9 runs fine on WP 7.0.4 in practice — see docs/archive/updates-2026-08/ for the assessment and dev checklist).
 
 ## Deployment
 
