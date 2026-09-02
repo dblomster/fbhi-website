@@ -299,21 +299,23 @@
 	cursor: pointer;
 	display: flex;
 	align-items: stretch;
-	gap: 4px;
+	border-radius: 4px;
+	background: var(--fbhi-guide-grey);
+	overflow: hidden;
 }
 .fbhi-guide-nav__chapter > summary::-webkit-details-marker { display: none; }
-.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link { flex: 1 1 auto; min-width: 0; }
+.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link { flex: 1 1 auto; min-width: 0; border-radius: 0; background: transparent; }
+.fbhi-guide-nav__item.is-current .fbhi-guide-nav__chapter-summary { background: var(--fbhi-guide-tint); }
+.fbhi-guide-nav__chapter-summary:hover { background: var(--fbhi-guide-tint); }
 /* The chevron is its own tap target (toggles the chapter); the link navigates. */
 .fbhi-guide-nav__chevron {
 	flex: 0 0 44px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 4px;
-	background: var(--fbhi-guide-grey);
+	border-left: 1px solid rgba(33, 58, 108, .15); /* hairline divider between name and chevron */
 }
-.fbhi-guide-nav__item.is-current .fbhi-guide-nav__chevron { background: var(--fbhi-guide-tint); }
-.fbhi-guide-nav__chevron:hover { background: var(--fbhi-guide-tint); }
+.fbhi-guide-nav__chevron:hover { background: rgba(33, 58, 108, .06); }
 .fbhi-guide-nav__chevron::before {
 	content: "";
 	width: 10px;
