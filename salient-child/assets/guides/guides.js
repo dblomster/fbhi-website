@@ -117,6 +117,22 @@
 		onScroll();
 	}
 
+	/* Salient's back-to-top button: its init binds only the *hide* handler when
+	   the page opens already scrolled (deep link to a heading), while the button
+	   itself starts hidden — so it never appears. Reveal it in that case. */
+	function revealToTop() {
+		var toTop = document.getElementById( 'to-top' );
+		if ( toTop && window.scrollY > 350 ) {
+			toTop.style.transform = 'translateY(-50%)';
+		}
+	}
+	window.addEventListener( 'load', function () {
+		window.setTimeout( revealToTop, 400 );
+	} );
+	window.addEventListener( 'hashchange', function () {
+		window.setTimeout( revealToTop, 400 );
+	} );
+
 	/* Print. */
 	guide.addEventListener( 'click', function ( e ) {
 		if ( e.target.closest( '[data-guide-print]' ) ) {
