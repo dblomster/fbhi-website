@@ -32,8 +32,11 @@
 .container-wrap .fbhi-guide-nav__list > li,
 .container-wrap .fbhi-guide-toc > li {
 	list-style: none; /* Salient sets list-style on li, not only on ol/ul */
-	padding-left: 0;
 }
+.container-wrap .fbhi-guide-nav__list > li,
+.container-wrap .fbhi-guide-toc > li { padding-left: 0; }
+/* Salient gives every p in .container-wrap a bottom padding; our spacing is margin-based. */
+.container-wrap .fbhi-guide p { padding-bottom: 0; }
 
 /* ---------- layout ---------- */
 .fbhi-guide {
@@ -221,6 +224,7 @@
 	background: var(--fbhi-guide-teal);
 	color: #fff;
 }
+.container-wrap .fbhi-guide-button { text-decoration: none; } /* Salient underlines links in .container-wrap */
 .fbhi-guide-button--ghost { border-color: var(--fbhi-guide-grey-dark); color: var(--fbhi-guide-muted); }
 .fbhi-guide-button--ghost:hover { border-color: var(--fbhi-guide-teal); }
 
