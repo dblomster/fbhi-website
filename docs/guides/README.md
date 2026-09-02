@@ -5,12 +5,12 @@ Custom guide/handbook system for fbhi.se, modelled on Jämställdhetsmyndigheten
 Guide**, Swedish only, built and tested on **dev (fbhi.devcx.com)** first.
 
 **Status (2026-09-02): planning done, colour palette and draft content received and analysed,
-phase 1 (post type + meta + editor panel + block curation) deployed to dev 2026-09-02.
-Next: phase 2 (frontend template).**
+phases 1–2 deployed to dev 2026-09-02 (post type, meta, editor panel, block curation,
+full guide template with sidebar/TOC/nav). Next: phase 3 (guide-index block + auto-append).**
 
 **Dev content (fbhi.devcx.com)**: root guide "FINGER-guiden" = post 13900 (`/sv/guide/finger/`); chapters
 13901 Bakgrund (Avsnitt 1, teal) · 13902 Nuläge (Avsnitt 2, green) · 13903 Utforma (Avsnitt 3, yellow) ·
-13904 Planering (Avsnitt 4, peach). Chapter bodies are placeholders until phase 7.
+13904 Planering (Avsnitt 4, peach). Chapter 13901 has its real draft text (H2s only, sub-headings not yet promoted); 13902–13904 are placeholders until phase 7.
 
 ## Files in this folder
 

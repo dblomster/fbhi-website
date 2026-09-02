@@ -31,6 +31,9 @@ define( 'FBHI_GUIDES_ASSETS_URL', get_stylesheet_directory_uri() . '/assets/guid
 require_once FBHI_GUIDES_DIR . '/class-guide-post-type.php';
 require_once FBHI_GUIDES_DIR . '/class-guide-meta.php';
 require_once FBHI_GUIDES_DIR . '/class-guide-editor.php';
+require_once FBHI_GUIDES_DIR . '/class-guide-hierarchy.php';
+require_once FBHI_GUIDES_DIR . '/class-guide-toc.php';
+require_once FBHI_GUIDES_DIR . '/class-guide-frontend.php';
 
 add_action( 'after_setup_theme', function () {
 	load_child_theme_textdomain( 'salient-child', get_stylesheet_directory() . '/languages' );
@@ -39,3 +42,5 @@ add_action( 'after_setup_theme', function () {
 FBHI\Guides\Guide_Post_Type::register();
 FBHI\Guides\Guide_Meta::register();
 FBHI\Guides\Guide_Editor::register();
+FBHI\Guides\Guide_TOC::register();
+FBHI\Guides\Guide_Frontend::register();

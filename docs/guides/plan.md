@@ -108,6 +108,9 @@ so the TOC collector has run and the sidebar can be printed anywhere in the DOM.
 - H3 support is built in but off by default (D24); the sidebar nests H3 under its H2 when enabled.
 
 ### Sidebar nav (`templates/parts/sidebar-nav.php`)
+Implementation note: Salient's reset gives `.container-wrap ol/ul` list markers — structural lists need an explicit
+`.container-wrap .fbhi-…{list-style:none}` override. Sticky works despite Salient's `body{overflow:hidden}`.
+
 Data from `Guide_Hierarchy`: root, ordered chapters (`menu_order`, then title), current post.
 Markup: `<nav aria-label>` → "Start" link (root) → one `<details>` per chapter (`open` on current chapter)
 → current chapter's `<details>` contains the H2 list. Native `<details>` gives a working no-JS baseline.
@@ -205,7 +208,7 @@ instead of `css/custom.css`. It is still git-tracked and deployed by `upload.sh`
 |---|---|---|
 | 0 | Inputs | Colour scheme + draft content received; text domain + languages folder; `./upload.sh d` works |
 | 1 ✅ | Post type + meta + editor | Deployed 2026-09-02. Verified via REST: type registered, hierarchy + meta saved. Editor panel/whitelist still to be eyeballed in wp-admin. |
-| 2 | Frontend template | Chapter header, content, sticky sidebar with TOC, mobile dropdown, prev/next, last updated |
+| 2 ✅ | Frontend template | Deployed 2026-09-02, checked in Chrome desktop (1440) + mobile (500): tinted header, sticky sidebar with live TOC + scroll-spy, other chapters' headings parsed from their blocks, mobile dropdown, prev/next/back, last updated, print button. Root page shows a template-rendered index (block wrapper = phase 3). |
 | 3 | Index block | Cards auto-appear on root; block placement override works |
 | 4 | Components | Info box, callout, checklist, interview pattern, print page-break style |
 | 5 | Print | Print stylesheet + button; page breaks honoured |

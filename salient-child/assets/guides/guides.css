@@ -1,0 +1,363 @@
+/**
+ * FBHI Guides — frontend styles (guide pages only).
+ *
+ * Variables: --fbhi-guide-accent / --fbhi-guide-tint are set inline per
+ * guide page / card / nav item from the chapter's colour meta (see
+ * Guide_Meta::inline_style). Everything else inherits Salient (Montserrat,
+ * teal links, container widths).
+ */
+
+:root {
+	--fbhi-guide-navy: #213A6C;
+	--fbhi-guide-teal: #006885;
+	--fbhi-guide-grey: #F3F4F6;
+	--fbhi-guide-grey-dark: #D5D3D3;
+	--fbhi-guide-text: #000;
+	--fbhi-guide-muted: #4a4a4a;
+	--fbhi-guide-sticky-top: 120px;
+	--fbhi-guide-accent: var(--fbhi-guide-teal);
+	--fbhi-guide-tint: #E6EEF1;
+}
+
+/* Salient styles ol/ul inside .container-wrap; our structural lists must stay unstyled. */
+.container-wrap .fbhi-guide-index__list,
+.container-wrap .fbhi-guide-nav__list,
+.container-wrap .fbhi-guide-toc {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+.container-wrap .fbhi-guide-toc { padding-left: 14px; }
+
+/* ---------- layout ---------- */
+.fbhi-guide {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 320px;
+	column-gap: 64px;
+	align-items: start;
+	max-width: 1180px;
+	margin: 0 auto;
+	padding: 8px 0 40px;
+}
+.fbhi-guide__main {
+	grid-column: 1;
+	grid-row: 1;
+	min-width: 0;
+	max-width: 780px;
+}
+.fbhi-guide__sidebar {
+	grid-column: 2;
+	grid-row: 1;
+	position: sticky;
+	top: var(--fbhi-guide-sticky-top);
+	max-height: calc(100vh - var(--fbhi-guide-sticky-top) - 24px);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+/* ---------- chapter header ---------- */
+.fbhi-guide-header {
+	background: var(--fbhi-guide-tint);
+	border-left: 8px solid var(--fbhi-guide-accent);
+	border-radius: 4px;
+	padding: 36px 40px 32px;
+	margin: 0 0 40px;
+}
+.fbhi-guide-header__label {
+	margin: 0 0 8px;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--fbhi-guide-navy);
+}
+.fbhi-guide-header__title,
+.container-wrap .fbhi-guide-header__title {
+	margin: 0;
+	font-size: 38px;
+	line-height: 1.15;
+	font-weight: 700;
+	text-transform: none;
+	color: var(--fbhi-guide-navy);
+}
+.fbhi-guide-header__intro {
+	margin-top: 18px;
+	font-size: 18px;
+	line-height: 1.5;
+	color: var(--fbhi-guide-text);
+}
+.fbhi-guide-header__intro p { margin: 0; }
+.fbhi-guide-header__intro p + p { margin-top: .8em; }
+
+/* ---------- content (Gutenberg blocks inside Salient) ---------- */
+.fbhi-guide__content {
+	font-size: 17px;
+	line-height: 1.6;
+	color: var(--fbhi-guide-text);
+}
+.fbhi-guide__content > * { margin-top: 0; margin-bottom: 0; }
+.fbhi-guide__content > * + * { margin-top: 1.2em; }
+.fbhi-guide__content > h2,
+.container-wrap .fbhi-guide__content > h2 {
+	margin-top: 2em;
+	font-size: 28px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: var(--fbhi-guide-teal);
+	scroll-margin-top: calc(var(--fbhi-guide-sticky-top) + 8px);
+}
+.fbhi-guide__content > h3,
+.container-wrap .fbhi-guide__content > h3 {
+	margin-top: 1.6em;
+	font-size: 21px;
+	line-height: 1.3;
+	font-weight: 700;
+	color: var(--fbhi-guide-text);
+	scroll-margin-top: calc(var(--fbhi-guide-sticky-top) + 8px);
+}
+.fbhi-guide__content h2 + *, .fbhi-guide__content h3 + * { margin-top: .6em; }
+.fbhi-guide__content ul,
+.fbhi-guide__content ol {
+	padding-left: 1.4em;
+	list-style: disc;
+}
+.fbhi-guide__content ol { list-style: decimal; }
+.fbhi-guide__content li { margin-bottom: .4em; }
+.fbhi-guide__content li::marker { color: var(--fbhi-guide-accent); }
+.fbhi-guide__content ol li::marker { color: var(--fbhi-guide-navy); font-weight: 700; }
+.fbhi-guide__content a { text-decoration: underline; text-underline-offset: 2px; }
+.fbhi-guide__content img { max-width: 100%; height: auto; }
+.fbhi-guide__content figure { margin: 0; }
+.fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; }
+.fbhi-guide__content .wp-block-table table { width: 100%; border-collapse: collapse; }
+.fbhi-guide__content .wp-block-table td,
+.fbhi-guide__content .wp-block-table th { border: 1px solid var(--fbhi-guide-grey-dark); padding: .5em .75em; }
+.fbhi-guide__content .wp-block-quote {
+	border-left: 4px solid var(--fbhi-guide-accent);
+	padding: .5em 0 .5em 1.25em;
+	font-size: 1.05em;
+}
+.fbhi-guide__content .wp-block-separator {
+	border: 0;
+	border-top: 1px solid var(--fbhi-guide-grey-dark);
+	max-width: 120px;
+	margin-left: 0;
+}
+
+/* ---------- buttons (mirrors Salient's pill buttons) ---------- */
+.fbhi-guide-button {
+	display: inline-block;
+	border: 2px solid var(--fbhi-guide-teal);
+	border-radius: 200px;
+	padding: 9px 24px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: .02em;
+	color: var(--fbhi-guide-teal);
+	background: transparent;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background .2s, color .2s;
+}
+.fbhi-guide-button:hover,
+.fbhi-guide-button:focus-visible {
+	background: var(--fbhi-guide-teal);
+	color: #fff;
+}
+.fbhi-guide-button--ghost { border-color: var(--fbhi-guide-grey-dark); color: var(--fbhi-guide-muted); }
+.fbhi-guide-button--ghost:hover { border-color: var(--fbhi-guide-teal); }
+
+/* ---------- index cards (root page) ---------- */
+.fbhi-guide-index { margin-top: 48px; }
+.fbhi-guide-index__heading,
+.container-wrap .fbhi-guide-index__heading {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--fbhi-guide-teal);
+	margin: 0 0 20px;
+}
+.fbhi-guide-index__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.fbhi-guide-card {
+	position: relative;
+	background: var(--fbhi-guide-tint);
+	border-left: 8px solid var(--fbhi-guide-accent);
+	border-radius: 4px;
+	padding: 28px 32px 28px;
+}
+.fbhi-guide-card__label {
+	margin: 0 0 6px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--fbhi-guide-navy);
+}
+.fbhi-guide-card__title,
+.container-wrap .fbhi-guide-card__title {
+	margin: 0;
+	font-size: 22px;
+	line-height: 1.25;
+	font-weight: 700;
+	color: var(--fbhi-guide-navy);
+}
+.fbhi-guide-card__title a { color: inherit; text-decoration: none; }
+.fbhi-guide-card__title a:hover { text-decoration: underline; }
+.fbhi-guide-card__intro { margin-top: 10px; font-size: 16px; line-height: 1.55; }
+.fbhi-guide-card__intro p { margin: 0; }
+.fbhi-guide-card__more { margin-top: 16px; background: #fff; }
+
+/* ---------- sidebar navigation ---------- */
+.fbhi-guide-nav { font-size: 15px; }
+.fbhi-guide-nav__wrap > summary { display: none; }
+.fbhi-guide-nav__guide-title {
+	margin: 0 0 12px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--fbhi-guide-muted);
+}
+.fbhi-guide-nav__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.fbhi-guide-nav__item { margin: 0; }
+.fbhi-guide-nav__link {
+	display: block;
+	padding: 11px 14px;
+	border-radius: 4px;
+	background: var(--fbhi-guide-grey);
+	color: var(--fbhi-guide-navy);
+	font-weight: 600;
+	line-height: 1.3;
+	text-decoration: none;
+	border-left: 5px solid transparent;
+}
+.fbhi-guide-nav__link:hover { background: var(--fbhi-guide-tint); border-left-color: var(--fbhi-guide-accent); color: var(--fbhi-guide-navy); }
+.fbhi-guide-nav__item.is-current > .fbhi-guide-nav__link,
+.fbhi-guide-nav__item.is-current .fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link {
+	background: var(--fbhi-guide-tint);
+	border-left-color: var(--fbhi-guide-accent);
+}
+.fbhi-guide-nav__label { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--fbhi-guide-muted); margin-bottom: 2px; }
+.fbhi-guide-nav__chapter > summary { list-style: none; cursor: pointer; position: relative; }
+.fbhi-guide-nav__chapter > summary::-webkit-details-marker { display: none; }
+.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link { padding-right: 40px; }
+.fbhi-guide-nav__chevron {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	width: 10px;
+	height: 10px;
+	margin-top: -7px;
+	border-right: 2px solid var(--fbhi-guide-navy);
+	border-bottom: 2px solid var(--fbhi-guide-navy);
+	transform: rotate(45deg);
+	transition: transform .2s;
+}
+.fbhi-guide-nav__chapter[open] > summary .fbhi-guide-nav__chevron { transform: rotate(-135deg); margin-top: -2px; }
+.fbhi-guide-toc { list-style: none; margin: 4px 0 8px; padding: 0 0 0 14px; border-left: 2px solid var(--fbhi-guide-tint); }
+.fbhi-guide-toc__item { margin: 0; }
+.fbhi-guide-toc__item--h3 { padding-left: 14px; }
+.fbhi-guide-toc__link {
+	display: block;
+	padding: 7px 10px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	color: var(--fbhi-guide-text);
+	text-decoration: none;
+	border-radius: 3px;
+}
+.fbhi-guide-toc__link:hover { background: var(--fbhi-guide-grey); color: var(--fbhi-guide-navy); }
+.fbhi-guide-toc__link.is-active { color: var(--fbhi-guide-navy); font-weight: 700; box-shadow: inset 3px 0 0 var(--fbhi-guide-accent); background: var(--fbhi-guide-grey); }
+
+/* ---------- last updated / tools / bottom nav ---------- */
+.fbhi-guide__updated {
+	margin: 48px 0 0;
+	padding-top: 16px;
+	border-top: 1px solid var(--fbhi-guide-grey-dark);
+	font-size: 14px;
+	color: var(--fbhi-guide-muted);
+}
+.fbhi-guide__tools { margin-top: 16px; }
+.fbhi-guide-bottom-nav {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	gap: 16px;
+	align-items: stretch;
+	margin-top: 32px;
+	padding-top: 24px;
+	border-top: 1px solid var(--fbhi-guide-grey-dark);
+}
+.fbhi-guide-bottom-nav__link {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	padding: 16px 20px;
+	border-radius: 4px;
+	background: var(--fbhi-guide-grey);
+	color: var(--fbhi-guide-navy);
+	text-decoration: none;
+	line-height: 1.3;
+	transition: background .2s;
+}
+.fbhi-guide-bottom-nav__link:hover { background: var(--fbhi-guide-tint); color: var(--fbhi-guide-navy); }
+.fbhi-guide-bottom-nav__link--next { text-align: right; align-items: flex-end; }
+.fbhi-guide-bottom-nav__link--next { background: var(--fbhi-guide-tint); border-right: 6px solid var(--fbhi-guide-accent); }
+.fbhi-guide-bottom-nav__link--prev { border-left: 6px solid var(--fbhi-guide-grey-dark); }
+.fbhi-guide-bottom-nav__link--up { align-items: center; text-align: center; font-weight: 600; font-size: 14px; }
+.fbhi-guide-bottom-nav__dir { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fbhi-guide-muted); }
+.fbhi-guide-bottom-nav__name { font-weight: 600; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 999px) {
+	.fbhi-guide {
+		display: block;
+		padding-top: 0;
+	}
+	.fbhi-guide__main { max-width: none; }
+	.fbhi-guide__sidebar {
+		position: static;
+		max-height: none;
+		overflow: visible;
+		margin: 0 0 24px;
+	}
+	.fbhi-guide-nav__wrap > summary {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		list-style: none;
+		cursor: pointer;
+		padding: 12px 44px 12px 16px;
+		border-radius: 4px;
+		background: var(--fbhi-guide-navy);
+		color: #fff;
+		position: relative;
+	}
+	.fbhi-guide-nav__wrap > summary::-webkit-details-marker { display: none; }
+	.fbhi-guide-nav__wrap > summary::after {
+		content: "";
+		position: absolute;
+		right: 18px;
+		top: 50%;
+		width: 10px;
+		height: 10px;
+		margin-top: -7px;
+		border-right: 2px solid #fff;
+		border-bottom: 2px solid #fff;
+		transform: rotate(45deg);
+	}
+	.fbhi-guide-nav__wrap[open] > summary::after { transform: rotate(-135deg); margin-top: -2px; }
+	.fbhi-guide-nav__summary-guide { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+	.fbhi-guide-nav__summary-current { font-weight: 600; }
+	.fbhi-guide-nav__guide-title { display: none; }
+	.fbhi-guide-nav__list { margin-top: 8px; padding: 12px; border: 1px solid var(--fbhi-guide-grey-dark); border-radius: 4px; }
+	.fbhi-guide-header { padding: 24px 22px 22px; margin-bottom: 28px; }
+	.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 28px; }
+	.fbhi-guide-header__intro { font-size: 16px; }
+	.fbhi-guide__content { font-size: 16px; }
+	.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 24px; }
+	.fbhi-guide-card { padding: 20px 20px 22px; }
+	.fbhi-guide-bottom-nav { grid-template-columns: 1fr; }
+	.fbhi-guide-bottom-nav__link--next { order: -1; }
+}
