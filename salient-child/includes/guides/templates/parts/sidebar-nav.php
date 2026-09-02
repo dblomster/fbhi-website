@@ -10,6 +10,7 @@
  * @package Salient-Child
  */
 
+use FBHI\Guides\Guide_Frontend;
 use FBHI\Guides\Guide_Hierarchy;
 use FBHI\Guides\Guide_Meta;
 use FBHI\Guides\Guide_TOC;
@@ -23,15 +24,13 @@ $fbhi_nav_chapters   = Guide_Hierarchy::children( $fbhi_nav_root->ID );
 $fbhi_nav_current_ch = Guide_Hierarchy::chapter_of( $fbhi_nav_post->ID );
 $fbhi_nav_is_root    = $fbhi_nav_root->ID === $fbhi_nav_post->ID;
 
-$fbhi_nav_current_title = $fbhi_nav_is_root
-	? __( 'Start', 'salient-child' )
-	: trim( Guide_Meta::label( $fbhi_nav_post->ID ) . ' ' . get_the_title( $fbhi_nav_post ) );
+$fbhi_nav_current_title = Guide_Frontend::page_name_html( $fbhi_nav_post, $fbhi_nav_root );
 ?>
 <nav class="fbhi-guide-nav" aria-label="<?php esc_attr_e( 'Guide navigation', 'salient-child' ); ?>">
 	<details class="fbhi-guide-nav__wrap" open>
 		<summary class="fbhi-guide-nav__summary">
 			<span class="fbhi-guide-nav__summary-guide"><?php echo esc_html( get_the_title( $fbhi_nav_root ) ); ?></span>
-			<span class="fbhi-guide-nav__summary-current"><?php echo esc_html( $fbhi_nav_current_title ); ?></span>
+			<span class="fbhi-guide-nav__summary-current"><?php echo $fbhi_nav_current_title; // escaped in page_name_html ?></span>
 		</summary>
 
 		<p class="fbhi-guide-nav__guide-title"><?php echo esc_html( get_the_title( $fbhi_nav_root ) ); ?></p>

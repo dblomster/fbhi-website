@@ -110,6 +110,24 @@ final class Guide_Frontend {
 		}
 	}
 
+	/**
+	 * "Label – Title" for a guide page as safe HTML, with a divider between
+	 * the parts when a label exists. The root renders as "Start".
+	 */
+	public static function page_name_html( \WP_Post $post, ?\WP_Post $root = null ): string {
+		if ( $root && $post->ID === $root->ID ) {
+			return esc_html__( 'Start', 'salient-child' );
+		}
+		$label = Guide_Meta::label( $post->ID );
+		$title = esc_html( get_the_title( $post ) );
+		if ( '' === $label ) {
+			return $title;
+		}
+		return '<span class="fbhi-guide-page-name__label">' . esc_html( $label ) . '</span>'
+			. '<span class="fbhi-guide-page-name__divider" aria-hidden="true">&ndash;</span>'
+			. '<span class="fbhi-guide-page-name__title">' . $title . '</span>';
+	}
+
 	/** Manual excerpt only (never auto-generated from content). */
 	public static function intro( \WP_Post $post ): string {
 		return has_excerpt( $post ) ? wp_kses_post( $post->post_excerpt ) : '';

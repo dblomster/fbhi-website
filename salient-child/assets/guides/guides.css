@@ -67,7 +67,6 @@
 /* ---------- chapter header ---------- */
 .fbhi-guide-header {
 	background: var(--fbhi-guide-tint);
-	border-left: 8px solid var(--fbhi-guide-accent);
 	border-radius: 4px;
 	padding: 36px 40px 32px;
 	margin: 0 0 40px;
@@ -142,8 +141,10 @@
 .fbhi-guide__content .wp-block-table td,
 .fbhi-guide__content .wp-block-table th { border: 1px solid var(--fbhi-guide-grey-dark); padding: .5em .75em; }
 .fbhi-guide__content .wp-block-quote {
-	border-left: 4px solid var(--fbhi-guide-accent);
-	padding: .5em 0 .5em 1.25em;
+	border: 0;
+	background: var(--fbhi-guide-grey);
+	border-radius: 4px;
+	padding: 1em 1.5em;
 	font-size: 1.05em;
 }
 .fbhi-guide__content .wp-block-separator {
@@ -165,11 +166,9 @@
 }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox {
 	background: var(--fbhi-guide-grey);
-	border-left: 6px solid var(--fbhi-guide-grey-dark);
 }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout {
 	background: var(--fbhi-guide-tint);
-	border-left: 6px solid var(--fbhi-guide-accent);
 }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
 	background: var(--fbhi-guide-tint);
@@ -243,7 +242,6 @@
 .fbhi-guide-card {
 	position: relative;
 	background: var(--fbhi-guide-tint);
-	border-left: 8px solid var(--fbhi-guide-accent);
 	border-radius: 4px;
 	padding: 28px 32px 28px;
 }
@@ -291,13 +289,11 @@
 	font-weight: 600;
 	line-height: 1.3;
 	text-decoration: none;
-	border-left: 5px solid transparent;
 }
-.fbhi-guide-nav__link:hover { background: var(--fbhi-guide-tint); border-left-color: var(--fbhi-guide-accent); color: var(--fbhi-guide-navy); }
+.fbhi-guide-nav__link:hover { background: var(--fbhi-guide-tint); color: var(--fbhi-guide-navy); }
 .fbhi-guide-nav__item.is-current > .fbhi-guide-nav__link,
 .fbhi-guide-nav__item.is-current .fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link {
 	background: var(--fbhi-guide-tint);
-	border-left-color: var(--fbhi-guide-accent);
 }
 .fbhi-guide-nav__label { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--fbhi-guide-muted); margin-bottom: 2px; }
 .fbhi-guide-nav__chapter > summary { list-style: none; cursor: pointer; position: relative; }
@@ -316,7 +312,7 @@
 	transition: transform .2s;
 }
 .fbhi-guide-nav__chapter[open] > summary .fbhi-guide-nav__chevron { transform: rotate(-135deg); margin-top: -2px; }
-.fbhi-guide-toc { list-style: none; margin: 4px 0 8px; padding: 0 0 0 14px; border-left: 2px solid var(--fbhi-guide-tint); }
+.fbhi-guide-toc { list-style: none; margin: 4px 0 8px; padding: 0 0 0 14px; }
 .fbhi-guide-toc__item { margin: 0; }
 .fbhi-guide-toc__item--h3 { padding-left: 14px; }
 .fbhi-guide-toc__link {
@@ -330,7 +326,7 @@
 	border-radius: 3px;
 }
 .fbhi-guide-toc__link:hover { background: var(--fbhi-guide-grey); color: var(--fbhi-guide-navy); }
-.fbhi-guide-toc__link.is-active { color: var(--fbhi-guide-navy); font-weight: 700; box-shadow: inset 3px 0 0 var(--fbhi-guide-accent); background: var(--fbhi-guide-grey); }
+.fbhi-guide-toc__link.is-active { color: var(--fbhi-guide-navy); font-weight: 700; background: var(--fbhi-guide-tint); }
 
 /* ---------- last updated / tools / bottom nav ---------- */
 .fbhi-guide__updated {
@@ -364,12 +360,12 @@
 	transition: background .2s;
 }
 .fbhi-guide-bottom-nav__link:hover { background: var(--fbhi-guide-tint); color: var(--fbhi-guide-navy); }
-.fbhi-guide-bottom-nav__link--next { text-align: right; align-items: flex-end; }
-.fbhi-guide-bottom-nav__link--next { background: var(--fbhi-guide-tint); border-right: 6px solid var(--fbhi-guide-accent); }
-.fbhi-guide-bottom-nav__link--prev { border-left: 6px solid var(--fbhi-guide-grey-dark); }
-.fbhi-guide-bottom-nav__link--up { align-items: center; text-align: center; font-weight: 600; font-size: 14px; }
+.fbhi-guide-bottom-nav__link { font-size: 14px; font-weight: 600; }
+.fbhi-guide-bottom-nav__link--next { text-align: right; align-items: flex-end; background: var(--fbhi-guide-tint); }
+.fbhi-guide-bottom-nav__link--up { align-items: center; text-align: center; }
 .fbhi-guide-bottom-nav__dir { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fbhi-guide-muted); }
 .fbhi-guide-bottom-nav__name { font-weight: 600; }
+.fbhi-guide-page-name__divider { margin: 0 .45em; color: var(--fbhi-guide-muted); font-weight: 400; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 999px) {
@@ -412,6 +408,7 @@
 	.fbhi-guide-nav__wrap[open] > summary::after { transform: rotate(-135deg); margin-top: -2px; }
 	.fbhi-guide-nav__summary-guide { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
 	.fbhi-guide-nav__summary-current { font-weight: 600; }
+	.fbhi-guide-nav__summary-current .fbhi-guide-page-name__divider { color: rgba(255,255,255,.7); }
 	.fbhi-guide-nav__guide-title { display: none; }
 	.fbhi-guide-nav__list { margin-top: 8px; padding: 12px; border: 1px solid var(--fbhi-guide-grey-dark); border-radius: 4px; }
 	.fbhi-guide-header { padding: 24px 22px 22px; margin-bottom: 28px; }

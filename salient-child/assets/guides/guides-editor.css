@@ -33,6 +33,6 @@
 	color: #646970;
 }
 /* Editor canvas needs the frontend component styles without the .fbhi-guide__content scope. */
-.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox { background: #F3F4F6; border-left: 6px solid #D5D3D3; padding: 28px 32px; border-radius: 4px; }
-.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout { background: var(--fbhi-guide-tint, #E6EEF1); border-left: 6px solid var(--fbhi-guide-accent, #006885); padding: 28px 32px; border-radius: 4px; }
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox { background: #F3F4F6; padding: 28px 32px; border-radius: 4px; }
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout { background: var(--fbhi-guide-tint, #E6EEF1); padding: 28px 32px; border-radius: 4px; }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist { background: var(--fbhi-guide-tint, #E6EEF1); border: 2px solid var(--fbhi-guide-accent, #006885); padding: 28px 32px; border-radius: 4px; }

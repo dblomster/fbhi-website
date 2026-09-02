@@ -196,7 +196,7 @@ msgid "Next"
 msgstr "Nästa"
 
 msgid "Back to the guide"
-msgstr "Tillbaka till guidens start"
+msgstr "Tillbaka till startsidan"
 
 msgid "Last updated:"
 msgstr "Senast uppdaterad:"

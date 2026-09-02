@@ -37,9 +37,9 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .fbhi-guide, .fbhi-guide__content { font-size: 11pt; line-height: 1.45; color: #000; }
 .fbhi-guide-header {
 	background: none !important;
-	border-left: 4pt solid var(--fbhi-guide-accent, #006885) !important;
+	border-bottom: 1pt solid #888 !important;
 	border-radius: 0;
-	padding: 6pt 0 6pt 12pt !important;
+	padding: 0 0 8pt !important;
 	margin-bottom: 14pt !important;
 	break-after: avoid;
 }
@@ -79,13 +79,12 @@ img { max-width: 100% !important; height: auto !important; }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
 	background: none !important;
 	border: 1pt solid #888 !important;
-	border-left-width: 4pt !important;
 	padding: 8pt 12pt !important;
 	border-radius: 0;
 }
 
 /* Index cards on the root page. */
-.fbhi-guide-card { background: none !important; border: 1pt solid #888 !important; border-left: 4pt solid var(--fbhi-guide-accent, #888) !important; padding: 8pt 12pt !important; }
+.fbhi-guide-card { background: none !important; border: 1pt solid #888 !important; padding: 8pt 12pt !important; }
 .fbhi-guide-index__list { gap: 8pt; }
 
 /* Last updated stays, small. */
