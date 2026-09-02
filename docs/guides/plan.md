@@ -156,6 +156,10 @@ but resolved from the hierarchy instead of a registry). Daniel adds the root gui
 
 ## 5. WPML / i18n
 
+**Gotcha (seen on dev):** guide posts created through Novamira/REST got no WPML language row and were
+invisible in the admin list. Fix used: `wpml_set_element_language_details` for each post (execute-php, with
+Daniel's OK). Posts created in the editor get a language normally. Keep in mind for prod content import.
+
 - Child theme `wpml-config.xml`: `<custom-type translate="1">guide</custom-type>`,
   `<custom-field action="copy">fbhi_guide_accent</custom-field>`,
   `<custom-field action="translate">fbhi_guide_label</custom-field>`.

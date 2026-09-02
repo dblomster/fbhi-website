@@ -35,6 +35,8 @@ each section. When an open question gets answered, move it to "Decided" and upda
 | D27 | Verification | Every phase is checked in Chrome (MCP) on dev in both desktop and mobile emulation before reporting. | Daniel 2026-09-02. |
 | D28 | Translation tooling | .po is hand-maintained; .mo and editor JED .json are generated with a Python one-off (no msgfmt/wp-cli locally). To add strings: edit the table in the generator, regenerate, deploy. Generator to be kept at `docs/guides/tools/make-translations.py`. | 2026-09-02, practical. |
 | D29 | Content import route | Chapter HTML is staged in the theme, then pushed with the editor's own REST session from Chrome (`wp.apiFetch`), then the staging files are removed. Avoids pasting 100 KB through MCP calls and avoids execute-php. | 2026-09-02. |
+| D30 | Design round 1 (2026-09-02) | No accent left borders anywhere (site uses flat tints); bottom nav prev/next at 14px like the back link, back link = "Tillbaka till startsidan", page names as "Label – Title"; list markers in text colour; chapter rows are one surface with a hairline before a 44px chevron that toggles (link navigates); TOC highlight only after a heading is reached; Salient's to-top button revealed after deep links. | Daniel's review. |
+| D31 | Menu | Daniel added the root guide to the Swedish menu on dev; `Guide_Frontend::highlight_menu()` lights it on every guide page. | Verified 2026-09-02. |
 | D20 | Guide CSS location | Module-local `assets/guides/*.css`, not `css/custom.css`. Still git-tracked and deployed; CLAUDE.md notes the exception. | Conditional loading + print sheet; keeps the module extractable. |
 
 ## Open questions (with current default)
@@ -46,4 +48,4 @@ each section. When an open question gets answered, move it to "Decided" and upda
 | Q6 | Chapter header band: full browser width or content-column width? | Content-column width (reference). | Design round on dev |
 | Q7 | Does the root guide page get its own accent (tinted intro band as on the reference)? | Yes, optional, same meta. | Design round on dev |
 | Q8 | Which video sources to allow: core/video (upload) and core/embed YouTube + Vimeo? | Both. | Daniel |
-| Q9 | Guide listing page later? | Not in scope. | Time |
+| Q9 | Guide listing page (all guides)? | **Parked** — not built, only one guide. Revisit when a second guide appears. | Daniel, later |

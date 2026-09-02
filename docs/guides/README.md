@@ -7,7 +7,20 @@ Guide**, Swedish only, built and tested on **dev (fbhi.devcx.com)** first.
 **Status (2026-09-02): planning done, colour palette and draft content received and analysed,
 phases 1–7 deployed to dev 2026-09-02: post type, meta, editor panel, block curation, guide template with
 sidebar/TOC/nav, guide-index block, components (block styles + patterns), print CSS, Swedish translations, all four
-chapters loaded. Next: design review round with Daniel; prod deploy only on explicit go.**
+chapters loaded, first design-review round done (borders dropped, nav/bottom-nav tweaks, mobile fixes).
+Daniel added "FINGER-guiden" to the Swedish menu on dev; highlighting works. Prod deploy only on explicit go.**
+
+## Outstanding (parked, revisit later)
+
+- **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
+- **Chapter 1 (13901)** was loaded before the converter existed: no H3 promotion / callouts yet. Re-run the
+  converter (content-notes.md → "Migration") or fix by hand in the editor.
+- **Draft placeholders** in the text ("XX", "kapitlet om xxx", "finns i här") — editorial, for Miia/editors.
+- **Fifth chapter** (kognitiv svikt) announced in the draft — reuse a palette colour (D25).
+- **Open design questions** Q2, Q5–Q8 in decisions.md still carry their defaults.
+- **Editor-facing docs**: a short "how to edit the guide" note for editors has not been written.
+- **Prod**: nothing deployed; wpml-config + the `guide` type will need the same WPML language handling on prod
+  (posts created via MCP get no language — see D-notes in plan.md § WPML).
 
 **Dev content (fbhi.devcx.com)**: root guide "FINGER-guiden" = post 13900 (`/sv/guide/finger/`); chapters
 13901 Bakgrund (Avsnitt 1, teal) · 13902 Nuläge (Avsnitt 2, green) · 13903 Utforma (Avsnitt 3, yellow) ·
