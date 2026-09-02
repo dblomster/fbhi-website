@@ -7,7 +7,9 @@ model site does). This file is the *how*. Update it as implementation deviates.
 
 ### Post type `guide`
 - `register_post_type( 'guide' )`, **hierarchical**, `show_in_rest => true` (Gutenberg), `has_archive => false`.
-- `supports`: `title`, `editor`, `excerpt`, `revisions`, `page-attributes` (gives Parent + Order UI in the editor).
+- `supports`: `title`, `editor`, `excerpt`, `revisions`, `page-attributes` (gives Parent + Order UI in the editor),
+  `custom-fields` (**required**: without it WP omits `meta` from the REST response and the Gutenberg panel
+  cannot save; the underscore-prefixed keys keep the generic Custom Fields box empty).
   No `thumbnail` for now (no images in cards/header; can be added later).
 - Rewrite: `slug => FBHI_GUIDE_SLUG` (constant, initial value `guide`), `with_front => false`,
   `hierarchical => true` so URLs nest: `/sv/guide/finger/steg-1/`. Changing the constant + flushing
@@ -202,7 +204,7 @@ instead of `css/custom.css`. It is still git-tracked and deployed by `upload.sh`
 | # | Phase | Deliverable / check on dev |
 |---|---|---|
 | 0 | Inputs | Colour scheme + draft content received; text domain + languages folder; `./upload.sh d` works |
-| 1 | Post type + meta + editor | Create guide root + chapters in Gutenberg, set label/colour/order, only curated blocks visible |
+| 1 ✅ | Post type + meta + editor | Deployed 2026-09-02. Verified via REST: type registered, hierarchy + meta saved. Editor panel/whitelist still to be eyeballed in wp-admin. |
 | 2 | Frontend template | Chapter header, content, sticky sidebar with TOC, mobile dropdown, prev/next, last updated |
 | 3 | Index block | Cards auto-appear on root; block placement override works |
 | 4 | Components | Info box, callout, checklist, interview pattern, print page-break style |

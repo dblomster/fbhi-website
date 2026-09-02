@@ -1,0 +1,9 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1">guide</custom-type>
+  </custom-types>
+  <custom-fields>
+    <custom-field action="copy">_fbhi_guide_accent</custom-field>
+    <custom-field action="translate">_fbhi_guide_label</custom-field>
+  </custom-fields>
+</wpml-config>

@@ -6,6 +6,12 @@
  */
 
 /* ========================================================================
+   Guides module (digital handbooks) — see docs/guides/ in the repo
+   ======================================================================== */
+
+require_once get_stylesheet_directory() . '/includes/guides/bootstrap.php';
+
+/* ========================================================================
    Blog-like CPT registry
    ------------------------------------------------------------------------
    Single source of truth for CPTs that use the Salient blog-style single

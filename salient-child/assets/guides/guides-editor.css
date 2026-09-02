@@ -1,0 +1,4 @@
+/* FBHI Guides — editor-only styles (panel + block-style previews). */
+.fbhi-guide-settings .components-base-control + .components-base-control {
+	margin-top: 16px;
+}
