@@ -34,6 +34,7 @@ require_once FBHI_GUIDES_DIR . '/class-guide-editor.php';
 require_once FBHI_GUIDES_DIR . '/class-guide-hierarchy.php';
 require_once FBHI_GUIDES_DIR . '/class-guide-toc.php';
 require_once FBHI_GUIDES_DIR . '/class-guide-frontend.php';
+require_once FBHI_GUIDES_DIR . '/class-guide-blocks.php';
 
 add_action( 'after_setup_theme', function () {
 	load_child_theme_textdomain( 'salient-child', get_stylesheet_directory() . '/languages' );
@@ -44,3 +45,4 @@ FBHI\Guides\Guide_Meta::register();
 FBHI\Guides\Guide_Editor::register();
 FBHI\Guides\Guide_TOC::register();
 FBHI\Guides\Guide_Frontend::register();
+FBHI\Guides\Guide_Blocks::register();

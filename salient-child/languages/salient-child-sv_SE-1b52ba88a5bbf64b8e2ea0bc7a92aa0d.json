@@ -1,0 +1,26 @@
+{
+"translation-revision-date": "2026-09-02 03:46+0000",
+"generator": "make-translations.py",
+"domain": "messages",
+"locale_data": {
+"messages": {
+"": {
+"domain": "messages",
+"lang": "sv_SE",
+"plural-forms": "nplurals=2; plural=(n != 1);"
+},
+"Guide index": [
+"Guidens innehåll"
+],
+"Heading": [
+"Rubrik"
+],
+"Leave empty for the default heading.": [
+"Lämna tomt för standardrubriken."
+],
+"Guide index — generated automatically from the chapter pages.": [
+"Guidens innehåll – skapas automatiskt från avsnittssidorna."
+]
+}
+}
+}

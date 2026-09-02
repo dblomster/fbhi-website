@@ -1,0 +1,32 @@
+{
+"translation-revision-date": "2026-09-02 03:46+0000",
+"generator": "make-translations.py",
+"domain": "messages",
+"locale_data": {
+"messages": {
+"": {
+"domain": "messages",
+"lang": "sv_SE",
+"plural-forms": "nplurals=2; plural=(n != 1);"
+},
+"Guide page": [
+"Guidesida"
+],
+"Label": [
+"Etikett"
+],
+"Shown above the title and on the index card, e.g. \"Avsnitt 1\".": [
+"Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”."
+],
+"Accent colour": [
+"Accentfärg"
+],
+"Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.": [
+"Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från överordnad sida."
+],
+"Optional colour for the guide start page. Chapters set their own colour.": [
+"Valfri färg för guidens startsida. Avsnitten anger sina egna färger."
+]
+}
+}
+}

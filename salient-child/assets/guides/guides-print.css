@@ -1,0 +1,92 @@
+/**
+ * FBHI Guides — print styles (guide pages only, media="print").
+ * Removes site chrome and navigation, keeps a clear content hierarchy,
+ * honours the editor's "Print page break" separator style.
+ */
+
+@page { margin: 18mm 16mm; }
+
+/* Site chrome and guide UI that has no meaning on paper. */
+#header-outer,
+#header-space,
+#header-secondary-outer,
+#footer-outer,
+.nectar-global-section.before-footer,
+.nectar-global-section.after-footer,
+#to-top,
+#slide-out-widget-area,
+.cmplz-cookiebanner,
+#cmplz-cookiebanner-container,
+#wpadminbar,
+.fbhi-guide__sidebar,
+.fbhi-guide__tools,
+.fbhi-guide-bottom-nav,
+.fbhi-guide-card__more {
+	display: none !important;
+}
+
+html, body { background: #fff !important; color: #000 !important; }
+body { padding-top: 0 !important; margin-top: 0 !important; }
+#ajax-content-wrap, .container-wrap, .main-content { padding: 0 !important; margin: 0 !important; }
+.container-wrap .container { max-width: none !important; padding: 0 !important; }
+
+.fbhi-guide { display: block !important; max-width: none !important; padding: 0 !important; }
+.fbhi-guide__main { max-width: none !important; }
+
+/* Typography */
+.fbhi-guide, .fbhi-guide__content { font-size: 11pt; line-height: 1.45; color: #000; }
+.fbhi-guide-header {
+	background: none !important;
+	border-left: 4pt solid var(--fbhi-guide-accent, #006885) !important;
+	border-radius: 0;
+	padding: 6pt 0 6pt 12pt !important;
+	margin-bottom: 14pt !important;
+	break-after: avoid;
+}
+.fbhi-guide-header__label { font-size: 9pt; color: #000; }
+.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 22pt !important; color: #000 !important; }
+.fbhi-guide-header__intro { font-size: 12pt; }
+.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 16pt !important; color: #000 !important; margin-top: 18pt; }
+.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { font-size: 13pt !important; margin-top: 14pt; }
+.fbhi-guide__content a { color: #000; text-decoration: underline; }
+.fbhi-guide__content p a[href^="http"]::after,
+.fbhi-guide__content li a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; }
+
+/* Page-break behaviour */
+h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }
+h2 + *, h3 + * { break-before: avoid; }
+p, li { orphans: 3; widows: 3; }
+figure, img, table, blockquote,
+.wp-block-group.is-style-fbhi-infobox,
+.wp-block-group.is-style-fbhi-callout,
+.wp-block-group.is-style-fbhi-checklist,
+.fbhi-guide-card {
+	break-inside: avoid;
+}
+img { max-width: 100% !important; height: auto !important; }
+.fbhi-guide__content .wp-block-separator.is-style-fbhi-pagebreak {
+	display: block !important;
+	height: 0;
+	border: 0;
+	margin: 0;
+	break-before: page;
+	page-break-before: always;
+}
+
+/* Boxes: keep a visible outline without heavy fills. */
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
+	background: none !important;
+	border: 1pt solid #888 !important;
+	border-left-width: 4pt !important;
+	padding: 8pt 12pt !important;
+	border-radius: 0;
+}
+
+/* Index cards on the root page. */
+.fbhi-guide-card { background: none !important; border: 1pt solid #888 !important; border-left: 4pt solid var(--fbhi-guide-accent, #888) !important; padding: 8pt 12pt !important; }
+.fbhi-guide-index__list { gap: 8pt; }
+
+/* Last updated stays, small. */
+.fbhi-guide__updated { font-size: 9pt; margin-top: 18pt; border-top: 1pt solid #888; }

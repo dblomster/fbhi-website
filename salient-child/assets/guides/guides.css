@@ -28,6 +28,12 @@
 	padding-left: 0;
 }
 .container-wrap .fbhi-guide-toc { padding-left: 14px; }
+.container-wrap .fbhi-guide-index__list > li,
+.container-wrap .fbhi-guide-nav__list > li,
+.container-wrap .fbhi-guide-toc > li {
+	list-style: none; /* Salient sets list-style on li, not only on ol/ul */
+	padding-left: 0;
+}
 
 /* ---------- layout ---------- */
 .fbhi-guide {
@@ -144,6 +150,56 @@
 	margin-left: 0;
 }
 
+/* ---------- guide components (block styles on core blocks) ---------- */
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
+	padding: 28px 32px;
+	border-radius: 4px;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	break-inside: avoid;
+}
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox {
+	background: var(--fbhi-guide-grey);
+	border-left: 6px solid var(--fbhi-guide-grey-dark);
+}
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout {
+	background: var(--fbhi-guide-tint);
+	border-left: 6px solid var(--fbhi-guide-accent);
+}
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
+	background: var(--fbhi-guide-tint);
+	border: 2px solid var(--fbhi-guide-accent);
+}
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :first-child { margin-top: 0; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > :last-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > :last-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :last-child { margin-bottom: 0; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > * + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > * + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > * + * { margin-top: .8em; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox h3,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout h3,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist h3,
+.container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox h3,
+.container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-callout h3,
+.container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist h3 {
+	margin-top: 0;
+	font-size: 19px;
+	font-weight: 700;
+	color: var(--fbhi-guide-navy);
+}
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist ol { list-style: decimal; padding-left: 1.6em; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist li { padding-left: .3em; margin-bottom: .6em; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist li::marker { color: var(--fbhi-guide-navy); font-weight: 700; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout li::marker { color: var(--fbhi-guide-navy); }
+.fbhi-guide__content .wp-block-separator.is-style-fbhi-pagebreak {
+	display: none; /* screen: invisible; print: page break (guides-print.css) */
+}
+
 /* ---------- buttons (mirrors Salient's pill buttons) ---------- */
 .fbhi-guide-button {
 	display: inline-block;
@@ -169,7 +225,9 @@
 .fbhi-guide-button--ghost:hover { border-color: var(--fbhi-guide-teal); }
 
 /* ---------- index cards (root page) ---------- */
-.fbhi-guide-index { margin-top: 48px; }
+.fbhi-guide-index-block { margin-top: 48px; }
+.fbhi-guide__content > .fbhi-guide-index-block + * { margin-top: 48px; }
+.fbhi-guide-index { margin: 0; }
 .fbhi-guide-index__heading,
 .container-wrap .fbhi-guide-index__heading {
 	font-size: 28px;

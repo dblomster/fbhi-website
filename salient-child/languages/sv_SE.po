@@ -1,0 +1,220 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Salient Child Theme (FBHI Guides)\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: salient-child\n"
+
+msgctxt "post type general name"
+msgid "Guides"
+msgstr "Guider"
+
+msgctxt "post type singular name"
+msgid "Guide"
+msgstr "Guide"
+
+msgctxt "admin menu"
+msgid "Guides"
+msgstr "Guider"
+
+msgctxt "add new on admin bar"
+msgid "Guide page"
+msgstr "Guidesida"
+
+msgid "Add New"
+msgstr "Lägg till ny"
+
+msgid "Add New Guide Page"
+msgstr "Lägg till ny guidesida"
+
+msgid "New Guide Page"
+msgstr "Ny guidesida"
+
+msgid "Edit Guide Page"
+msgstr "Redigera guidesida"
+
+msgid "View Guide Page"
+msgstr "Visa guidesida"
+
+msgid "All Guide Pages"
+msgstr "Alla guidesidor"
+
+msgid "Search Guide Pages"
+msgstr "Sök guidesidor"
+
+msgid "Parent Guide Page:"
+msgstr "Överordnad guidesida:"
+
+msgid "No guide pages found."
+msgstr "Inga guidesidor hittades."
+
+msgid "No guide pages found in Trash."
+msgstr "Inga guidesidor i papperskorgen."
+
+msgid "Guide page published."
+msgstr "Guidesidan har publicerats."
+
+msgid "Guide page updated."
+msgstr "Guidesidan har uppdaterats."
+
+msgid "Guide Page Attributes"
+msgstr "Attribut för guidesida"
+
+msgid "Digital handbooks: a root guide page with chapters as child pages."
+msgstr "Digitala handböcker: en startsida för guiden med avsnitt som undersidor."
+
+msgid "Chapter title"
+msgstr "Avsnittets titel"
+
+msgid "Guide title"
+msgstr "Guidens titel"
+
+msgid "Chapter accent colour (hex)."
+msgstr "Avsnittets accentfärg (hex)."
+
+msgid "Chapter designation shown above the title, e.g. \"Avsnitt 1\"."
+msgstr "Avsnittets beteckning som visas ovanför titeln, t.ex. ”Avsnitt 1”."
+
+msgid "Teal"
+msgstr "Petrol"
+
+msgid "Green"
+msgstr "Grön"
+
+msgid "Yellow"
+msgstr "Gul"
+
+msgid "Peach"
+msgstr "Persika"
+
+msgid "Navy"
+msgstr "Marinblå"
+
+msgid "Label"
+msgstr "Etikett"
+
+msgid "Colour"
+msgstr "Färg"
+
+msgid "(inherited)"
+msgstr "(ärvd)"
+
+msgid "Info box"
+msgstr "Faktaruta"
+
+msgid "Callout (chapter colour)"
+msgstr "Markerad ruta (avsnittets färg)"
+
+msgid "Checklist"
+msgstr "Checklista"
+
+msgid "Print page break"
+msgstr "Sidbrytning vid utskrift"
+
+msgid "FBHI Guide"
+msgstr "FBHI-guide"
+
+msgid "A neutral box for background facts, tools or tips."
+msgstr "En neutral ruta för bakgrundsfakta, verktyg eller tips."
+
+msgid "Good to know"
+msgstr "Bra att veta"
+
+msgid "Write the box text here."
+msgstr "Skriv rutans text här."
+
+msgid "Callout with questions"
+msgstr "Markerad ruta med frågor"
+
+msgid "A box in the chapter colour, for reflection questions such as \"Fundera på:\"."
+msgstr "En ruta i avsnittets färg, för reflektionsfrågor som ”Fundera på:”."
+
+msgid "Think about:"
+msgstr "Fundera på:"
+
+msgid "First question?"
+msgstr "Första frågan?"
+
+msgid "Second question?"
+msgstr "Andra frågan?"
+
+msgid "Numbered checklist box, typically at the end of a chapter."
+msgstr "Numrerad checklista i en ruta, vanligtvis i slutet av ett avsnitt."
+
+msgid "First item"
+msgstr "Första punkten"
+
+msgid "Second item"
+msgstr "Andra punkten"
+
+msgid "Invisible on screen; starts a new page when printing."
+msgstr "Syns inte på skärmen; ger ny sida vid utskrift."
+
+msgid "Guide index"
+msgstr "Guidens innehåll"
+
+msgid "Guide index — generated automatically from the chapter pages."
+msgstr "Guidens innehåll – skapas automatiskt från avsnittssidorna."
+
+msgid "Heading"
+msgstr "Rubrik"
+
+msgid "Leave empty for the default heading."
+msgstr "Lämna tomt för standardrubriken."
+
+msgid "The guide's chapter cards, generated automatically from the chapter pages. Added after the content by default; place this block to choose where it appears."
+msgstr "Guidens avsnittskort, som skapas automatiskt från avsnittssidorna. Läggs till efter innehållet som standard; placera blocket för att välja var det ska visas."
+
+msgid "Contents"
+msgstr "Innehåll"
+
+msgid "Chapters"
+msgstr "Avsnitt"
+
+msgid "Read more"
+msgstr "Läs mer"
+
+msgid "Read more: %s"
+msgstr "Läs mer: %s"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Guide navigation"
+msgstr "Guidens navigation"
+
+msgid "Guide pages"
+msgstr "Guidens sidor"
+
+msgid "Previous"
+msgstr "Föregående"
+
+msgid "Next"
+msgstr "Nästa"
+
+msgid "Back to the guide"
+msgstr "Tillbaka till guidens start"
+
+msgid "Last updated:"
+msgstr "Senast uppdaterad:"
+
+msgid "Print this page"
+msgstr "Skriv ut sidan"
+
+msgid "Guide page"
+msgstr "Guidesida"
+
+msgid "Accent colour"
+msgstr "Accentfärg"
+
+msgid "Shown above the title and on the index card, e.g. \"Avsnitt 1\"."
+msgstr "Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”."
+
+msgid "Inherited by sub-pages of this chapter. Leave empty to inherit from the parent."
+msgstr "Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från överordnad sida."
+
+msgid "Optional colour for the guide start page. Chapters set their own colour."
+msgstr "Valfri färg för guidens startsida. Avsnitten anger sina egna färger."

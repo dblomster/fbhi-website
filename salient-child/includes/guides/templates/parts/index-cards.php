@@ -1,7 +1,7 @@
 <?php
 /**
  * Guide index: one card per chapter, generated from the hierarchy.
- * Args: root (WP_Post).
+ * Args: root (WP_Post), heading (string), wrapper (string: extra wrapper attributes from the block).
  *
  * @package Salient-Child
  */
@@ -14,9 +14,14 @@ $fbhi_idx_chapters = Guide_Hierarchy::children( $args['root']->ID );
 if ( ! $fbhi_idx_chapters ) {
 	return;
 }
+$fbhi_idx_heading = $args['heading'] ?? __( 'Contents', 'salient-child' );
+$fbhi_idx_wrapper = $args['wrapper'] ?? '';
 ?>
+<div <?php echo $fbhi_idx_wrapper ? $fbhi_idx_wrapper : 'class="fbhi-guide-index-block"'; // phpcs:ignore WordPress.Security.EscapeOutput -- from get_block_wrapper_attributes(). ?>>
 <section class="fbhi-guide-index" aria-label="<?php esc_attr_e( 'Chapters', 'salient-child' ); ?>">
-	<h2 class="fbhi-guide-index__heading"><?php esc_html_e( 'Contents', 'salient-child' ); ?></h2>
+	<?php if ( $fbhi_idx_heading ) : ?>
+		<h2 class="fbhi-guide-index__heading"><?php echo esc_html( $fbhi_idx_heading ); ?></h2>
+	<?php endif; ?>
 	<ol class="fbhi-guide-index__list">
 		<?php foreach ( $fbhi_idx_chapters as $fbhi_card ) :
 			$fbhi_card_label = Guide_Meta::label( $fbhi_card->ID );
@@ -39,3 +44,4 @@ if ( ! $fbhi_idx_chapters ) {
 		<?php endforeach; ?>
 	</ol>
 </section>
+</div>

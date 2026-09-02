@@ -102,4 +102,45 @@
 		render: GuidePanel,
 		icon: 'book-alt',
 	} );
+
+	/* Mirror the accent colour into the editor canvas so callouts, checklists
+	   and the index preview use the chapter colour while editing. */
+	function tintFor( accent ) {
+		var entry = ( config.palette || [] ).filter( function ( c ) {
+			return c.color && accent && c.color.toUpperCase() === accent.toUpperCase();
+		} )[ 0 ];
+		if ( entry && entry.tint ) {
+			return entry.tint;
+		}
+		return accent ? 'color-mix(in srgb, ' + accent + ' 30%, white)' : '';
+	}
+	function canvasRoot() {
+		var frame = document.querySelector( 'iframe[name="editor-canvas"]' );
+		var doc = frame && frame.contentDocument ? frame.contentDocument : document;
+		return doc.querySelector( '.editor-styles-wrapper' ) || doc.body;
+	}
+	var lastAccent;
+	wp.data.subscribe( function () {
+		var editor = wp.data.select( 'core/editor' );
+		if ( ! editor || editor.getCurrentPostType() !== ( config.postType || 'guide' ) ) {
+			return;
+		}
+		var meta = editor.getEditedPostAttribute( 'meta' ) || {};
+		var accent = meta[ metaAccent ] || '';
+		if ( accent === lastAccent ) {
+			return;
+		}
+		lastAccent = accent;
+		var root = canvasRoot();
+		if ( ! root ) {
+			return;
+		}
+		if ( accent ) {
+			root.style.setProperty( '--fbhi-guide-accent', accent );
+			root.style.setProperty( '--fbhi-guide-tint', tintFor( accent ) );
+		} else {
+			root.style.removeProperty( '--fbhi-guide-accent' );
+			root.style.removeProperty( '--fbhi-guide-tint' );
+		}
+	} );
 } )( window.wp );

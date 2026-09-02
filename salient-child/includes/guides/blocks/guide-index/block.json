@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fbhi/guide-index",
+	"version": "0.1.0",
+	"title": "Guide index",
+	"category": "fbhi-guide",
+	"icon": "list-view",
+	"description": "The guide's chapter cards, generated automatically from the chapter pages. Added after the content by default; place this block to choose where it appears.",
+	"keywords": [ "guide", "index", "chapters", "innehåll" ],
+	"textdomain": "salient-child",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [ "postId", "postType" ],
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"customClassName": true
+	},
+	"editorScript": "fbhi-guide-index-editor",
+	"render": "file:./render.php"
+}

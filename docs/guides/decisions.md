@@ -33,6 +33,8 @@ each section. When an open question gets answered, move it to "Decided" and upda
 | D25 | Fifth chapter colour (was Q11) | Reuse the four accents; the colour must stay easy to change per chapter from the editor panel. | Daniel 2026-09-02. |
 | D26 | Draft sections (was Q12) | Load the draft as-is on dev, no draft flags. Dev is for creating the guide and gathering feedback. | Daniel 2026-09-02. |
 | D27 | Verification | Every phase is checked in Chrome (MCP) on dev in both desktop and mobile emulation before reporting. | Daniel 2026-09-02. |
+| D28 | Translation tooling | .po is hand-maintained; .mo and editor JED .json are generated with a Python one-off (no msgfmt/wp-cli locally). To add strings: edit the table in the generator, regenerate, deploy. Generator to be kept at `docs/guides/tools/make-translations.py`. | 2026-09-02, practical. |
+| D29 | Content import route | Chapter HTML is staged in the theme, then pushed with the editor's own REST session from Chrome (`wp.apiFetch`), then the staging files are removed. Avoids pasting 100 KB through MCP calls and avoids execute-php. | 2026-09-02. |
 | D20 | Guide CSS location | Module-local `assets/guides/*.css`, not `css/custom.css`. Still git-tracked and deployed; CLAUDE.md notes the exception. | Conditional loading + print sheet; keeps the module extractable. |
 
 ## Open questions (with current default)

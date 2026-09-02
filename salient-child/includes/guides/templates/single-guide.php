@@ -59,10 +59,6 @@ $fbhi_toc = Guide_TOC::items();
 					</div>
 
 					<?php
-					if ( $fbhi_is_root ) {
-						Guide_Frontend::part( 'index-cards', array( 'root' => $fbhi_root ) );
-					}
-
 					Guide_Frontend::part( 'last-updated', array( 'post' => $fbhi_post ) );
 					Guide_Frontend::part( 'bottom-nav', array( 'post' => $fbhi_post, 'root' => $fbhi_root ) );
 					?>
