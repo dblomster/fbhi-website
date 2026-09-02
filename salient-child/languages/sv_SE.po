@@ -189,6 +189,9 @@ msgstr "Guidens navigation"
 msgid "Guide pages"
 msgstr "Guidens sidor"
 
+msgid "Show contents"
+msgstr "Visa innehåll"
+
 msgid "Previous"
 msgstr "Föregående"
 

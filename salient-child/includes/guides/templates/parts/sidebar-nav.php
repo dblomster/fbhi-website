@@ -56,7 +56,7 @@ $fbhi_nav_current_title = Guide_Frontend::page_name_html( $fbhi_nav_post, $fbhi_
 								<?php if ( $fbhi_ch_label ) : ?><span class="fbhi-guide-nav__label"><?php echo esc_html( $fbhi_ch_label ); ?></span><?php endif; ?>
 								<span class="fbhi-guide-nav__title"><?php echo esc_html( get_the_title( $fbhi_ch ) ); ?></span>
 							</a>
-							<span class="fbhi-guide-nav__chevron" aria-hidden="true"></span>
+							<span class="fbhi-guide-nav__chevron" role="button" aria-label="<?php esc_attr_e( 'Show contents', 'salient-child' ); ?>"></span>
 						</summary>
 						<?php if ( $fbhi_ch_headings ) : ?>
 							<ol class="fbhi-guide-toc" aria-label="<?php esc_attr_e( 'Contents', 'salient-child' ); ?>">

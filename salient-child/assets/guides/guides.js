@@ -40,6 +40,14 @@
 	syncNavMode();
 	window.addEventListener( 'resize', syncNavMode );
 
+	/* Chapter rows: the link navigates, the chevron toggles. Keep a link click
+	   from also toggling the <details> (it would flash before navigation). */
+	guide.querySelectorAll( '.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link' ).forEach( function ( link ) {
+		link.addEventListener( 'click', function ( e ) {
+			e.stopPropagation();
+		} );
+	} );
+
 	/* Close the mobile dropdown after choosing an in-page link. */
 	if ( wrap ) {
 		wrap.addEventListener( 'click', function ( e ) {

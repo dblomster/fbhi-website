@@ -28,7 +28,7 @@ T = {
  'Heading':'Rubrik', 'Leave empty for the default heading.':'Lämna tomt för standardrubriken.',
  "The guide's chapter cards, generated automatically from the chapter pages. Added after the content by default; place this block to choose where it appears.":'Guidens avsnittskort, som skapas automatiskt från avsnittssidorna. Läggs till efter innehållet som standard; placera blocket för att välja var det ska visas.',
  'Contents':'Innehåll', 'Chapters':'Avsnitt', 'Read more':'Läs mer', 'Read more: %s':'Läs mer: %s',
- 'Start':'Start', 'Guide navigation':'Guidens navigation', 'Guide pages':'Guidens sidor',
+ 'Start':'Start', 'Guide navigation':'Guidens navigation', 'Guide pages':'Guidens sidor', 'Show contents':'Visa innehåll',
  'Previous':'Föregående', 'Next':'Nästa', 'Back to the guide':'Tillbaka till startsidan', 'Last updated:':'Senast uppdaterad:', 'Print this page':'Skriv ut sidan',
  'Guide page':'Guidesida', 'Accent colour':'Accentfärg', 'Shown above the title and on the index card, e.g. "Avsnitt 1".':'Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”.',
  'Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.':'Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från överordnad sida.',

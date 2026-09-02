@@ -294,22 +294,37 @@
 	background: var(--fbhi-guide-tint);
 }
 .fbhi-guide-nav__label { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--fbhi-guide-muted); margin-bottom: 2px; }
-.fbhi-guide-nav__chapter > summary { list-style: none; cursor: pointer; position: relative; }
+.fbhi-guide-nav__chapter > summary {
+	list-style: none;
+	cursor: pointer;
+	display: flex;
+	align-items: stretch;
+	gap: 4px;
+}
 .fbhi-guide-nav__chapter > summary::-webkit-details-marker { display: none; }
-.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link { padding-right: 40px; }
+.fbhi-guide-nav__chapter-summary .fbhi-guide-nav__link { flex: 1 1 auto; min-width: 0; }
+/* The chevron is its own tap target (toggles the chapter); the link navigates. */
 .fbhi-guide-nav__chevron {
-	position: absolute;
-	right: 12px;
-	top: 50%;
+	flex: 0 0 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	background: var(--fbhi-guide-grey);
+}
+.fbhi-guide-nav__item.is-current .fbhi-guide-nav__chevron { background: var(--fbhi-guide-tint); }
+.fbhi-guide-nav__chevron:hover { background: var(--fbhi-guide-tint); }
+.fbhi-guide-nav__chevron::before {
+	content: "";
 	width: 10px;
 	height: 10px;
-	margin-top: -7px;
+	margin-top: -5px;
 	border-right: 2px solid var(--fbhi-guide-navy);
 	border-bottom: 2px solid var(--fbhi-guide-navy);
 	transform: rotate(45deg);
 	transition: transform .2s;
 }
-.fbhi-guide-nav__chapter[open] > summary .fbhi-guide-nav__chevron { transform: rotate(-135deg); margin-top: -2px; }
+.fbhi-guide-nav__chapter[open] > summary .fbhi-guide-nav__chevron::before { transform: rotate(-135deg); margin-top: 5px; }
 .fbhi-guide-toc { list-style: none; margin: 4px 0 8px; padding: 0 0 0 14px; }
 .fbhi-guide-toc__item { margin: 0; }
 .fbhi-guide-toc__item--h3 { padding-left: 14px; }
