@@ -87,9 +87,11 @@
 				}
 			} );
 		}
+		/* The heading the reader has scrolled past most recently; none while
+		   still above the first heading (chapter header in view). */
 		function currentHeading() {
 			var top = parseInt( getComputedStyle( document.documentElement ).getPropertyValue( '--fbhi-guide-sticky-top' ), 10 ) || 120;
-			var current = headings[ 0 ];
+			var current = null;
 			for ( var i = 0; i < headings.length; i++ ) {
 				if ( headings[ i ].getBoundingClientRect().top - top - 16 <= 0 ) {
 					current = headings[ i ];
@@ -106,7 +108,8 @@
 			}
 			ticking = true;
 			window.requestAnimationFrame( function () {
-				activate( currentHeading().id );
+				var h = currentHeading();
+				activate( h ? h.id : null );
 				ticking = false;
 			} );
 		}
