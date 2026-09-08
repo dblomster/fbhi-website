@@ -51,11 +51,26 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .fbhi-guide__content a { color: #000; text-decoration: underline; }
 /* Editorial links get their URL printed after them; the index cards' own links (li > h3 > a) do not. */
 .fbhi-guide__content p a[href^="http"]::after,
-.fbhi-guide__content li a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; }
+.fbhi-guide__content li a[href^="http"]::after,
+.fbhi-guide__content .wp-block-file > a:not(.wp-block-file__button)::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; }
+/* PDF links: on screen the document icon is a masked background (guides.css), which browsers drop when printing
+   and which would otherwise outrank the URL rule above. On paper the icon is a real inline image followed by the URL.
+   Selectors mirror the screen rule so this one wins on specificity. */
+.fbhi-guide__content p a[href$=".pdf" i]:not(.wp-block-file__button)::after,
+.fbhi-guide__content li a[href$=".pdf" i]:not(.wp-block-file__button)::after,
+.fbhi-guide__content .wp-block-file > a[href$=".pdf" i]:not(.wp-block-file__button)::after {
+	content: " " url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4 1h10l6 6v16H4V1zm2 2v18h12V9h-6V3H6zm8 .8L18.2 8H14V3.8z'/%3E%3C/svg%3E") " (" attr(href) ")";
+	display: inline;
+	width: auto;
+	height: auto;
+	margin: 0;
+	background: none;
+	-webkit-mask: none;
+	mask: none;
+}
 .fbhi-guide-card a::after { content: none !important; }
 .fbhi-guide__content .wp-block-file { border: 1pt solid #888; padding: 6pt 10pt; }
-.fbhi-guide__content .wp-block-file__button { display: none; }
-.fbhi-guide__content .wp-block-file > a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; -webkit-mask: none; mask: none; background: none; display: inline; width: auto; height: auto; margin: 0; }
+.fbhi-guide__content .wp-block-file .wp-block-file__button { display: none !important; } /* outranks the screen pill rule */
 
 /* Page-break behaviour */
 h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }
