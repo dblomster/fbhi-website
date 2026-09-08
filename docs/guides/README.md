@@ -24,6 +24,10 @@ with a pill "Ladda ner" button. Note for hand-written core/file markup: the down
 Also new: a third field in the "Guidesida" panel, **Text på utskriftsknappen** (`_fbhi_guide_print_label`, WPML
 action=translate, default "Skriv ut" when empty). On dev the root says "Skriv ut sidan" and the four chapters
 "Skriv ut avsnittet".
+Print fix (same day): PDF links (inline and file block) print the document icon as an inline SVG image followed by
+the URL — the screen icon is a masked background, which browsers drop on paper and which outranked the URL rule;
+the file block's download button is now hidden in print. URLs after external links in print are a deliberate
+convention (paper has no clickable links) and stay.
 
 ## Outstanding (parked, revisit later)
 
