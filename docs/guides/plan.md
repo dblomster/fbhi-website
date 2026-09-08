@@ -42,6 +42,7 @@ It is *not* registered as the site-wide `editor-color-palette` to avoid affectin
 Hand-written (no build) `guides-editor.js` using `wp.plugins.registerPlugin` +
 `PluginDocumentSettingPanel` (`wp.editor` / `wp.editPost` fallback) with `wp.element.createElement`:
 - Label `TextControl`
+- Print button text `TextControl` (`_fbhi_guide_print_label`; placeholder shows the default "Skriv ut"; template uses `Guide_Meta::print_label()`)
 - Accent `ColorPalette` with the FBHI swatches
 - Reads/writes meta via `wp.data` `core/editor` `editPost({ meta })`.
 Parent and Order come from the core "Page Attributes" panel — nothing custom.

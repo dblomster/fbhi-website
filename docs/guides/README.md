@@ -10,13 +10,28 @@ sidebar/TOC/nav, guide-index block, components (block styles + patterns), print 
 chapters loaded, first design-review round done (borders dropped, nav/bottom-nav tweaks, mobile fixes).
 Daniel added "FINGER-guiden" to the Swedish menu on dev; highlighting works. Prod deploy only on explicit go.**
 
+**Update 2026-09-08**: chapter 4's "Uppföljning & utvärdering" section replaced with Patrik's 2026-09-03 draft
+(two typos fixed: "ochofta", missing full stop; "xx"/"tex" left as written). Eight `exempel-handbok-*` images
+placed as plain core/image blocks (content width, size "large", some with captions) across all four chapters and
+one example core/table in chapter 2 ("Att välja nivå") so the editors can see how images/tables look — all
+placeholders, to be replaced by hand. Print button now reads "Skriv ut avsnittet"; index-card links no longer
+print their URL; lists sit a little closer to the paragraph before them (.7em instead of 1.2em). Later the same day: figures (images/tables) had lost their
+top margin to `figure { margin: 0 }` — fixed, and figures/file boxes now get 1.8em air above and below. Two example
+PDF links added in chapter 2 ("Skapa trygghet i arbetet"): an inline text link and a core/file block (attachments
+13933/13935, sv). Links ending in .pdf get a small document icon after the text; the file block is styled as a grey box
+with a pill "Ladda ner" button. Note for hand-written core/file markup: the download button needs
+`aria-describedby` matching the file link's `id`, otherwise the editor reports invalid content.
+Also new: a third field in the "Guidesida" panel, **Text på utskriftsknappen** (`_fbhi_guide_print_label`, WPML
+action=translate, default "Skriv ut" when empty). On dev the root says "Skriv ut sidan" and the four chapters
+"Skriv ut avsnittet".
+
 ## Outstanding (parked, revisit later)
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
 - **Chapter 1 (13901)** was loaded before the converter existed: no H3 promotion / callouts yet. Re-run the
   converter (content-notes.md → "Migration") or fix by hand in the editor.
 - **Draft placeholders** in the text ("XX", "kapitlet om xxx", "finns i här") — editorial, for Miia/editors.
-- **Fifth chapter** (kognitiv svikt) announced in the draft — reuse a palette colour (D25).
+- **Fifth chapter** exists on dev as a placeholder (13939, navy). Decide the colour: navy's tint is close to teal's, so the two cards look alike side by side (D25 said reuse an accent).
 - **Open design questions** Q2, Q5–Q8 in decisions.md still carry their defaults.
 - **Editor-facing docs**: a short "how to edit the guide" note for editors has not been written.
 - **Prod**: nothing deployed; wpml-config + the `guide` type will need the same WPML language handling on prod
@@ -24,7 +39,7 @@ Daniel added "FINGER-guiden" to the Swedish menu on dev; highlighting works. Pro
 
 **Dev content (fbhi.devcx.com)**: root guide "FINGER-guiden" = post 13900 (`/sv/guide/finger/`); chapters
 13901 Bakgrund (Avsnitt 1, teal) · 13902 Nuläge (Avsnitt 2, green) · 13903 Utforma (Avsnitt 3, yellow) ·
-13904 Planering (Avsnitt 4, peach). All four chapters carry the draft text (13901 without H3 promotion; 13902–13904 with H3s and callouts).
+13904 Planering (Avsnitt 4, peach) · 13939 Innehåll, övningar och tillämpning (Avsnitt 5, navy — **placeholder text only**, created 2026-09-08 to judge a fifth colour). Chapters 1–4 carry the draft text (13901 without H3 promotion; 13902–13904 with H3s and callouts).
 
 ## Files in this folder
 

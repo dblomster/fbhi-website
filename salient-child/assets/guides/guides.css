@@ -129,12 +129,64 @@
 	padding-left: 1.4em;
 	list-style: disc;
 }
+/* A list usually continues the paragraph before it: tighter than the 1.2em block rhythm. */
+.fbhi-guide__content > * + ul,
+.fbhi-guide__content > * + ol { margin-top: .7em; }
 .fbhi-guide__content ol { list-style: decimal; }
 .fbhi-guide__content li { margin-bottom: .4em; }
 .fbhi-guide__content ol li::marker { font-weight: 700; }
 .fbhi-guide__content a { text-decoration: underline; text-underline-offset: 2px; }
 .fbhi-guide__content img { max-width: 100%; height: auto; }
-.fbhi-guide__content figure { margin: 0; }
+.fbhi-guide__content figure { margin-inline: 0; margin-bottom: 0; } /* margin-top comes from the block rhythm above */
+/* Images, tables and file boxes get more air than running text. */
+.fbhi-guide__content > * + figure,
+.fbhi-guide__content > figure + *,
+.fbhi-guide__content > * + .wp-block-file,
+.fbhi-guide__content > .wp-block-file + * { margin-top: 1.8em; }
+.fbhi-guide__content > h2 + figure,
+.fbhi-guide__content > h3 + figure { margin-top: .8em; }
+/* Links to PDF files carry a small document icon after the text. */
+.fbhi-guide__content a[href$=".pdf" i]:not(.wp-block-file__button)::after {
+	content: "";
+	display: inline-block;
+	width: .8em;
+	height: .8em;
+	margin-left: .3em;
+	vertical-align: -.05em;
+	background-color: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M4 1h10l6 6v16H4V1zm2 2v18h12V9h-6V3H6zm8 .8L18.2 8H14V3.8z'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M4 1h10l6 6v16H4V1zm2 2v18h12V9h-6V3H6zm8 .8L18.2 8H14V3.8z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+/* File block: a light box with the file name and a pill download button. */
+.fbhi-guide__content .wp-block-file {
+	font-size: 1em; /* core shrinks the file block to .8em */
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: .6em 1.2em;
+	padding: 1em 1.4em;
+	background: var(--fbhi-guide-grey);
+	border-radius: 4px;
+}
+.fbhi-guide__content .wp-block-file > a:not(.wp-block-file__button) { font-weight: 600; }
+.fbhi-guide__content .wp-block-file .wp-block-file__button,
+.container-wrap .fbhi-guide__content .wp-block-file .wp-block-file__button {
+	display: inline-block;
+	border: 2px solid var(--fbhi-guide-teal);
+	border-radius: 200px;
+	padding: 7px 20px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: .02em;
+	color: var(--fbhi-guide-teal);
+	background: transparent;
+	text-decoration: none;
+	transition: background .2s, color .2s;
+}
+.fbhi-guide__content .wp-block-file .wp-block-file__button:hover,
+.fbhi-guide__content .wp-block-file .wp-block-file__button:focus-visible { background: var(--fbhi-guide-teal); color: #fff; }
 .fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; }
 .fbhi-guide__content .wp-block-table table { width: 100%; border-collapse: collapse; }
 .fbhi-guide__content .wp-block-table td,

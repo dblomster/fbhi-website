@@ -1,8 +1,9 @@
 /**
  * FBHI Guides — block editor additions.
  *
- * Adds a "Guide page" document-settings panel with the chapter label and the
- * accent colour (FBHI palette swatches, custom colour still allowed).
+ * Adds a "Guide page" document-settings panel with the chapter label, the
+ * accent colour (FBHI palette swatches, custom colour still allowed) and the
+ * print-button text.
  * Hand-written (no build step): uses wp.element.createElement, no JSX.
  */
 ( function ( wp ) {
@@ -32,6 +33,7 @@
 
 	var metaAccent = config.metaAccent || '_fbhi_guide_accent';
 	var metaLabel = config.metaLabel || '_fbhi_guide_label';
+	var metaPrintLabel = config.metaPrintLabel || '_fbhi_guide_print_label';
 
 	function GuidePanel() {
 		var postType = useSelect( function ( select ) {
@@ -73,6 +75,17 @@
 				value: meta[ metaLabel ] || '',
 				onChange: function ( value ) {
 					setMeta( metaLabel, value );
+				},
+				__nextHasNoMarginBottom: true,
+				__next40pxDefaultSize: true,
+			} ),
+			el( TextControl, {
+				label: __( 'Print button text', 'salient-child' ),
+				help: __( 'Leave empty for the default text.', 'salient-child' ),
+				placeholder: config.printLabelDefault || '',
+				value: meta[ metaPrintLabel ] || '',
+				onChange: function ( value ) {
+					setMeta( metaPrintLabel, value );
 				},
 				__nextHasNoMarginBottom: true,
 				__next40pxDefaultSize: true,

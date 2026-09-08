@@ -1,13 +1,14 @@
 <?php
 /**
  * Bottom navigation: previous / next page in reading order, back to the
- * guide start page, print button. Args: post, root.
+ * guide start page, print button (text per page via Guide_Meta::print_label). Args: post, root.
  *
  * @package Salient-Child
  */
 
 use FBHI\Guides\Guide_Frontend;
 use FBHI\Guides\Guide_Hierarchy;
+use FBHI\Guides\Guide_Meta;
 
 $fbhi_bn_post = $args['post'];
 $fbhi_bn_root = $args['root'];
@@ -16,7 +17,7 @@ $fbhi_bn_name = static fn( \WP_Post $p ): string => Guide_Frontend::page_name_ht
 ?>
 <div class="fbhi-guide__tools">
 	<button type="button" class="fbhi-guide__print fbhi-guide-button fbhi-guide-button--ghost" data-guide-print>
-		<?php esc_html_e( 'Print this page', 'salient-child' ); ?>
+		<?php echo esc_html( Guide_Meta::print_label( $fbhi_bn_post->ID ) ); ?>
 	</button>
 </div>
 

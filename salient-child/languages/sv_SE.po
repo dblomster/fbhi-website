@@ -204,8 +204,17 @@ msgstr "Tillbaka till startsidan"
 msgid "Last updated:"
 msgstr "Senast uppdaterad:"
 
-msgid "Print this page"
-msgstr "Skriv ut sidan"
+msgid "Print"
+msgstr "Skriv ut"
+
+msgid "Text of the print button. Empty means the default."
+msgstr "Utskriftsknappens text. Tom betyder standardtexten."
+
+msgid "Print button text"
+msgstr "Text på utskriftsknappen"
+
+msgid "Leave empty for the default text."
+msgstr "Lämna tomt för standardtexten."
 
 msgid "Guide page"
 msgstr "Guidesida"

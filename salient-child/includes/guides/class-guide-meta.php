@@ -1,6 +1,6 @@
 <?php
 /**
- * Guide post meta: accent colour and chapter label, plus the FBHI palette
+ * Guide post meta: accent colour, chapter label and print-button label, plus the FBHI palette
  * and accent inheritance (chapter → nearest ancestor → guide root).
  *
  * Keys are underscore-prefixed so they stay out of the generic Custom Fields
@@ -19,6 +19,7 @@ final class Guide_Meta {
 
 	public const ACCENT = '_fbhi_guide_accent';
 	public const LABEL  = '_fbhi_guide_label';
+	public const PRINT_LABEL = '_fbhi_guide_print_label';
 
 	public static function register(): void {
 		add_action( 'init', array( __CLASS__, 'register_meta' ) );
@@ -58,6 +59,26 @@ final class Guide_Meta {
 				'revisions_enabled' => false,
 			)
 		);
+
+		register_post_meta(
+			Guide_Post_Type::POST_TYPE,
+			self::PRINT_LABEL,
+			array(
+				'type'              => 'string',
+				'description'       => __( 'Text of the print button. Empty means the default.', 'salient-child' ),
+				'single'            => true,
+				'default'           => '',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => $auth,
+				'revisions_enabled' => false,
+			)
+		);
+	}
+
+	/** Default text of the print button when a page sets none. */
+	public static function default_print_label(): string {
+		return __( 'Print', 'salient-child' );
 	}
 
 	public static function sanitize_hex( $value ): string {
@@ -89,6 +110,12 @@ final class Guide_Meta {
 
 	public static function label( int $post_id ): string {
 		return (string) get_post_meta( $post_id, self::LABEL, true );
+	}
+
+	/** Print-button text for a page: its own value, else the default. No inheritance. */
+	public static function print_label( int $post_id ): string {
+		$own = trim( (string) get_post_meta( $post_id, self::PRINT_LABEL, true ) );
+		return '' !== $own ? $own : self::default_print_label();
 	}
 
 	/**

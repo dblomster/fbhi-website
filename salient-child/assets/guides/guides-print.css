@@ -49,8 +49,13 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 16pt !important; color: #000 !important; margin-top: 18pt; }
 .fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { font-size: 13pt !important; margin-top: 14pt; }
 .fbhi-guide__content a { color: #000; text-decoration: underline; }
+/* Editorial links get their URL printed after them; the index cards' own links (li > h3 > a) do not. */
 .fbhi-guide__content p a[href^="http"]::after,
 .fbhi-guide__content li a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; }
+.fbhi-guide-card a::after { content: none !important; }
+.fbhi-guide__content .wp-block-file { border: 1pt solid #888; padding: 6pt 10pt; }
+.fbhi-guide__content .wp-block-file__button { display: none; }
+.fbhi-guide__content .wp-block-file > a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; word-break: break-all; -webkit-mask: none; mask: none; background: none; display: inline; width: auto; height: auto; margin: 0; }
 
 /* Page-break behaviour */
 h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }

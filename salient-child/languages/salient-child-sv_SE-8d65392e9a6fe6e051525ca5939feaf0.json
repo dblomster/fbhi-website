@@ -1,5 +1,5 @@
 {
-"translation-revision-date": "2026-09-02 04:42+0000",
+"translation-revision-date": "2026-09-08 04:22+0000",
 "generator": "make-translations.py",
 "domain": "messages",
 "locale_data": {
@@ -14,6 +14,12 @@
 ],
 "Label": [
 "Etikett"
+],
+"Print button text": [
+"Text på utskriftsknappen"
+],
+"Leave empty for the default text.": [
+"Lämna tomt för standardtexten."
 ],
 "Shown above the title and on the index card, e.g. \"Avsnitt 1\".": [
 "Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”."
