@@ -227,6 +227,9 @@ WordPress 7.1, PHP 8.3.33, Salient 15.0.9. Plugins: ACF 6.8.10, AIOSEO 5.0.1.1, 
 TablePress 3.3.4, TEC 6.17.4.1, WPML 4.9.7 / ST 3.5.4, WPForms 2.0.1.1, Novamira 1.12.3 / Pro 1.10.0.
 Nothing pending. No test mail sent. Guides CPT not deployed to prod.
 
+Post-round, 2026-09-15 ~23:15 UTC (Daniel, by hand in wp-admin): WPForms 2.0.1.1 → 2.0.2, MailPoet 5.38.0 → 5.38.1,
+Novamira 1.12.3 → 1.12.4. Novamira Pro unchanged (1.10.0), MCP connection verified afterwards.
+
 ## Dev results (2026-09-15)
 
 Applied via `wp plugin update` over the Novamira MCP. 23 of 25 updated; two blocked by licensing on the

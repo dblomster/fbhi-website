@@ -1,0 +1,373 @@
+[
+ {
+  "fields": {
+   "77": {
+    "id": "77",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Välkommen att dela med dig av information om din kommun och era FINGER-inspirerade aktiviteter.</span></h4>\nEfter godkännande från din sida kommer vi att publicera informationen på er \"kommunsida\" på fbhi.se",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "80": {
+    "id": "80",
+    "type": "text",
+    "label": "Kommunens namn",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "81": {
+    "id": "81",
+    "type": "text",
+    "label": "Antal invånare i kommunen",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "84": {
+    "id": "84",
+    "type": "text",
+    "label": "Andel invånare som är 65 år eller äldre",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "83": {
+    "id": "83",
+    "type": "text",
+    "label": "Andel utrikesfödda invånare",
+    "description": "Vi frågar om detta eftersom språkbarriärer och kulturella skillnader kan ställa särskilda krav på kommunikation och inkludering i det förebyggande arbetet och vården.",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "23": {
+    "id": "23",
+    "type": "textarea",
+    "label": "Beskriv kort hur ni arbetar FINGER-inspirerat i din kommun, och inom vilka verksamheter. ",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "86": {
+    "id": "86",
+    "type": "textarea",
+    "label": "Lyft gärna fram ett konkret exempel på en FINGER-inspirerade satsning eller aktivitet i någon av kommunens verksamheter.",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "87": {
+    "id": "87",
+    "type": "textarea",
+    "label": "Att komma igång: Har du något tips till andra kommuner som vill komma igång med FINGER-inspirerade aktiviteter? ",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "98": {
+    "id": "98",
+    "type": "textarea",
+    "label": "Någon särskild erfarenhet eller lärdom du vill dela med dig av?",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "97": {
+    "id": "97",
+    "type": "textarea",
+    "label": "Har ni i din kommun stött på några särskilda utmaningar i det här arbetet?",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "99": {
+    "id": "99",
+    "type": "textarea",
+    "label": "Vilka resultat, effekter eller reaktioner har ni sett hittills? Hur har aktiviteterna tagits emot?",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "96": {
+    "id": "96",
+    "type": "textarea",
+    "label": "Kontaktperson(er) för kontakt med FBHI och för ev publicering på hemsidan",
+    "description": "Vänligen ange namn och e-postadress till en eller flera kontaktpersoner hos kommunen. FBHI kommer att använda dessa uppgifter för att få kommuninformationen godkänd innan den görs offentlig. \nPersonuppgifterna publiceras endast om kommunen ger sitt godkännande, se nedan.",
+    "required": "1",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "90": {
+    "id": "90",
+    "type": "checkbox",
+    "label": "Publicering av kontaktpersoners namn och e-postadress",
+    "choices": {
+     "1": {
+      "label": "Ja, vi godkänner att FBHI publicerar kontaktpersonens/kontaktpersonernas namn och e-post-adresser på vår \"kommunsida\" på fbhi.se",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Nej, FBHI får inte publicera kontaktpersoners namn och e-postadresser på hemsidan men de får lämna ut namn och e-postadresser vid förfrågan.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Nej, FBHI får inte publicera kontaktpersoners namn och e-postadresser på hemsidan och inte heller lämna ut dessa uppgifter. FBHI skickar istället frågor vidare till kontaktpersonerna.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "1",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "92": {
+    "id": "92",
+    "type": "content",
+    "content": "<h5>Bilder och dokument</h5>\nSkicka oss gärna en eller flera bilder som kan användas för att illustrera informationen på er \"kommunsida\". Du kan ladda upp dem här nedan eller mejla dem till <strong>info@fbhi.se\n</strong><span style=\"color:#ff6600;\">Bilderna måste vara godkända för publicering.</span> Meddela oss om vi ska ange fotografens namn eller annan information.\nVi kan också publicera dokument, om det är något ni vill dela med er av.",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "94": {
+    "id": "94",
+    "type": "file-upload",
+    "label": "Här kan du ladda upp bilder och/eller dokument",
+    "description": "",
+    "extensions": "",
+    "max_size": "",
+    "max_file_number": "1",
+    "style": "modern",
+    "css": "",
+    "camera_format": "photo",
+    "camera_aspect_ratio": "original",
+    "camera_ratio_width": "4",
+    "camera_ratio_height": "3",
+    "camera_time_limit_minutes": "1",
+    "camera_time_limit_seconds": "30"
+   },
+   "88": {
+    "id": "88",
+    "type": "textarea",
+    "label": "Information till FBHI om bilderna/dokumenten",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_enabled": "1",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "95": {
+    "id": "95",
+    "type": "textarea",
+    "label": "Övrig information eller kommentarer",
+    "description": "Här kan du ange om det är något mer du vill berätta om. Du kan också lämna kommentarer till FBHI inför publiceringen av den information du lämnat. ",
+    "size": "medium",
+    "placeholder": "",
+    "limit_enabled": "1",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   }
+  },
+  "id": "13921",
+  "field_id": 100,
+  "search_terms": "",
+  "settings": {
+   "themes": {
+    "wpformsTheme": "default",
+    "isCustomTheme": "",
+    "themeName": "",
+    "fieldSize": "medium",
+    "fieldBorderStyle": "solid",
+    "fieldBorderSize": "1",
+    "fieldBorderRadius": "3",
+    "fieldBackgroundColor": "#ffffff",
+    "fieldBorderColor": "rgba(0, 0, 0, 0.25)",
+    "fieldTextColor": "rgba(0, 0, 0, 0.7)",
+    "labelSize": "medium",
+    "labelColor": "rgba(0, 0, 0, 0.85)",
+    "labelSublabelColor": "rgba(0, 0, 0, 0.55)",
+    "labelErrorColor": "#d63637",
+    "buttonSize": "medium",
+    "buttonBorderStyle": "none",
+    "buttonBorderSize": "1",
+    "buttonBorderRadius": "3",
+    "buttonBackgroundColor": "#066aab",
+    "buttonBorderColor": "#066aab",
+    "buttonTextColor": "#ffffff",
+    "containerPadding": "0",
+    "containerBorderStyle": "none",
+    "containerBorderWidth": "1",
+    "containerBorderRadius": "3",
+    "containerBorderColor": "#000000",
+    "containerShadowSize": "none",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backgroundSize": "cover",
+    "backgroundUrl": "url()",
+    "fieldMenuColor": "#ffffff",
+    "pageBreakColor": "#066aab",
+    "customCss": "",
+    "copyPasteJsonValue": "{\"themeName\":\"\",\"isCustomTheme\":\"\",\"wpformsTheme\":\"default\",\"customCss\":\"\",\"containerPadding\":\"0\",\"containerBorderStyle\":\"none\",\"containerBorderWidth\":\"1\",\"containerBorderRadius\":\"3\",\"containerShadowSize\":\"none\",\"containerBorderColor\":\"#000000\",\"fieldSize\":\"medium\",\"fieldBorderStyle\":\"solid\",\"fieldBorderRadius\":\"3\",\"fieldBorderSize\":\"1\",\"fieldBackgroundColor\":\"#ffffff\",\"fieldBorderColor\":\"rgba(0, 0, 0, 0.25)\",\"fieldTextColor\":\"rgba(0, 0, 0, 0.7)\",\"fieldMenuColor\":\"#ffffff\",\"pageBreakColor\":\"#066aab\",\"labelSize\":\"medium\",\"labelColor\":\"rgba(0, 0, 0, 0.85)\",\"labelSublabelColor\":\"rgba(0, 0, 0, 0.55)\",\"labelErrorColor\":\"#d63637\",\"buttonSize\":\"medium\",\"buttonBorderStyle\":\"none\",\"buttonBorderSize\":\"1\",\"buttonBorderRadius\":\"3\",\"buttonBackgroundColor\":\"#066aab\",\"buttonBorderColor\":\"#066aab\",\"buttonTextColor\":\"#ffffff\",\"backgroundColor\":\"rgba(0, 0, 0, 0)\",\"backgroundPosition\":\"center center\",\"backgroundUrl\":\"url()\",\"backgroundRepeat\":\"no-repeat\",\"backgroundSize\":\"cover\",\"backgroundSizeMode\":\"cover\",\"backgroundWidth\":\"100\",\"backgroundHeight\":\"100\",\"backgroundImage\":\"none\"}"
+   },
+   "form_title": "FINGER-inspirerade aktiviteter i kommun",
+   "form_desc": "",
+   "submit_text": "Skicka",
+   "submit_text_processing": "Skickar...",
+   "form_class": "",
+   "submit_class": "",
+   "ajax_submit": "1",
+   "notification_enable": "1",
+   "notifications": {
+    "1": {
+     "enable": "1",
+     "notification_name": "Default Notification",
+     "email": "annika.norell.benson@fbhi.se",
+     "subject": "Anmälan",
+     "sender_name": "FBHI",
+     "sender_address": "info@fbhi.se",
+     "replyto": "",
+     "message": "{field_id=\"26\"}\r\n {field_id=\"27\"}\r\n {field_id=\"24\"} {field_id=\"21\"}\r\n {field_id=\"4\"}\r\n {field_id=\"25\"}\r\n{field_id=\"23\"}",
+     "template": "",
+     "file_upload_attachment_fields": [],
+     "entry_csv_attachment_entry_information": [],
+     "entry_csv_attachment_file_name": "entry-details"
+    }
+   },
+   "confirmations": {
+    "2": {
+     "name": "Bekräftelsesida",
+     "type": "message",
+     "message": "<p>Tack för ditt bidrag! <br />Vi kommer att stämma av webbsidan med dig före publicering.<br /><em>Teamet på FBHI</em></p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview": "1",
+     "message_entry_preview_style": "basic",
+     "conditional_logic": "1",
+     "conditional_type": "go",
+     "conditionals": [
+      [
+       {
+        "field": "",
+        "operator": "==",
+        "value": ""
+       }
+      ]
+     ]
+    },
+    "1": {
+     "name": "Default Confirmation",
+     "type": "message",
+     "message": "<p>Tack för ditt bidrag! <br />Vi kommer att stämma av webbsidan med dig före publicering.<br /><em>Teamet på FBHI</em></p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview": "1",
+     "message_entry_preview_style": "basic"
+    }
+   },
+   "antispam": "1",
+   "anti_spam": {
+    "time_limit": {
+     "duration": "2"
+    },
+    "filtering_store_spam": "1",
+    "country_filter": {
+     "action": "allow",
+     "country_codes": [],
+     "message": "Sorry, this form does not accept submissions from your country."
+    },
+    "keyword_filter": {
+     "message": "Sorry, your message can't be submitted because it contains prohibited words."
+    }
+   },
+   "form_tags": [],
+   "store_spam_entries": "0"
+  },
+  "providers": {
+   "constant-contact-v3": []
+  },
+  "meta": {
+   "template": "29fbebcf098fd684814d9d94bd1babdf",
+   "entry_columns": [
+    -1,
+    80
+   ]
+  }
+ }
+]

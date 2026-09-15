@@ -1,0 +1,623 @@
+[
+ {
+  "fields": {
+   "77": {
+    "id": "77",
+    "type": "content",
+    "content": "<h2><span style=\"color:#003366;\">Entry survey</span></h2>",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "107": {
+    "id": "107",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Geography</span></h4>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "80": {
+    "id": "80",
+    "type": "text",
+    "label": "Country",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "106": {
+    "id": "106",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Study (if you have one)</span></h4>\nIf you have a study, please provide this information:",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "81": {
+    "id": "81",
+    "type": "text",
+    "label": "Study name",
+    "description": "",
+    "size": "large",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "83": {
+    "id": "83",
+    "type": "text",
+    "label": "Name of Principal Investigator of the study",
+    "description": "",
+    "size": "large",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "108": {
+    "id": "108",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Context /Sector</span></h4>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "23": {
+    "id": "23",
+    "type": "textarea",
+    "label": "Please specify your context/sector (e.g., academia, private, public, NGO...)",
+    "description": "",
+    "required": "1",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "109": {
+    "id": "109",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Contact details</span></h4>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "110": {
+    "id": "110",
+    "type": "content",
+    "content": "<h5><strong><span style=\"color:#333333;\">Primary contact person</span></strong></h5>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "113": {
+    "id": "113",
+    "type": "text",
+    "label": "Name",
+    "description": "",
+    "required": "1",
+    "size": "large",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "115": {
+    "id": "115",
+    "type": "email",
+    "label": "Email",
+    "description": "",
+    "required": "1",
+    "size": "large",
+    "placeholder": "",
+    "confirmation_placeholder": "",
+    "default_value": "",
+    "filter_type": "",
+    "allowlist": "",
+    "denylist": "",
+    "css": ""
+   },
+   "111": {
+    "id": "111",
+    "type": "content",
+    "content": "<h5><strong><span style=\"color:#333333;\">Secondary contact person</span></strong></h5>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "118": {
+    "id": "118",
+    "type": "text",
+    "label": "Name",
+    "description": "",
+    "size": "large",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "119": {
+    "id": "119",
+    "type": "email",
+    "label": "Email",
+    "description": "",
+    "size": "large",
+    "placeholder": "",
+    "confirmation_placeholder": "",
+    "default_value": "",
+    "filter_type": "",
+    "allowlist": "",
+    "denylist": "",
+    "css": ""
+   },
+   "121": {
+    "id": "121",
+    "type": "content",
+    "content": "<h4><span style=\"color:#006885;\">Implementation</span></h4>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   },
+   "100": {
+    "id": "100",
+    "type": "radio",
+    "label": "Are you currently implementing (or planning to implement) any part of the FINGER model?",
+    "choices": {
+     "1": {
+      "label": "Yes, actively implementing",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Planning to implement soon",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Not yet, but interested",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "4": {
+      "label": "No",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "103": {
+    "id": "103",
+    "type": "checkbox",
+    "label": "In your current role, what does the implementation of FINGER look like?",
+    "choices": {
+     "1": {
+      "label": "Making adaptations to the intervention (e,g., setting, target audience, delivery, culture)",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Delivering components of the intervention to the participants",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Planning activities related to each of the FINGER domains",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "4": {
+      "label": "Doing implementation research/Evaluating how FINGER works in practice",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "5": {
+      "label": "Supporting stakeholders in implementation",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "6": {
+      "label": "Educating and developing training materials",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Not sure, or would like to learn more",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "8": {
+      "label": "Other (please specify below)",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "8",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "98": {
+    "id": "98",
+    "type": "textarea",
+    "label": "If Other, please describe briefly",
+    "description": "",
+    "required": "1",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": "",
+    "conditional_logic": "1",
+    "conditional_type": "show",
+    "conditionals": [
+     [
+      {
+       "field": "103",
+       "operator": "==",
+       "value": "8"
+      }
+     ]
+    ]
+   },
+   "101": {
+    "id": "101",
+    "type": "radio",
+    "label": "What motivates you to join the FINGER Implementation Working Group?",
+    "choices": {
+     "1": {
+      "label": "Doing implementation research or evaluation",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Sharing experiences and learning from others",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Developing or improving training materials",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "4": {
+      "label": "Networking and collaboration",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Other (please specify below)",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "126": {
+    "id": "126",
+    "type": "textarea",
+    "label": "If Other, please describe briefly",
+    "description": "",
+    "required": "1",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": "",
+    "conditional_logic": "1",
+    "conditional_type": "show",
+    "conditionals": [
+     [
+      {
+       "field": "101",
+       "operator": "==",
+       "value": "7"
+      }
+     ]
+    ]
+   },
+   "125": {
+    "id": "125",
+    "type": "checkbox",
+    "label": "What support from the working group would you find most helpful?",
+    "choices": {
+     "1": {
+      "label": "Support in implementation research",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Practical implementation guidance",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Training materials",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "4": {
+      "label": "Examples of real world implementation",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "5": {
+      "label": "Tools for monitoring or evaluation",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "6": {
+      "label": "Opportunities for collaboration",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Other (please specify below)",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "Please select the 1-2 most helpful.",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "2",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "120": {
+    "id": "120",
+    "type": "textarea",
+    "label": "If Other, please describe briefly",
+    "description": "",
+    "required": "1",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": "",
+    "conditional_logic": "1",
+    "conditional_type": "show",
+    "conditionals": [
+     [
+      {
+       "field": "125",
+       "operator": "==",
+       "value": "7"
+      }
+     ]
+    ]
+   },
+   "95": {
+    "id": "95",
+    "type": "textarea",
+    "label": "Other comments",
+    "description": "Please let us know if you have any comments or questions.",
+    "size": "small",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "92": {
+    "id": "92",
+    "type": "content",
+    "content": "<h5>Thank you!</h5>\nWe will summarize all submissions to get an overview of the interests and projects, and get back to all applicants with further information.\n<em>The IWG team</em>",
+    "label_disable": "1",
+    "size": "medium",
+    "css": ""
+   }
+  },
+  "id": "14741",
+  "field_id": 127,
+  "settings": {
+   "themes": {
+    "wpformsTheme": "default",
+    "isCustomTheme": "",
+    "themeName": "",
+    "fieldSize": "medium",
+    "fieldBorderStyle": "solid",
+    "fieldBorderSize": "1",
+    "fieldBorderRadius": "3",
+    "fieldBackgroundColor": "#ffffff",
+    "fieldBorderColor": "rgba(0, 0, 0, 0.25)",
+    "fieldTextColor": "rgba(0, 0, 0, 0.7)",
+    "labelSize": "medium",
+    "labelColor": "rgba(0, 0, 0, 0.85)",
+    "labelSublabelColor": "rgba(0, 0, 0, 0.55)",
+    "labelErrorColor": "#d63637",
+    "buttonSize": "medium",
+    "buttonBorderStyle": "none",
+    "buttonBorderSize": "1",
+    "buttonBorderRadius": "3",
+    "buttonBackgroundColor": "#066aab",
+    "buttonBorderColor": "#066aab",
+    "buttonTextColor": "#ffffff",
+    "containerPadding": "0",
+    "containerBorderStyle": "none",
+    "containerBorderWidth": "1",
+    "containerBorderRadius": "3",
+    "containerBorderColor": "#000000",
+    "containerShadowSize": "none",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backgroundSize": "cover",
+    "backgroundUrl": "url()",
+    "fieldMenuColor": "#ffffff",
+    "pageBreakColor": "#066aab",
+    "customCss": "",
+    "copyPasteJsonValue": "{\"themeName\":\"\",\"isCustomTheme\":\"\",\"wpformsTheme\":\"default\",\"customCss\":\"\",\"containerPadding\":\"0\",\"containerBorderStyle\":\"none\",\"containerBorderWidth\":\"1\",\"containerBorderRadius\":\"3\",\"containerShadowSize\":\"none\",\"containerBorderColor\":\"#000000\",\"fieldSize\":\"medium\",\"fieldBorderStyle\":\"solid\",\"fieldBorderRadius\":\"3\",\"fieldBorderSize\":\"1\",\"fieldBackgroundColor\":\"#ffffff\",\"fieldBorderColor\":\"rgba(0, 0, 0, 0.25)\",\"fieldTextColor\":\"rgba(0, 0, 0, 0.7)\",\"fieldMenuColor\":\"#ffffff\",\"pageBreakColor\":\"#066aab\",\"labelSize\":\"medium\",\"labelColor\":\"rgba(0, 0, 0, 0.85)\",\"labelSublabelColor\":\"rgba(0, 0, 0, 0.55)\",\"labelErrorColor\":\"#d63637\",\"buttonSize\":\"medium\",\"buttonBorderStyle\":\"none\",\"buttonBorderSize\":\"1\",\"buttonBorderRadius\":\"3\",\"buttonBackgroundColor\":\"#066aab\",\"buttonBorderColor\":\"#066aab\",\"buttonTextColor\":\"#ffffff\",\"backgroundColor\":\"rgba(0, 0, 0, 0)\",\"backgroundPosition\":\"center center\",\"backgroundUrl\":\"url()\",\"backgroundRepeat\":\"no-repeat\",\"backgroundSize\":\"cover\",\"backgroundSizeMode\":\"cover\",\"backgroundWidth\":\"100\",\"backgroundHeight\":\"100\",\"backgroundImage\":\"none\"}"
+   },
+   "form_title": "World-Wide FINGERS Implementation International Working Group (WWF-IMP-IWG)",
+   "form_desc": "",
+   "submit_text": "Skicka",
+   "submit_text_processing": "Skickar...",
+   "form_class": "",
+   "submit_class": "",
+   "ajax_submit": "1",
+   "purge_entries_days": "365",
+   "notification_enable": "1",
+   "notifications": {
+    "1": {
+     "enable": "1",
+     "notification_name": "Default Notification",
+     "email": "annika.norell.benson@fbhi.se",
+     "subject": "Anmälan",
+     "sender_name": "FBHI",
+     "sender_address": "info@fbhi.se",
+     "replyto": "",
+     "message": "{field_id=\"26\"}\r\n {field_id=\"27\"}\r\n {field_id=\"24\"} {field_id=\"21\"}\r\n {field_id=\"4\"}\r\n {field_id=\"25\"}\r\n{field_id=\"23\"}",
+     "template": "",
+     "file_upload_attachment_fields": [],
+     "entry_csv_attachment_entry_information": [],
+     "entry_csv_attachment_file_name": "entry-details"
+    }
+   },
+   "confirmations": {
+    "2": {
+     "name": "Bekräftelsesida",
+     "type": "message",
+     "message": "<p><strong>Thank you for your submission!</strong><br /><strong><em>The IWG team</em></strong></p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview": "1",
+     "message_entry_preview_style": "basic"
+    },
+    "1": {
+     "name": "Default Confirmation",
+     "type": "message",
+     "message": "<p><strong>Tack för ditt bidrag! </strong><br /><strong>Vi kommer att stämma av webbsidan med dig före publicering.</strong><br /><strong><em>Teamet på FBHI</em></strong></p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview": "1",
+     "message_entry_preview_style": "basic"
+    }
+   },
+   "antispam": "1",
+   "anti_spam": {
+    "time_limit": {
+     "duration": "2"
+    },
+    "filtering_store_spam": "1",
+    "country_filter": {
+     "action": "allow",
+     "country_codes": [],
+     "message": "Sorry, this form does not accept submissions from your country."
+    },
+    "keyword_filter": {
+     "message": "Sorry, your message can't be submitted because it contains prohibited words."
+    }
+   },
+   "form_tags": [],
+   "store_spam_entries": "0"
+  },
+  "search_terms": "",
+  "providers": {
+   "constant-contact-v3": []
+  },
+  "meta": {
+   "template": "29fbebcf098fd684814d9d94bd1babdf",
+   "entry_columns": [
+    -1,
+    80
+   ]
+  }
+ }
+]
