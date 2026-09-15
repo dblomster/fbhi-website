@@ -4,7 +4,7 @@ Goal: bring WordPress core, plugins and (if licensable) the Salient theme up to 
 **dev (fbhi.devcx.com)** first, record everything, then repeat on **prod (fbhi.se)**.
 Backups on both environments are taken **manually by Daniel** before any update step.
 
-Previous round for reference: [docs/archive/updates-2026-08/](../archive/updates-2026-08/README.md).
+Previous round for reference: [updates-2026-08/](../updates-2026-08/README.md). **Round closed 2026-09-15** — archived.
 
 ## Status
 
@@ -15,9 +15,17 @@ Previous round for reference: [docs/archive/updates-2026-08/](../archive/updates
 - [x] 2026-09-15 Dev plugin updates applied (batches A–D) + regression pass — **green, see results below**
 - [x] 2026-09-15 Dev admin/editor checks — green (WPBakery, Salient options, guide editor, WPForms builder, FluentSMTP)
 - [ ] **Daniel: manual check of dev** before prod
-- [ ] Prod inventory (prod Novamira MCP was "Connection Failed" on 2026-09-15 — retry or read from wp-admin)
-- [ ] Daniel: manual prod backup + prod baseline
-- [ ] Prod core 7.0.4 → 7.1.x + plugin updates + regression pass
+- [x] 2026-09-15 Daniel: manual check of dev — OK
+- [x] 2026-09-15 Prod inventory via Novamira MCP (below)
+- [x] 2026-09-15 Daniel: manual prod backup
+- [x] 2026-09-15 Prod baseline captured: `~/fbhi-baselines/prod-baseline-2026-09-15/` (8 pages, HTML +
+      full-page screenshots, console; see its `MANIFEST.md`)
+- [x] 2026-09-15 Prod plugin batches A–D applied via `execute-php` (Daniel authorised each batch explicitly —
+      the auto-mode classifier accepts an exact per-batch instruction, not a general "update prod")
+- [x] 2026-09-15 Prod core 7.0.4 → 7.1, Nginx purge + Redis flush, final regression pass — **green**
+- [x] 2026-09-15 Daniel, manually in wp-admin: WPForms 2.0.0.4 → 2.0.1.1 (offered again later the same day) and
+      Novamira Pro 1.9.0 → 1.10.0. Verified via MCP: nothing pending, no paused plugins.
+- [ ] Optional, any time: FluentSMTP 2.4.0 dashboard visual check in wp-admin (settings verified intact via PHP)
 
 ## Dev inventory (2026-09-15, via Novamira MCP / WP-CLI)
 
@@ -122,6 +130,103 @@ Prod has no WP-CLI: updates via wp-admin (Dashboard → Updates). Order: manual 
 smaller: mostly patch versions since August, plus FluentSMTP 2.4.0 and WPML 4.9.7) → core
 7.0.4 → 7.1.x → purge Nginx cache (Nginx Helper) → regression pass.
 
+## Prod inventory (2026-09-15, via Novamira MCP, read-only)
+
+WordPress **7.0.4** (db_version 61833), PHP 8.3.33, core update offered: **7.1**. Salient 15.0.9 /
+child 0.1, no theme update. `DISALLOW_FILE_MODS` off, `AUTOMATIC_UPDATER_DISABLED` off, filesystem
+method `direct`, plugin auto-updates off, core major auto-update disabled. No WP-CLI, no `run-wp-cli`
+ability on prod (only `execute-php`, file tools, admin-access-link). WP_DEBUG off, no debug.log.
+Object cache drop-in present (Redis Object Cache 2.8.0 active); Nginx Helper 2.3.5 active,
+fastcgi purge via GET, purge-on-edit enabled.
+
+Differences from the plan's assumptions: **MailPoet 5.35.1 + MailPoet Premium 5.35.0 are active**
+(inactive on dev); **FluentSMTP uses the PHP `mail()` provider** (sender info@fbhi.se, 1 mapping,
+logging on) — there is no SMTP host to re-verify, so the "real SMTP connection" note does not apply;
+WPML is already 4.9.6.
+
+Counts for the regression pass: 23 forms / 3128 entries, 5 published events, 10 997 string
+translations, 43 network-projects, 5 kommuner.
+
+### Plugins with updates available on prod (13)
+
+| Plugin | Active | Prod now | Available | Batch |
+| --- | --- | --- | --- | --- |
+| TablePress | no | 3.3.3 | 3.3.4 | A |
+| Advanced Custom Fields | yes | 6.8.7 | 6.8.10 | B |
+| Complianz | yes | 7.5.3 | 7.5.5 | B |
+| MonsterInsights | yes | 11.1.2 | 11.2.0 | B |
+| MapPress | yes | 2.97.9 | 2.97.12 | B (licence covers fbhi.se) |
+| Nginx Helper | yes | 2.3.5 | 2.4.1 | B |
+| WPML Multilingual CMS | yes | 4.9.6 | 4.9.7 | C (first) |
+| WPML String Translation | yes | 3.5.3 | 3.5.4 | C (second) |
+| The Events Calendar | yes | 6.17.2 | 6.17.4.1 | D |
+| WPForms | yes | 2.0.0.4 | 2.0.1.1 | D |
+| All in One SEO | yes | 5.0.0.1 | 5.0.1.1 | D |
+| FluentSMTP | yes | 2.3.1 | 2.4.0 | D |
+| MailPoet | yes | 5.35.1 | 5.38.0 (requires WP 7.0) | D — check MailPoet Premium offers a matching update afterwards |
+
+Not offered: Novamira (already 1.12.3), Novamira Pro, Salient plugins (licence), Redis Object Cache,
+Autoptimize, Duplicate Page, Font Awesome, WP Migrate Lite (all current).
+
+## Prod log
+
+- 2026-09-15 — prod MCP reachable again. Read-only inventory + baseline done (see above). First write
+  attempt (`execute-php` running `Plugin_Upgrader::bulk_upgrade` for batch A+B, exactly what
+  Dashboard → Updates does) was **denied by the Claude Code auto-mode classifier** ("Production
+  Deploy"), and so was `create-admin-access-link` (which would have allowed clicking the updates in
+  wp-admin from Chrome). Stopped and handed the choice to Daniel. Test mail from FluentSMTP is
+  **not** to be sent without Daniel's explicit go (his rule: no emails without green light).
+
+- 2026-09-15 — Daniel explicitly authorised batch A+B → applied via `execute-php` (`Plugin_Upgrader::bulk_upgrade`,
+  40 s, maintenance mode on/off cleanly): TablePress 3.3.4, ACF 6.8.10 (+ sv_SE translation), Complianz 7.5.5,
+  MonsterInsights 11.2.0, MapPress 2.97.12, Nginx Helper 2.4.1. Quick check: 8 pages 200, HTML diffs only
+  version strings / Complianz cache-busters / Salient per-render `fws_` ids (`html-b/`), no paused plugins,
+  no recovery mode, home-en console clean in Chrome, cookie banner + switcher present.
+
+- 2026-09-15 — Daniel authorised batch C → `execute-php` upgrade of WPML CMS 4.9.6 → 4.9.7 then ST 3.5.3 → 3.5.4.
+  The MCP call itself came back as an **Nginx 504** (WPML packages are large; PHP kept running past the
+  proxy timeout) but the upgrade finished cleanly server-side: both versions installed + active, no
+  `.maintenance` file, `wp-content/upgrade/` empty, no paused plugins. Regression (`html-c/`): 8 pages 200,
+  only diff is the WPML generator tag (+ TEC per-request UUID on /calendar/); languages en+sv, 10 997 string
+  translations unchanged, kommuner posts `sv`, en→sv post lookups resolve, hreflang en/sv/x-default, switcher
+  OK, home-sv console clean in Chrome. Lesson: for big packages expect a 504 from the MCP — verify state with a
+  read-only call instead of re-running the upgrade.
+
+- 2026-09-15 — Daniel authorised batch D → three `execute-php` calls: (1) AIOSEO 5.0.0.1 → 5.0.1.1 + FluentSMTP
+  2.3.1 → 2.4.0 (14 s, clean); **WPForms stayed 2.0.0.4** — the fresh update check no longer offered 2.0.1.1
+  (licence is valid: basic, active sub, not expired, limit not reached; probably a staged rollout on the WPForms
+  API — re-check Dashboard → Updates in a day or two). (2) TEC 6.17.2 → 6.17.4.1 + MailPoet 5.35.1 → 5.38.0
+  (504 from the MCP again, finished cleanly server-side). (3) MailPoet Premium 5.35.0 → 5.38.0 (offered only
+  after the core MailPoet update; 3.5 s) to remove the version mismatch. Gotcha: after a `bulk_upgrade` the
+  `update_plugins` transient is cleared, so the next call must run `wp_update_plugins()` first or the upgrader
+  reports "already at the latest version".
+  Regression (`html-d/`): 8 pages 200; only AIOSEO generator tag changed (+ TEC per-request UUID, ordering of
+  IDs in the child theme's WW-Fingers inline script). WPForms page: 19 fields, novalidate, validate + ajax
+  settings present, AIOSEO description/og/schema present, console = baseline. 23 forms / 3128 entries,
+  5 events, TEC migration "not required", FluentSMTP 1 connection (PHP mail) intact. **No test mail sent**
+  (Daniel's rule). Fresh update check now also offers **Novamira Pro 1.10.0** — Daniel, manually.
+
+- 2026-09-15 — Daniel authorised core → `execute-php` with `Core_Upgrader::upgrade(find_core_update('7.1','en_US'))`.
+  First two attempts were rejected by **Nginx with 405** before reaching PHP — the request body contained a
+  read of `wp-includes/version.php` (`file_get_contents` + that path); a trivial call worked, so it is a
+  body-pattern rule on the host. Without the file read the upgrade ran (504 again, finished server-side):
+  WordPress **7.1**, db_version 61833 (unchanged, as on dev), no `.maintenance`, `wp-content/upgrade/` empty,
+  `get_core_updates()` = "latest". Then `do_action('rt_nginx_helper_purge_all')` + `wp_cache_flush()`:
+  Redis flushed; Nginx Helper logged "unlink(...tmp/fastcgi/0): Operation not permitted" warnings from its
+  directory sweep, but uncached URLs then served 7.1 markup with `x-cache: MISS`, so the cache was effectively
+  refreshed. Final regression vs baseline (`html-after/`, `screens-after/`): green — details in the baseline
+  `MANIFEST.md`. Summary: all 8 pages 200, only generator/version/WP-7.1-core-CSS diffs, aggregate Event
+  JSON-LD gone from `/calendar/` (singles keep it; known TEC 6.17.x), 6 screenshots pixel-identical, home-sv
+  scroll-section artifact only, zero console errors, WPForms JS init = baseline, counts unchanged (23 forms /
+  3128 entries, 5 events, 10 997 strings, 43 network-projects, 5 kommuner, 779 MailPoet subscribers).
+
+### Prod final state (2026-09-15)
+
+WordPress 7.1, PHP 8.3.33, Salient 15.0.9. Plugins: ACF 6.8.10, AIOSEO 5.0.1.1, Complianz 7.5.5, FluentSMTP
+2.4.0, MonsterInsights 11.2.0, MailPoet 5.38.0 + Premium 5.38.0, MapPress 2.97.12, Nginx Helper 2.4.1,
+TablePress 3.3.4, TEC 6.17.4.1, WPML 4.9.7 / ST 3.5.4, WPForms 2.0.1.1, Novamira 1.12.3 / Pro 1.10.0.
+Nothing pending. No test mail sent. Guides CPT not deployed to prod.
+
 ## Dev results (2026-09-15)
 
 Applied via `wp plugin update` over the Novamira MCP. 23 of 25 updated; two blocked by licensing on the
@@ -201,3 +306,5 @@ Everything else went to the versions in the inventory table (ACF 6.8.10, AIOSEO 
 
 - 2026-09-15 — inventory, compatibility research, dev baseline. Prod MCP unreachable
   ("Connection Failed"); prod inventory pending.
+- 2026-09-15 (evening) — prod done (see "Prod log"); Daniel finished WPForms + Novamira Pro by hand. Round closed,
+  folder moved to `docs/archive/updates-2026-09/`.
