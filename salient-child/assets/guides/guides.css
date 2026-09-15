@@ -142,7 +142,9 @@
 .fbhi-guide__content > * + figure,
 .fbhi-guide__content > figure + *,
 .fbhi-guide__content > * + .wp-block-file,
-.fbhi-guide__content > .wp-block-file + * { margin-top: 1.8em; }
+.fbhi-guide__content > .wp-block-file + *,
+.fbhi-guide__content > * + .wp-block-media-text,
+.fbhi-guide__content > .wp-block-media-text + * { margin-top: 1.8em; }
 .fbhi-guide__content > h2 + figure,
 .fbhi-guide__content > h3 + figure { margin-top: .8em; }
 /* Links to PDF files carry a small document icon after the text. */
@@ -203,6 +205,50 @@
 	border-top: 1px solid var(--fbhi-guide-grey-dark);
 	max-width: 120px;
 	margin-left: 0;
+}
+/* Media & Text: a grey card with the image flush against one edge and the text beside it
+   (core supplies the two-column grid and stacks it on small screens). */
+.fbhi-guide__content .wp-block-media-text {
+	background: var(--fbhi-guide-grey);
+	border-radius: 4px;
+	overflow: hidden;
+}
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__media { margin: 0; }
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__media img { display: block; width: 100%; }
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 24px 32px; }
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content > * { margin-top: 0; margin-bottom: 0; }
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content > * + * { margin-top: .8em; }
+.fbhi-guide__content .wp-block-media-text h3,
+.container-wrap .fbhi-guide__content .wp-block-media-text h3 { margin-top: 0; font-size: 19px; font-weight: 700; color: var(--fbhi-guide-navy); }
+@media (max-width: 600px) {
+	.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 20px 22px; }
+}
+
+/* ---------- editor preview: unpublished pages (logged-in editors only) ---------- */
+.fbhi-guide-status {
+	display: inline-block;
+	margin-left: .5em;
+	padding: 1px 7px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.6;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	vertical-align: middle;
+	background: #FFF3CD;
+	color: #6B4E00;
+}
+.fbhi-guide-status--private { background: var(--fbhi-guide-grey-dark); color: var(--fbhi-guide-text); }
+.fbhi-guide-notice {
+	margin: 0 0 24px;
+	padding: 12px 16px;
+	border-left: 4px solid #D9A400;
+	border-radius: 4px;
+	background: #FFF8E1;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--fbhi-guide-text);
 }
 
 /* ---------- guide components (block styles on core blocks) ---------- */

@@ -28,7 +28,7 @@ final class Guide_Editor {
 
 	/**
 	 * Blocks editors may use on guide pages. Everything else (Salient/plugin
-	 * blocks, embeds of random services, cover, media-text …) is hidden.
+	 * blocks, embeds of random services, cover …) is hidden.
 	 *
 	 * @return string[]
 	 */
@@ -40,6 +40,7 @@ final class Guide_Editor {
 			'core/list-item',
 			'core/image',
 			'core/gallery',
+			'core/media-text',
 			'core/video',
 			'core/embed',
 			'core/buttons',
@@ -76,7 +77,7 @@ final class Guide_Editor {
 		}
 
 		$js  = FBHI_GUIDES_ASSETS_DIR . '/guides-editor.js';
-		$css = FBHI_GUIDES_ASSETS_DIR . '/guides-editor.css';
+		$css = FBHI_GUIDES_ASSETS_DIR . '/guides-editor-ui.css';
 
 		wp_enqueue_script(
 			'fbhi-guides-editor',
@@ -104,10 +105,12 @@ final class Guide_Editor {
 			'before'
 		);
 
+		// Editor chrome only (sidebar panel). Canvas styles go through enqueue_block_assets
+		// (editor_content_styles) so WP loads them inside the iframe itself.
 		if ( file_exists( $css ) ) {
 			wp_enqueue_style(
-				'fbhi-guides-editor',
-				FBHI_GUIDES_ASSETS_URL . '/guides-editor.css',
+				'fbhi-guides-editor-ui',
+				FBHI_GUIDES_ASSETS_URL . '/guides-editor-ui.css',
 				array(),
 				(string) filemtime( $css )
 			);
@@ -221,8 +224,9 @@ final class Guide_Editor {
 	}
 
 	/**
-	 * Styles for the editor canvas (also inside the editor iframe): the same
-	 * guides.css as the frontend plus editor-only tweaks. Guide screens only.
+	 * Styles for the editor canvas (inside the editor iframe): guides.css for the
+	 * block styles' variables and guides-editor.css, which mirrors the frontend
+	 * reading layout. Guide screens only.
 	 */
 	public static function editor_content_styles(): void {
 		if ( ! is_admin() ) {

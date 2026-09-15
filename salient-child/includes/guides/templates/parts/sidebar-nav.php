@@ -38,7 +38,7 @@ $fbhi_nav_current_title = Guide_Frontend::page_name_html( $fbhi_nav_post, $fbhi_
 		<ol class="fbhi-guide-nav__list">
 			<li class="fbhi-guide-nav__item fbhi-guide-nav__item--start<?php echo $fbhi_nav_is_root ? ' is-current' : ''; ?>">
 				<a class="fbhi-guide-nav__link" href="<?php echo esc_url( get_permalink( $fbhi_nav_root ) ); ?>"<?php echo $fbhi_nav_is_root ? ' aria-current="page"' : ''; ?>>
-					<?php esc_html_e( 'Start', 'salient-child' ); ?>
+					<?php esc_html_e( 'Start', 'salient-child' ); ?><?php echo Guide_Frontend::status_badge_html( $fbhi_nav_root ); // escaped inside. ?>
 				</a>
 			</li>
 
@@ -54,7 +54,7 @@ $fbhi_nav_current_title = Guide_Frontend::page_name_html( $fbhi_nav_post, $fbhi_
 						<summary class="fbhi-guide-nav__chapter-summary">
 							<a class="fbhi-guide-nav__link" href="<?php echo esc_url( get_permalink( $fbhi_ch ) ); ?>"<?php echo $fbhi_is_page ? ' aria-current="page"' : ''; ?>>
 								<?php if ( $fbhi_ch_label ) : ?><span class="fbhi-guide-nav__label"><?php echo esc_html( $fbhi_ch_label ); ?></span><?php endif; ?>
-								<span class="fbhi-guide-nav__title"><?php echo esc_html( get_the_title( $fbhi_ch ) ); ?></span>
+								<span class="fbhi-guide-nav__title"><?php echo esc_html( get_the_title( $fbhi_ch ) ); ?><?php echo Guide_Frontend::status_badge_html( $fbhi_ch ); // escaped inside. ?></span>
 							</a>
 							<span class="fbhi-guide-nav__chevron" role="button" aria-label="<?php esc_attr_e( 'Show contents', 'salient-child' ); ?>"></span>
 						</summary>

@@ -48,6 +48,7 @@ $fbhi_toc = Guide_TOC::items();
 
 				<div class="fbhi-guide__main">
 					<?php
+					echo Guide_Frontend::preview_notice_html( $fbhi_post, $fbhi_root ); // escaped inside.
 					Guide_Frontend::part( 'chapter-header', array(
 						'post'    => $fbhi_post,
 						'is_root' => $fbhi_is_root,

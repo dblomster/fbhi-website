@@ -230,3 +230,36 @@ msgstr "Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från
 
 msgid "Optional colour for the guide start page. Chapters set their own colour."
 msgstr "Valfri färg för guidens startsida. Avsnitten anger sina egna färger."
+
+msgid "Draft"
+msgstr "Utkast"
+
+msgid "Pending review"
+msgstr "Väntar på granskning"
+
+msgid "Scheduled"
+msgstr "Schemalagd"
+
+msgid "Private"
+msgstr "Privat"
+
+msgid "Preview"
+msgstr "Förhandsvisning"
+
+msgid "This page is a draft. Visitors cannot see it until it is published."
+msgstr "Den här sidan är ett utkast. Besökare ser den inte förrän den publiceras."
+
+msgid "This page is pending review. Visitors cannot see it until it is published."
+msgstr "Den här sidan väntar på granskning. Besökare ser den inte förrän den publiceras."
+
+msgid "This page is scheduled. Visitors cannot see it until it is published."
+msgstr "Den här sidan är schemalagd. Besökare ser den inte förrän den publiceras."
+
+msgid "This page is private. Only logged-in editors can see it."
+msgstr "Den här sidan är privat. Bara inloggade redaktörer kan se den."
+
+msgid "The guide start page is not published yet, so the whole guide is hidden from visitors."
+msgstr "Guidens startsida är inte publicerad ännu, så hela guiden är dold för besökare."
+
+msgid "A parent page of this page is not published, so visitors cannot reach it."
+msgstr "En överordnad sida är inte publicerad, så besökare kan inte nå den här sidan."

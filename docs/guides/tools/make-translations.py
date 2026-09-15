@@ -34,6 +34,14 @@ T = {
  'Guide page':'Guidesida', 'Accent colour':'Accentfärg', 'Shown above the title and on the index card, e.g. "Avsnitt 1".':'Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”.',
  'Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.':'Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från överordnad sida.',
  'Optional colour for the guide start page. Chapters set their own colour.':'Valfri färg för guidens startsida. Avsnitten anger sina egna färger.',
+ # Unpublished pages (editors only)
+ 'Draft':'Utkast', 'Pending review':'Väntar på granskning', 'Scheduled':'Schemalagd', 'Private':'Privat', 'Preview':'Förhandsvisning',
+ 'This page is a draft. Visitors cannot see it until it is published.':'Den här sidan är ett utkast. Besökare ser den inte förrän den publiceras.',
+ 'This page is pending review. Visitors cannot see it until it is published.':'Den här sidan väntar på granskning. Besökare ser den inte förrän den publiceras.',
+ 'This page is scheduled. Visitors cannot see it until it is published.':'Den här sidan är schemalagd. Besökare ser den inte förrän den publiceras.',
+ 'This page is private. Only logged-in editors can see it.':'Den här sidan är privat. Bara inloggade redaktörer kan se den.',
+ 'The guide start page is not published yet, so the whole guide is hidden from visitors.':'Guidens startsida är inte publicerad ännu, så hela guiden är dold för besökare.',
+ 'A parent page of this page is not published, so visitors cannot reach it.':'En överordnad sida är inte publicerad, så besökare kan inte nå den här sidan.',
 }
 JS1 = ['Guide page','Label','Print button text','Leave empty for the default text.','Shown above the title and on the index card, e.g. "Avsnitt 1".','Accent colour','Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.','Optional colour for the guide start page. Chapters set their own colour.']
 JS2 = ['Guide index','Heading','Leave empty for the default heading.','Guide index — generated automatically from the chapter pages.']

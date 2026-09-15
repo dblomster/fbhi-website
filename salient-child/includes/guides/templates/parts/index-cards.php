@@ -32,7 +32,7 @@ $fbhi_idx_wrapper = $args['wrapper'] ?? '';
 					<p class="fbhi-guide-card__label"><?php echo esc_html( $fbhi_card_label ); ?></p>
 				<?php endif; ?>
 				<h3 class="fbhi-guide-card__title">
-					<a href="<?php echo esc_url( get_permalink( $fbhi_card ) ); ?>"><?php echo esc_html( get_the_title( $fbhi_card ) ); ?></a>
+					<a href="<?php echo esc_url( get_permalink( $fbhi_card ) ); ?>"><?php echo esc_html( get_the_title( $fbhi_card ) ); ?></a><?php echo Guide_Frontend::status_badge_html( $fbhi_card ); // escaped inside. ?>
 				</h3>
 				<?php if ( $fbhi_card_intro ) : ?>
 					<div class="fbhi-guide-card__intro"><?php echo wpautop( $fbhi_card_intro ); ?></div>

@@ -1,0 +1,5 @@
+/* FBHI Guides — editor chrome only (sidebar "Guide page" panel).
+   Loaded outside the editor canvas; canvas styles live in guides-editor.css. */
+.fbhi-guide-settings .components-base-control + .components-base-control {
+	margin-top: 16px;
+}

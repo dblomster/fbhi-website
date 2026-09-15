@@ -13,7 +13,7 @@ use FBHI\Guides\Guide_Meta;
 $fbhi_bn_post = $args['post'];
 $fbhi_bn_root = $args['root'];
 $fbhi_bn_adj  = Guide_Hierarchy::adjacent( $fbhi_bn_post->ID );
-$fbhi_bn_name = static fn( \WP_Post $p ): string => Guide_Frontend::page_name_html( $p, $fbhi_bn_root );
+$fbhi_bn_name = static fn( \WP_Post $p ): string => Guide_Frontend::page_name_html( $p, $fbhi_bn_root ) . Guide_Frontend::status_badge_html( $p );
 ?>
 <div class="fbhi-guide__tools">
 	<button type="button" class="fbhi-guide__print fbhi-guide-button fbhi-guide-button--ghost" data-guide-print>

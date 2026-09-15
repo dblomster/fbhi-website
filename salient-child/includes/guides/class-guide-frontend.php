@@ -18,6 +18,34 @@ final class Guide_Frontend {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'assets' ), 20 );
 		add_filter( 'body_class', array( __CLASS__, 'body_class' ) );
 		add_filter( 'wp_nav_menu_objects', array( __CLASS__, 'highlight_menu' ), 20, 2 );
+		add_action( 'template_redirect', array( __CLASS__, 'guard_unpublished' ) );
+	}
+
+	/**
+	 * Unpublished guide trees stay hidden: a page whose ancestor (typically the
+	 * guide root) is not published is a 404 for visitors, even if the page
+	 * itself was published early. Editors can browse everything; those
+	 * responses are never cached.
+	 */
+	public static function guard_unpublished(): void {
+		if ( ! self::is_guide_view() ) {
+			return;
+		}
+		$post_id = get_queried_object_id();
+		$post    = get_post( $post_id );
+		$blocked = Guide_Hierarchy::unpublished_ancestor( $post_id );
+		if ( Guide_Hierarchy::can_preview_unpublished() ) {
+			if ( $blocked || ( $post instanceof \WP_Post && Guide_Hierarchy::is_unpublished( $post ) ) ) {
+				nocache_headers();
+			}
+			return;
+		}
+		if ( $blocked ) {
+			global $wp_query;
+			$wp_query->set_404();
+			status_header( 404 );
+			nocache_headers();
+		}
 	}
 
 	public static function is_guide_view(): bool {
@@ -126,6 +154,52 @@ final class Guide_Frontend {
 		return '<span class="fbhi-guide-page-name__label">' . esc_html( $label ) . '</span>'
 			. '<span class="fbhi-guide-page-name__divider" aria-hidden="true">&ndash;</span>'
 			. '<span class="fbhi-guide-page-name__title">' . $title . '</span>';
+	}
+
+	/** Small "Draft" style badge for unpublished pages, shown to editors only. Empty otherwise. */
+	public static function status_badge_html( \WP_Post $post ): string {
+		if ( ! Guide_Hierarchy::is_unpublished( $post ) || ! Guide_Hierarchy::can_preview_unpublished() ) {
+			return '';
+		}
+		$label = Guide_Hierarchy::status_label( $post );
+		return $label ? ' <span class="fbhi-guide-status fbhi-guide-status--' . esc_attr( $post->post_status ) . '">' . esc_html( $label ) . '</span>' : '';
+	}
+
+	/**
+	 * Notice above the chapter header telling editors why visitors cannot see
+	 * this page yet (its own status, or an unpublished guide root/ancestor).
+	 */
+	public static function preview_notice_html( \WP_Post $post, ?\WP_Post $root ): string {
+		if ( ! Guide_Hierarchy::can_preview_unpublished() ) {
+			return '';
+		}
+		$lines = array();
+		if ( Guide_Hierarchy::is_unpublished( $post ) ) {
+			switch ( $post->post_status ) {
+				case 'pending':
+					$lines[] = __( 'This page is pending review. Visitors cannot see it until it is published.', 'salient-child' );
+					break;
+				case 'future':
+					$lines[] = __( 'This page is scheduled. Visitors cannot see it until it is published.', 'salient-child' );
+					break;
+				case 'private':
+					$lines[] = __( 'This page is private. Only logged-in editors can see it.', 'salient-child' );
+					break;
+				default:
+					$lines[] = __( 'This page is a draft. Visitors cannot see it until it is published.', 'salient-child' );
+			}
+		}
+		$blocked = Guide_Hierarchy::unpublished_ancestor( $post->ID );
+		if ( $blocked ) {
+			$lines[] = ( $root && $blocked->ID === $root->ID )
+				? __( 'The guide start page is not published yet, so the whole guide is hidden from visitors.', 'salient-child' )
+				: __( 'A parent page of this page is not published, so visitors cannot reach it.', 'salient-child' );
+		}
+		if ( ! $lines ) {
+			return '';
+		}
+		return '<div class="fbhi-guide-notice" role="status"><strong>' . esc_html__( 'Preview', 'salient-child' ) . '</strong> '
+			. implode( ' ', array_map( 'esc_html', $lines ) ) . '</div>';
 	}
 
 	/** Manual excerpt only (never auto-generated from content). */

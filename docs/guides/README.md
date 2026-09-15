@@ -29,6 +29,25 @@ the URL — the screen icon is a masked background, which browsers drop on paper
 the file block's download button is now hidden in print. URLs after external links in print are a deliberate
 convention (paper has no clickable links) and stay.
 
+**Update 2026-09-15** (during the 2026-09 update round, WP 7.1 on dev):
+- **Editor CSS split**: `guides-editor.css` is now canvas-only (loaded inside the editor iframe via
+  `enqueue_block_assets`); the sidebar-panel rule moved to `guides-editor-ui.css` (`enqueue_block_editor_assets`).
+  Removes the duplicate copy WP 7.1 was making into the iframe.
+- **Editor canvas mirrors the frontend**: 780px content column, Montserrat 17px, teal H2 / black H3 at frontend
+  sizes, the same block rhythm (1.2em, tighter after headings, more air around figures/files), tinted title band,
+  boxes, file block, tables, quotes, Media & Text card. Values are copied from `guides.css` — keep both in sync.
+- **Media & Text** (`core/media-text`) is now an allowed block. Frontend/print styling added (grey card, text
+  padding, H3 in navy). Example placed on chapter 5 (13939) under "Övningar" with the Nordic-walking image (13919).
+- **Unpublished pages**: visitors only ever see published pages, and a page whose ancestor (e.g. the guide root)
+  is unpublished is a 404 for them even if published itself. Logged-in editors (`edit_others_pages`) see draft /
+  pending / scheduled / private pages in the sidebar, index cards and prev/next with a small status badge, and a
+  yellow "Förhandsvisning" notice above the chapter header explains why visitors cannot see the page. Those
+  responses send no-cache headers. Purpose: copy the guide to prod as drafts and review it in place before publishing.
+  Verified on dev 2026-09-15 with a temporary draft chapter and the root temporarily set to draft: visitors got 404
+  on every guide URL, editors got 200 with the notices/badges and working pretty links. (Watch out when testing
+  as "editor" via a Novamira admin link: the session expires after an hour and everything silently turns into
+  the visitor view.)
+
 ## Outstanding (parked, revisit later)
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.

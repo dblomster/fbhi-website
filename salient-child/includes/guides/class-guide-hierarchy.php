@@ -30,12 +30,67 @@ final class Guide_Hierarchy {
 		return $post instanceof \WP_Post && 0 === (int) $post->post_parent;
 	}
 
-	/** Direct children of a guide page, in menu_order then title. */
+	/**
+	 * Whether the current user may browse unpublished guide pages (drafts,
+	 * pending, scheduled, private) in the navigation, index and prev/next.
+	 * Editors and administrators can; visitors never can.
+	 */
+	public static function can_preview_unpublished(): bool {
+		static $can = null;
+		if ( null === $can ) {
+			$type = get_post_type_object( Guide_Post_Type::POST_TYPE );
+			$can  = $type && is_user_logged_in() && current_user_can( $type->cap->edit_others_posts );
+			$can  = (bool) apply_filters( 'fbhi_guide_can_preview_unpublished', $can );
+		}
+		return $can;
+	}
+
+	/** Statuses shown to editors while a guide is being prepared. */
+	public static function preview_statuses(): array {
+		return array( 'publish', 'draft', 'pending', 'future', 'private' );
+	}
+
+	public static function is_unpublished( \WP_Post $post ): bool {
+		return 'publish' !== $post->post_status;
+	}
+
+	/** Human status of an unpublished page, empty for published ones. */
+	public static function status_label( \WP_Post $post ): string {
+		switch ( $post->post_status ) {
+			case 'draft':
+			case 'auto-draft':
+				return __( 'Draft', 'salient-child' );
+			case 'pending':
+				return __( 'Pending review', 'salient-child' );
+			case 'future':
+				return __( 'Scheduled', 'salient-child' );
+			case 'private':
+				return __( 'Private', 'salient-child' );
+		}
+		return '';
+	}
+
+	/** Nearest ancestor that is not published, or null when the whole chain is live. */
+	public static function unpublished_ancestor( int $post_id ): ?\WP_Post {
+		foreach ( get_post_ancestors( $post_id ) as $ancestor_id ) {
+			$ancestor = get_post( (int) $ancestor_id );
+			if ( $ancestor instanceof \WP_Post && self::is_unpublished( $ancestor ) ) {
+				return $ancestor;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Direct children of a guide page, in menu_order then title. Published
+	 * only for visitors; editors also get unpublished pages so a guide can be
+	 * reviewed as a whole before it goes live.
+	 */
 	public static function children( int $parent_id ): array {
 		return get_posts( array(
 			'post_type'        => Guide_Post_Type::POST_TYPE,
 			'post_parent'      => $parent_id,
-			'post_status'      => 'publish',
+			'post_status'      => self::can_preview_unpublished() ? self::preview_statuses() : 'publish',
 			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 			'posts_per_page'   => -1,
 			'no_found_rows'    => true,

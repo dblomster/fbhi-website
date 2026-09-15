@@ -21,7 +21,9 @@
 .fbhi-guide__sidebar,
 .fbhi-guide__tools,
 .fbhi-guide-bottom-nav,
-.fbhi-guide-card__more {
+.fbhi-guide-card__more,
+.fbhi-guide-status,
+.fbhi-guide-notice {
 	display: none !important;
 }
 
@@ -70,6 +72,8 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 }
 .fbhi-guide-card a::after { content: none !important; }
 .fbhi-guide__content .wp-block-file { border: 1pt solid #888; padding: 6pt 10pt; }
+.fbhi-guide__content .wp-block-media-text { background: none; border: 1pt solid #888; break-inside: avoid; }
+.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 8pt 10pt; }
 .fbhi-guide__content .wp-block-file .wp-block-file__button { display: none !important; } /* outranks the screen pill rule */
 
 /* Page-break behaviour */
