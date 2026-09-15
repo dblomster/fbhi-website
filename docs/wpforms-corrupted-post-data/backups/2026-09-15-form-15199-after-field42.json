@@ -1,0 +1,564 @@
+[
+ {
+  "fields": {
+   "42": {
+    "id": "42",
+    "type": "radio",
+    "label": "Online-seminariet 30 september kl 13-15",
+    "choices": {
+     "1": {
+      "label": "Ja, jag anmäler mig till seminariet den 30 september. Efter seminariet får jag dessutom en länk till inspelningen.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "5": {
+      "label": "Jag kan inte delta i seminariet den 30 september, men önskar en länk till inspelningen i efterhand.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "41": {
+    "id": "41",
+    "type": "checkbox",
+    "label": "Medlemskap i FINGER-nätverket",
+    "choices": {
+     "4": {
+      "label": "Jag vill bli medlem i FINGER-nätverket.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "6": {
+      "label": "Jag är redan medlem.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Jag vill vara medlem men är osäker på om jag anmält mig tidigare.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "8": {
+      "label": "Jag vill inte bli medlem just nu.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "Som medlem får du information om fler aktiviteter och får större möjlighet till samarbete och erfarenhetsutbyte. Allt deltagande är kostnadsfritt.  Du förbinder dig inte till någonting och du kan när som helst gå ur nätverket genom att mejla oss på info@fbhi.se",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "1",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "65": {
+    "id": "65",
+    "type": "content",
+    "content": "<span style=\"color:#006885;\"><strong>Planerade eller pågående aktiviteter</strong></span>\n<span style=\"color:#006885;\"><span style=\"color:#000000;\">Vi på FBHI vill vi gärna höra om de FINGER-inspirerade aktiviteter som planeras eller pågår runt om i landet. Det hjälper oss att planera vårt arbete och vår kommunikation. Berätta gärna</span>!</span>",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "51": {
+    "id": "51",
+    "type": "checkbox",
+    "label": "FINGER-inspirerat arbete i min organisation/kommun/region",
+    "choices": {
+     "4": {
+      "label": "Vi har inga FINGER-inspirerade aktiviteter idag och just nu finns inga planer på att starta sådana aktiviteter.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "6": {
+      "label": "Vi planerar att starta FINGER-inspirerade aktiviteter.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Vi har startat vissa FINGER-inspirerade aktiviteter.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "8": {
+      "label": "Vi har väl utvecklade FINGER-inspirerade aktiviteter.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "10": {
+      "label": "Vi driver ett FINGER-inspirerat livsstilprogram som i princip täcker in alla fem \"fingrarna\".",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "9": {
+      "label": "Jag vet inte, eller jag väljer att inte besvara denna fråga.",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "1",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "23": {
+    "id": "23",
+    "type": "textarea",
+    "label": "Mer om pågående eller planerade aktiviteter",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "70": {
+    "id": "70",
+    "type": "content",
+    "content": "<span style=\"color:#006885;\"><strong>Kontaktuppgifter</strong></span>",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "26": {
+    "id": "26",
+    "type": "text",
+    "label": "Förnamn",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "27": {
+    "id": "27",
+    "type": "text",
+    "label": "Efternamn",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "24": {
+    "id": "24",
+    "type": "email",
+    "label": "E-postadress",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "confirmation_placeholder": "",
+    "default_value": "",
+    "filter_type": "",
+    "allowlist": "",
+    "denylist": "",
+    "css": ""
+   },
+   "21": {
+    "id": "21",
+    "type": "text",
+    "label": "Titel/Ansvarsområde",
+    "description": "",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "4": {
+    "id": "4",
+    "type": "text",
+    "label": "Organisation",
+    "description": "För kommunanställda är det kommunens namn som efterfrågas.",
+    "required": "1",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "25": {
+    "id": "25",
+    "type": "text",
+    "label": "Avdelning/Enhet",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "input_mask": "",
+    "css": ""
+   },
+   "71": {
+    "id": "71",
+    "type": "content",
+    "content": "<span style=\"color:#006885;\"><strong>Roll och ansvarsuppgifter\n</strong><span style=\"color:#ff6600;\">Vi är tacksamma om du markerar </span><span style=\"color:#ff6600;\"><strong>samtliga alternativ</strong> som beskriver din roll, dina arbetsuppgifter och din arbetsplats.</span>\n<span style=\"color:#000000;\">Det är alltså möjligt att göra flera val.</span><strong>\n</strong></span>",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "64": {
+    "id": "64",
+    "type": "checkbox",
+    "label": "Detta/dessa alternativ beskriver min roll (flera alternativ kan markeras)",
+    "choices": {
+     "6": {
+      "label": "Är tjänsteperson (chef, samordnare, handläggare eller liknande) inom kommun eller region",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "1": {
+      "label": "Jobbar på särskilt boende",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "2": {
+      "label": "Jobbar i dagverksamhet",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "15": {
+      "label": "Jobbar inom hemtjänst",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "16": {
+      "label": "Jobbar på träffpunkt",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "3": {
+      "label": "Ingår i ett demensteam",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "4": {
+      "label": "Jobbar inom primärvården",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "5": {
+      "label": "Jobbar på sjukhus",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "7": {
+      "label": "Jobbar med stöd till personer som har en demensdiagnos eller diagnosticerad kognitiv svikt",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "14": {
+      "label": "Jobbar med stöd till seniorer",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "8": {
+      "label": "Jobbar med förebyggande stöd",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "9": {
+      "label": "Jobbar med stöd till anhöriga",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "10": {
+      "label": "Jobbar med demensutredningar",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "11": {
+      "label": "Annat (beskriv nedan om du vill)",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     },
+     "12": {
+      "label": "Väljer att inte svara på frågan",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "choices_images_style": "modern",
+    "choices_icons_color": "#066aab",
+    "choices_icons_size": "large",
+    "choices_icons_style": "default",
+    "description": "Markera allt som stämmer in på din roll! Det är möjligt att göra flera val.",
+    "required": "1",
+    "input_columns": "",
+    "choice_limit": "12",
+    "dynamic_choices": "",
+    "css": ""
+   },
+   "58": {
+    "id": "58",
+    "type": "textarea",
+    "label": "Mer om min roll ",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "68": {
+    "id": "68",
+    "type": "textarea",
+    "label": "Det här vill jag gärna höra om på kommande seminarier",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "69": {
+    "id": "69",
+    "type": "textarea",
+    "label": "Det här skulle jag (eller min organisation) själv vilja berätta om",
+    "description": "",
+    "size": "medium",
+    "placeholder": "",
+    "limit_count": "1",
+    "limit_mode": "characters",
+    "default_value": "",
+    "css": ""
+   },
+   "72": {
+    "id": "72",
+    "type": "content",
+    "content": "<span style=\"color:#006885;\"><strong>Behandling av personuppgifter\n</strong></span>De uppgifter du lämnar ovan kommer att sparas och användas av FINGERS Brain Health Institute (FBHI) i kommunikation som rör FINGER-nätverket och relaterade aktiviteter. Vissa av uppgifterna kommer också att delges våra medarrangörer vid olika tillfällen, men inte sparas hos medarrangörer.\n\nGenom att mejla oss på info@fbhi.se kan du när som helst be att få se vilka uppgifter vi har sparat. Du kan också när som helst be oss ta bort eller ändra uppgifterna.",
+    "label_disable": "1",
+    "size": "large",
+    "css": ""
+   },
+   "32": {
+    "id": "32",
+    "type": "gdpr-checkbox",
+    "required": "1",
+    "label": "Medgivande om hantering av personuppgifter",
+    "choices": {
+     "1": {
+      "label": "Jag godkänner att FBHI sparar mina uppgifter i enlighet med vad som beskrivs ovan",
+      "value": "",
+      "image": "",
+      "icon": "face-smile",
+      "icon_style": "regular"
+     }
+    },
+    "description": "",
+    "css": ""
+   }
+  },
+  "id": "15199",
+  "field_id": 76,
+  "settings": {
+   "themes": {
+    "wpformsTheme": "default",
+    "isCustomTheme": "",
+    "themeName": "",
+    "fieldSize": "medium",
+    "fieldBorderStyle": "solid",
+    "fieldBorderSize": "1",
+    "fieldBorderRadius": "3",
+    "fieldBackgroundColor": "#ffffff",
+    "fieldBorderColor": "rgba(0, 0, 0, 0.25)",
+    "fieldTextColor": "rgba(0, 0, 0, 0.7)",
+    "labelSize": "medium",
+    "labelColor": "rgba(0, 0, 0, 0.85)",
+    "labelSublabelColor": "rgba(0, 0, 0, 0.55)",
+    "labelErrorColor": "#d63637",
+    "buttonSize": "medium",
+    "buttonBorderStyle": "none",
+    "buttonBorderSize": "1",
+    "buttonBorderRadius": "3",
+    "buttonBackgroundColor": "#066aab",
+    "buttonBorderColor": "#066aab",
+    "buttonTextColor": "#ffffff",
+    "containerPadding": "0",
+    "containerBorderStyle": "none",
+    "containerBorderWidth": "1",
+    "containerBorderRadius": "3",
+    "containerBorderColor": "#000000",
+    "containerShadowSize": "none",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "backgroundSize": "cover",
+    "backgroundUrl": "url()",
+    "fieldMenuColor": "#ffffff",
+    "pageBreakColor": "#066aab",
+    "customCss": "",
+    "copyPasteJsonValue": "{\"themeName\":\"\",\"isCustomTheme\":\"\",\"wpformsTheme\":\"default\",\"customCss\":\"\",\"containerPadding\":\"0\",\"containerBorderStyle\":\"none\",\"containerBorderWidth\":\"1\",\"containerBorderRadius\":\"3\",\"containerShadowSize\":\"none\",\"containerBorderColor\":\"#000000\",\"fieldSize\":\"medium\",\"fieldBorderStyle\":\"solid\",\"fieldBorderRadius\":\"3\",\"fieldBorderSize\":\"1\",\"fieldBackgroundColor\":\"#ffffff\",\"fieldBorderColor\":\"rgba(0, 0, 0, 0.25)\",\"fieldTextColor\":\"rgba(0, 0, 0, 0.7)\",\"fieldMenuColor\":\"#ffffff\",\"pageBreakColor\":\"#066aab\",\"labelSize\":\"medium\",\"labelColor\":\"rgba(0, 0, 0, 0.85)\",\"labelSublabelColor\":\"rgba(0, 0, 0, 0.55)\",\"labelErrorColor\":\"#d63637\",\"buttonSize\":\"medium\",\"buttonBorderStyle\":\"none\",\"buttonBorderSize\":\"1\",\"buttonBorderRadius\":\"3\",\"buttonBackgroundColor\":\"#066aab\",\"buttonBorderColor\":\"#066aab\",\"buttonTextColor\":\"#ffffff\",\"backgroundColor\":\"rgba(0, 0, 0, 0)\",\"backgroundPosition\":\"center center\",\"backgroundUrl\":\"url()\",\"backgroundRepeat\":\"no-repeat\",\"backgroundSize\":\"cover\",\"backgroundSizeMode\":\"cover\",\"backgroundWidth\":\"100\",\"backgroundHeight\":\"100\",\"backgroundImage\":\"none\"}"
+   },
+   "form_title": "Anmälan till online-seminariet den 30 september 2026 (ID #15199)",
+   "form_desc": "",
+   "submit_text": "Skicka",
+   "submit_text_processing": "Skickar...",
+   "form_class": "",
+   "submit_class": "",
+   "ajax_submit": "1",
+   "purge_entries_days": "365",
+   "notification_enable": "1",
+   "notifications": {
+    "1": {
+     "enable": "1",
+     "notification_name": "Default Notification",
+     "email": "annika.norell.benson@fbhi.se",
+     "subject": "Anmälan",
+     "sender_name": "FBHI",
+     "sender_address": "info@fbhi.se",
+     "replyto": "",
+     "message": "{field_id=\"26\"}\r\n {field_id=\"27\"}\r\n {field_id=\"24\"} {field_id=\"21\"}\r\n {field_id=\"4\"}\r\n {field_id=\"25\"}\r\n{field_id=\"23\"}",
+     "template": "",
+     "file_upload_attachment_fields": [],
+     "entry_csv_attachment_entry_information": [],
+     "entry_csv_attachment_file_name": "entry-details"
+    }
+   },
+   "confirmations": {
+    "2": {
+     "name": "Bekräftelsesida",
+     "type": "message",
+     "message": "<p>Tack för din anmälan! Du som anmält deltagande kommer att få en zoom-länk till seminariet. Den kommer normalt sett dagen före seminariet. Om du istället registrerat dig för efterhandsvisning får du ett mejl när inspelningen finns tillgänglig.<br />Välkommen!</p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview_style": "basic"
+    },
+    "1": {
+     "name": "Default Confirmation",
+     "type": "page",
+     "message": "<p>Tack! Du som anmält dig till seminariet får en zoom-länk via mejl senast den 29 maj.</p>",
+     "message_scroll": "1",
+     "page": "11200",
+     "page_url_parameters": "",
+     "redirect": "",
+     "message_entry_preview": "1",
+     "message_entry_preview_style": "basic"
+    }
+   },
+   "antispam": "1",
+   "anti_spam": {
+    "time_limit": {
+     "duration": "2"
+    },
+    "filtering_store_spam": "1",
+    "country_filter": {
+     "action": "allow",
+     "country_codes": [],
+     "message": "Sorry, this form does not accept submissions from your country."
+    },
+    "keyword_filter": {
+     "message": "Sorry, your message can't be submitted because it contains prohibited words."
+    }
+   },
+   "form_tags": [],
+   "store_spam_entries": "0"
+  },
+  "search_terms": "",
+  "providers": {
+   "constant-contact-v3": []
+  },
+  "meta": {
+   "template": "29fbebcf098fd684814d9d94bd1babdf",
+   "entry_columns": [
+    -1,
+    26,
+    27,
+    4,
+    21,
+    25
+   ]
+  }
+ }
+]

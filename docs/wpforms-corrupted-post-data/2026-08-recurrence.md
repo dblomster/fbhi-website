@@ -69,6 +69,10 @@ field) — the June analysis and the fix list below carry over unchanged.
    testing (restore to the intended recipient after verification).
 8. Enable WPForms logging (Tools → Logs) with spam/errors/security types.
 
+Status update 2026-09-15: recurred on seminar form 15199. The fix list above is **superseded** by the
+conservative plan in [2026-09-plan.md](2026-09-plan.md) (radios now; token and required fields kept; monitoring;
+fallback in reserve).
+
 Status: **OPEN — monitoring (2026-08-18).** The update round (all plugins incl.
 WPForms 2.0.0.4, WP core 7.0.4) is complete and verified — see
 `../archive/updates-2026-08/` — and did not change the form's failure mechanics.

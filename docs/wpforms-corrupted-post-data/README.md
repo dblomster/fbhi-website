@@ -1,5 +1,8 @@
 # WPForms: "Attempt to submit corrupted post data" + "tick every box" on the IWG survey
 
+> **Current plan (2026-09-15): [2026-09-plan.md](2026-09-plan.md)** — third occurrence, on seminar form 15199.
+> The conservative plan there supersedes the fix list in [2026-08-recurrence.md](2026-08-recurrence.md).
+
 ## What this is
 
 Investigation notes for an intermittent failure on the **International Working Group on
