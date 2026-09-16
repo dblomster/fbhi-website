@@ -113,6 +113,24 @@ html body.single.single-post .section-title h1 {
 }
 
 /* --------------------------------------------------------------------------
+   Body-text list spacing (WPBakery text columns)
+   Salient gives paragraphs 1.5em bottom padding (material skin) but only 10px
+   after a list (li + ul margins collapse), so a list reads as detached from
+   the paragraph it belongs to and glued to the paragraph after it. Same
+   rhythm as the guides module: tighter above a list, normal paragraph gap
+   below. Scoped to text columns so forms, nav, widgets and the kommun fact
+   boxes (heading + list, no paragraphs) are untouched.
+   Added 2026-09-17 — revert by deleting this block.
+   -------------------------------------------------------------------------- */
+.wpb_text_column p:has(+ ul, + ol) {
+  padding-bottom: 0.75em; /* 24px → 12px before a list */
+}
+.wpb_text_column ul + p,
+.wpb_text_column ol + p {
+  margin-top: 1.5em; /* 10px → 24px after a list, matches paragraph spacing */
+}
+
+/* --------------------------------------------------------------------------
    Research results section spacing
    -------------------------------------------------------------------------- */
 @media (min-width: 1000px) and (max-width: 1299px) {
