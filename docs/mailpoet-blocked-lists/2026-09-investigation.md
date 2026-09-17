@@ -52,13 +52,40 @@ Newsletter 44 "Nytt från FBHI" is in the same state on the **live** list 21: tr
 `sending`, 0 / 454 processed, task status `paused`. It does not block anything today (paused ≠ NULL) but is a
 stuck send sitting in the trash. Recommended to permanently delete it in the same pass.
 
+## UI check (Chrome via admin access link, 2026-09-17, read-only)
+
+What the wp-admin UI actually shows — the DB status "sending" is **not** shown as a word anywhere:
+
+- MailPoet → Emails → sub-tab **Trash (30)**. The three stuck newsletters are the only trashed rows with a
+  progress counter and a blue button instead of "Not sent yet!":
+  - "Nytt från FBHI" · `0 / 142` · blue **Pause** button · list chip "Nyhetsbrev 260316 H-K" (id 41)
+  - "Nytt från FBHI" · `0 / 321` · blue **Pause** button · list chip "Nyhetsbrev L-S" (id 43)
+  - "Nytt från FBHI" · `0 / 454` · blue **Resume** button · list chip "Nyhetsbrev, Svenska FINGER-nätverket" (id 44)
+  They sit near the bottom of page 1 of 2 (sorted by "Sent on"). The "All Lists" dropdown can filter on the
+  list name to isolate them.
+- **Do not click Pause / Resume / Edit on those rows.** Edit pops "Sending is in progress. Do you want to pause
+  sending and edit the newsletter?" (I hit Cancel). Resume on the 454 row would try to restart a send to the
+  live list.
+- Row ⋮ menu on a trashed newsletter: Edit · Preview · Duplicate · Restore · **Delete permanently**.
+  Ticking rows shows a bottom bar "N Items selected · Restore · **Delete permanently** · ×". There is also an
+  "Empty Trash" button at the top (would remove all 30 incl. sent history — avoid).
+- MailPoet → Lists: tabs **All (7)** / **Trash (15)**. Row ⋮ menu on a live list: Edit · Duplicate ·
+  View subscribers · **Move to trash**. Both target lists show "(private)" and 0 subscribed.
+- Lists → Trash: "Empty Trash" button; row ⋮ menu: View subscribers · Restore · **Delete permanently**.
+- Code path confirmed: "Delete permanently" → `NewsletterDeleteController::bulkDelete()` removes
+  newsletter_segment rows, sending queues, scheduled tasks and task subscribers in one transaction, so the
+  block on lists 19/20 disappears.
+
 ## Fix (manual, wp-admin) — sent to Annika in Swedish
 
-1. MailPoet → Emails → filter **Trash**. Permanently delete the three "Nytt från FBHI" rows with status
-   *Sending* and 0 sent (ids 41, 43, 44). Leave the *Sent* ones — they are the sending history/statistics.
-2. MailPoet → Lists → "Move to trash" on the two lists. They should now disappear.
-3. MailPoet → Lists → filter **Trash** → "Delete permanently" on the two lists (optionally also the older
-   trashed "Swedish FINGER network members …" lists from the March clean-up).
+1. MailPoet → Emails → sub-tab **Trash**. Tick the three "Nytt från FBHI" rows that show `0 / 142`, `0 / 321`
+   and `0 / 454` with a blue Pause/Resume button. Click **Delete permanently** in the bottom bar (or per row
+   via ⋮ → Delete permanently). Do not touch the blue buttons or Edit. Leave the "Not sent yet!" drafts and
+   the sent history alone (or clean drafts up separately).
+2. MailPoet → Lists → ⋮ → **Move to trash** on "Nyhetsbrev 260316 H-K" and "Nyhetsbrev L-S". They should
+   now disappear from All and show under Trash.
+3. MailPoet → Lists → tab **Trash** → ⋮ → **Delete permanently** on the two lists (optionally also the older
+   trashed "Swedish FINGER network members …" lists from the March clean-up; "Empty Trash" does all 15+2).
 
 Subscribers are untouched: the lists hold no members, and deleting a list only removes memberships anyway.
 
