@@ -1,7 +1,7 @@
 # How to: WPForms export → MailPoet import with subscriber fields
 
 Walk-through for the routine (Daniel first, on the test list; then Annika on the real list). Background and
-what was set up: [2026-09-plan.md](2026-09-plan.md).
+what was set up: [2026-09-plan.md](../archive/mailpoet-subscriber-fields-2026-09/2026-09-plan.md).
 
 Fields that exist in MailPoet (MailPoet → Custom Fields): `Organisation`, `Titel/Ansvarsområde`,
 `Avdelning/Enhet` (text) and `Medlemskap i FINGER-nätverket` (checkbox, 1 = ticked).
