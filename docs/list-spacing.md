@@ -11,7 +11,8 @@ https://fbhi.se/sv/kommuner/umea-kommun/ before the change:
 |-------------------------|--------|-------|---------------------------|
 | paragraph → list        | 24px   | 12px  | ~12px (.7em)              |
 | list → next paragraph   | 10px   | 24px  | ~20px (1.2em)             |
-| between list items      | 10px   | 10px  | ~7px (.4em) — not changed |
+| between ul items        | 10px   | 10px  | ~7px (.4em) — not changed |
+| between ol items        | 0px    | 10px  | (fixed 2026-09-18)        |
 
 Why those numbers: paragraphs get `padding-bottom: 1.5em` (24px) from Salient's
 material skin (`skin-material.css`), while a list only leaves the 10px `li`
@@ -28,11 +29,20 @@ text column were already fine — the column's own 24px margin takes over.
 .wpb_text_column p:has(+ ul, + ol) { padding-bottom: 0.75em; }  /* 24px → 12px */
 .wpb_text_column ul + p,
 .wpb_text_column ol + p { margin-top: 1.5em; }                   /* 10px → 24px */
+.wpb_text_column ol li { margin-bottom: 10px; }                  /* 0 → 10px, added 2026-09-18 */
 ```
 
 - First rule shrinks the paragraph's own padding only when a list follows it.
 - Second rule gives a following paragraph the normal paragraph gap; it is a
   margin, so it collapses with the list's existing 10px instead of adding to it.
+- Third rule (2026-09-18): Salient's base `style.css` gives `ul li` a 10px
+  bottom margin but `ol li` only `list-style: decimal` — no margin at all — so
+  numbered items were glued together (0px) while bullets had 10px. This was
+  never caused by the 2026-09-17 rules, which only touch paragraphs; it was a
+  pre-existing Salient gap that became noticeable once list spacing was looked
+  at. Verified on prod by injecting an `<ol>` into the Umeå page (no live ol on
+  that page): 0px → 10px between items, 24px to the following paragraph, ul and
+  fact-box lists unchanged.
 - Scoped to `.wpb_text_column`: a crawl on 2026-09-17 showed **every** content
   list on the site (pages, posts, kommuner, network projects, both languages —
   308 lists on 80 URLs) lives in a WPBakery text column, so this reaches all
@@ -69,6 +79,10 @@ Untouched by design:
   unchanged (7px/10px). The uncached HTML already references the new
   Autoptimize file. Pages still held in the Nginx cache keep the old CSS until
   they expire or Nginx Helper purges them — no purge was run.
+
+- 2026-09-18 (`ol li` rule): same procedure — `./upload.sh d` for dev, single-
+  file rsync of `custom.css` to prod (md5 `d8ba7718…` on both sides). The
+  uncached HTML references the new Autoptimize file; no Nginx purge was run.
 
 ## Revert
 
