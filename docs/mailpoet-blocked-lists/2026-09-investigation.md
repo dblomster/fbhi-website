@@ -1,6 +1,6 @@
 # MailPoet: lists that refuse to be trashed — investigation (2026-09-17)
 
-Status: **DIAGNOSED, fix handed to Annika 2026-09-17.** Investigation was read-only on prod via Novamira
+Status: **CLOSED 2026-09-18** — Annika performed the manual fix; verified on prod (see "Closure" at the end). Before that: diagnosed and fix handed to Annika 2026-09-17. Investigation was read-only on prod via Novamira
 `execute-php` (SELECT queries + reading MailPoet source through Reflection). No writes were made by Claude.
 
 ## Symptom
@@ -102,3 +102,18 @@ return $c->get(\MailPoet\Newsletter\Segment\NewsletterSegmentRepository::class)
 
 Novamira quirk reminder: `file_get_contents(...)` in the payload trips the prod WAF (405 from nginx); reading
 plugin source via `ReflectionMethod` + `SplFileObject` works.
+
+## Closure (2026-09-18, read-only verification on prod)
+
+Annika ran the wp-admin steps above. Read-only `execute-php` check afterwards:
+
+- `mailpoet_segments`: ids 19 and 20 no longer exist (permanently deleted, not just trashed).
+- `mailpoet_newsletters`: ids 41, 43 and 44 no longer exist.
+- `mailpoet_newsletter_segment`: only newsletters 49 and 55 remain attached to the live list 21.
+- `NewsletterSegmentRepository::getSubjectsOfActivelyUsedEmailsForSegments([19, 20, 21])` returns `[]`,
+  so list 21 is no longer held by a stuck sending task either.
+- The older trashed lists (ids 4–18, March clean-up) are still in Lists → Trash. Harmless; "Empty Trash"
+  there is optional.
+
+Live lists now: 1 WordPress Users, 2 WooCommerce Customers, 3 Newsletter mailing list,
+21 Nyhetsbrev Svenska FINGER-nätverket, 22 Annika & Elin test, 23 Admin.
