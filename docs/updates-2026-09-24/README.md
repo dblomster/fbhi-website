@@ -43,7 +43,9 @@ Regression (`html-after/`, `screens-after/`):
 - All 9 pages 200. HTML diffs only: AIOSEO/MonsterInsights version strings, TEC timestamps/UUIDs, WW-Fingers
   id ordering, WPForms token — plus two **fixes**: AIOSEO breadcrumb `@id` now `https://…/#listItem` (slash
   added), and TEC's "Month" view link on `/calendar/` was a raw regex (`/calendar/(/?:month|mnad|månad|manad)/`),
-  now `/calendar/month/`.
+  now `/calendar/month/`. **Correction (later the same day):** not a TEC fix — on dev the regex link came back
+  after the Autoptimize cache purge and stays (it 404s; `/calendar/month/` works). It is a dev-only cache-state
+  quirk of TEC + WPML; prod's link has been clean in every capture (09-15 and 09-24, before and after).
 - Screenshots: all 9 pixel-identical (0 diff px).
 - Console: identical to baseline (zero errors; wpforms page "no label" ×1, guide page `<summary>` ×5).
 - WPForms form 11048: 12 fields, novalidate, jQuery-Validate + AJAX settings present. Counts unchanged:
@@ -95,7 +97,7 @@ Rewrite rules flush themselves (`Guide_Post_Type::maybe_flush_rewrite_rules`).
   plugins, no `.maintenance`. Counts: 23 forms / 3200 entries, 5 events, TEC migration not required, 10 991
   strings, 43 network-projects, 8 kommuner, 764 MailPoet subscribers.
 - Regression: 7 pages 200; HTML diffs = version strings, WPForms time token, AIOSEO breadcrumb `/#listItem`
-  fix, TEC Month link fix, and TEC 6.17.5 no longer emitting Event JSON-LD on `/calendar/` for three old,
+  fix, and TEC 6.17.5 no longer emitting Event JSON-LD on `/calendar/` for three old,
   undisplayed test events ("Test event", "Test event 2", …; list shows no upcoming events before and after).
   Screenshots 7/7 pixel-identical. Console clean (seminar page keeps its "No label" notice); form 15199: 19
   fields, novalidate, validator attached.
