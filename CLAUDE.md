@@ -32,8 +32,8 @@ The `novamira-fbhi-prod` MCP server (configured in `.mcp.json`) connects **direc
 A custom hierarchical `guide` post type (digital handbook, Gutenberg-only) is being built in
 `salient-child/includes/guides/` with its own CSS/JS in `salient-child/assets/guides/`. Read
 [docs/guides/README.md](docs/guides/README.md) first: it links the plan, the decision log with open
-questions, and notes on the reference site. Work happens on **dev** (`./upload.sh d`); prod is off-limits
-for this project until Daniel says otherwise. Exception to the CSS rule below: guide CSS lives in
+questions, and notes on the reference site. Work happens on **dev** (`./upload.sh d`) first. Since 2026-09-24
+the module is also on prod with the FINGER guide as **drafts** (no menu item) — publishing is Daniel's call. Exception to the CSS rule below: guide CSS lives in
 `assets/guides/` (still git-tracked and deployed), not in `css/custom.css`.
 
 ## Coding Standards

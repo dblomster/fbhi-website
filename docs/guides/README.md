@@ -57,8 +57,11 @@ convention (paper has no clickable links) and stay.
 - **Fifth chapter** exists on dev as a placeholder (13939, navy). Decide the colour: navy's tint is close to teal's, so the two cards look alike side by side (D25 said reuse an accent).
 - **Open design questions** Q2, Q5–Q8 in decisions.md still carry their defaults.
 - **Editor-facing docs**: a short "how to edit the guide" note for editors has not been written.
-- **Prod**: nothing deployed; wpml-config + the `guide` type will need the same WPML language handling on prod
-  (posts created via MCP get no language — see D-notes in plan.md § WPML).
+- **Prod (2026-09-24)**: module deployed, guide copied **as drafts** (root 15374 `/sv/guide/finger/`, chapters
+  15375–15379), no menu item — visitors get 404 until publishing. Example media copied with their exact
+  `exempel-handbok-*` names (en+sv WPML pair per file, 15354–15373): delete/replace them before publishing.
+  Details and ID table in [../updates-2026-09-24/README.md](../updates-2026-09-24/README.md) § Guide copy log.
+  From now on `./upload.sh p` is safe again (dev and prod carry the same theme).
 
 **Dev content (fbhi.devcx.com)**: root guide "FINGER-guiden" = post 13900 (`/sv/guide/finger/`); chapters
 13901 Bakgrund (Avsnitt 1, teal) · 13902 Nuläge (Avsnitt 2, green) · 13903 Utforma (Avsnitt 3, yellow) ·
