@@ -57,6 +57,21 @@ convention (paper has no clickable links) and stay.
 - **Fifth chapter** exists on dev as a placeholder (13939, navy). Decide the colour: navy's tint is close to teal's, so the two cards look alike side by side (D25 said reuse an accent).
 - **Open design questions** Q2, Q5–Q8 in decisions.md still carry their defaults.
 - **Editor-facing docs**: a short "how to edit the guide" note for editors has not been written.
+- **Image/video handling on desktop, mobile and print** (parked 2026-09-25): revisit **after Annika has added
+  real content**, then decide whether changes are needed. Findings from the demo prep (not verified in the editor):
+  - Core image block controls (aspect ratio, width/height, scale cover/contain, resolution, crop) are a single
+    setting for every screen size, with no per-device values. **Advice to editors for now: use an aspect ratio, not a fixed
+    height**, because the height then scales down with the width on mobile.
+  - Fixed height with aspect ratio *Original* can **squash** images on mobile: the inline height stays, but
+    `max-width: 100%` caps the width, and no `object-fit` is output in that case.
+  - Print: `guides-print.css` forces `img { height: auto !important }`, so a fixed height is ignored on paper
+    (an aspect ratio survives).
+  - Possible fixes if needed: a guide block style such as "Limited height" with responsive + print values in
+    `assets/guides/` (editors click a style, no CSS); per-device show/hide only if WP 7.1 supports it (unchecked).
+  - Wide/Full alignment is not available (Salient doesn't declare `align-wide`); `core/cover` is deliberately not allowed.
+  - Check video (`core/video`, `core/embed`) the same way: desktop, mobile, print.
+- **Print icon near the top** (parked 2026-09-25, same review): consider an extra print icon/button higher up
+  (e.g. by the chapter header) alongside the existing print link at the bottom of the page.
 - **Prod (2026-09-24)**: module deployed, guide copied **as drafts** (root 15374 `/sv/guide/finger/`, chapters
   15375–15379), no menu item — visitors get 404 until publishing. Example media copied with their exact
   `exempel-handbok-*` names (en+sv WPML pair per file, 15354–15373): delete/replace them before publishing.
