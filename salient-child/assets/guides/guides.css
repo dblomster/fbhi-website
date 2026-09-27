@@ -97,6 +97,83 @@
 .fbhi-guide-header__intro p { margin: 0; }
 .fbhi-guide-header__intro p + p { margin-top: .8em; }
 
+/* Print icon: top right, beside label + title; the intro spans the full width below. Its text is the
+   accessible name and doubles as the tooltip (hover / keyboard focus; Esc hides it, see guides.js). */
+.fbhi-guide-header {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-areas:
+		"label print"
+		"title print"
+		"intro intro";
+	column-gap: 20px;
+}
+.fbhi-guide-header__label { grid-area: label; }
+.fbhi-guide-header__title { grid-area: title; }
+.fbhi-guide-header__intro { grid-area: intro; }
+.fbhi-guide-header__print {
+	grid-area: print;
+	align-self: start;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	margin: -4px -8px 0 0; /* optically align the circle with the band's top-right padding */
+	padding: 0;
+	border: 2px solid rgba(33, 58, 108, .35);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--fbhi-guide-navy);
+	cursor: pointer;
+	transition: background .2s, color .2s, border-color .2s;
+}
+.fbhi-guide-header__print svg { width: 18px; height: 18px; }
+/* Invisible hit area around the circle: keeps the tap target at about 44px. */
+.fbhi-guide-header__print::before { content: ""; position: absolute; inset: -4px; }
+.fbhi-guide-header__print:focus-visible {
+	background: var(--fbhi-guide-navy);
+	border-color: var(--fbhi-guide-navy);
+	color: #fff;
+}
+.fbhi-guide-header__print:focus-visible { outline: 2px solid var(--fbhi-guide-navy); outline-offset: 2px; }
+.fbhi-guide-header__print-tip {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	z-index: 5;
+	padding: 5px 10px;
+	border-radius: 4px;
+	background: var(--fbhi-guide-navy);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.4;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0; /* not visibility/display: the text must stay the button's accessible name */
+	transform: translateY(-4px);
+	transition: opacity .15s, transform .15s;
+}
+.fbhi-guide-header__print:focus-visible .fbhi-guide-header__print-tip {
+	opacity: 1;
+	transform: none;
+}
+/* Hover only where a real pointer can hover: on touch screens :hover sticks after the tap. */
+@media (hover: hover) {
+	.fbhi-guide-header__print:hover {
+		background: var(--fbhi-guide-navy);
+		border-color: var(--fbhi-guide-navy);
+		color: #fff;
+	}
+	.fbhi-guide-header__print:hover .fbhi-guide-header__print-tip {
+		opacity: 1;
+		transform: none;
+	}
+}
+.fbhi-guide-header__print.is-tip-dismissed .fbhi-guide-header__print-tip { opacity: 0; }
+
 /* ---------- content (Gutenberg blocks inside Salient) ---------- */
 .fbhi-guide__content {
 	font-size: 17px;
@@ -527,6 +604,18 @@
 	.fbhi-guide-header { padding: 24px 22px 22px; margin-bottom: 28px; }
 	.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 28px; }
 	.fbhi-guide-header__intro { font-size: 16px; }
+	.fbhi-guide-header { column-gap: 12px; }
+	.fbhi-guide-header__print { width: 36px; height: 36px; margin: -2px -4px 0 0; }
+	.fbhi-guide-header__print svg { width: 16px; height: 16px; }
+	/* With a label, the icon shares the label's row so the title gets the full width. */
+	.fbhi-guide-header:has(.fbhi-guide-header__label) {
+		grid-template-areas:
+			"label print"
+			"title title"
+			"intro intro";
+	}
+	.fbhi-guide-header:has(.fbhi-guide-header__label) .fbhi-guide-header__label { align-self: center; margin-bottom: 0; }
+	.fbhi-guide-header:has(.fbhi-guide-header__label) .fbhi-guide-header__title { margin-top: 8px; }
 	.fbhi-guide__content { font-size: 16px; }
 	.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 24px; }
 	.fbhi-guide-card { padding: 20px 20px 22px; }

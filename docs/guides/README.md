@@ -48,6 +48,14 @@ convention (paper has no clickable links) and stay.
   as "editor" via a Novamira admin link: the session expires after an hour and everything silently turns into
   the visitor view.)
 
+**Update 2026-09-28**: **print icon at the top** of every guide page (D32), pulled forward from the parked list at
+Daniel's request. A round print icon sits top right in the chapter header band (root and chapters); the bottom print
+button stays. Its text is the page's print-button text ("Skriv ut avsnittet" / "Skriv ut sidan"), used as the
+screen-reader name and as a small tooltip on hover/keyboard focus; it is hidden on paper. On phones and tablets it
+shares the "AVSNITT n" label row so the title keeps the full width. Files: `templates/parts/chapter-header.php`,
+`guides.css`, `guides-print.css`, `guides.js` (tooltip Esc). Reviewed in Chrome (desktop, 820px, 390px touch),
+then deployed to dev and prod the same day.
+
 ## Outstanding (parked, revisit later)
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
@@ -70,8 +78,6 @@ convention (paper has no clickable links) and stay.
     `assets/guides/` (editors click a style, no CSS); per-device show/hide only if WP 7.1 supports it (unchecked).
   - Wide/Full alignment is not available (Salient doesn't declare `align-wide`); `core/cover` is deliberately not allowed.
   - Check video (`core/video`, `core/embed`) the same way: desktop, mobile, print.
-- **Print icon near the top** (parked 2026-09-25, same review): consider an extra print icon/button higher up
-  (e.g. by the chapter header) alongside the existing print link at the bottom of the page.
 - **Prod (2026-09-24)**: module deployed, guide copied **as drafts** (root 15374 `/sv/guide/finger/`, chapters
   15375–15379), no menu item — visitors get 404 until publishing. Example media copied with their exact
   `exempel-handbok-*` names (en+sv WPML pair per file, 15354–15373): delete/replace them before publishing.

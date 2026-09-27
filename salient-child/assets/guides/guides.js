@@ -3,7 +3,7 @@
  *  - sticky offset below Salient's fixed header
  *  - sidebar collapses to a dropdown on small screens
  *  - scroll-spy for the on-page table of contents
- *  - print button
+ *  - print button (bottom) and print icon (header), incl. the icon's tooltip
  */
 ( function () {
 	'use strict';
@@ -139,4 +139,19 @@
 			window.print();
 		}
 	} );
+
+	/* Print icon tooltip: Esc hides it until the pointer / focus leaves (WCAG 1.4.13). */
+	var printIcon = guide.querySelector( '.fbhi-guide-header__print' );
+	if ( printIcon ) {
+		document.addEventListener( 'keydown', function ( e ) {
+			if ( 'Escape' === e.key ) {
+				printIcon.classList.add( 'is-tip-dismissed' );
+			}
+		} );
+		[ 'mouseleave', 'blur' ].forEach( function ( type ) {
+			printIcon.addEventListener( type, function () {
+				printIcon.classList.remove( 'is-tip-dismissed' );
+			} );
+		} );
+	}
 } )();

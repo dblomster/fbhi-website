@@ -20,6 +20,7 @@
 #wpadminbar,
 .fbhi-guide__sidebar,
 .fbhi-guide__tools,
+.fbhi-guide-header__print,
 .fbhi-guide-bottom-nav,
 .fbhi-guide-card__more,
 .fbhi-guide-status,
@@ -38,6 +39,7 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 /* Typography */
 .fbhi-guide, .fbhi-guide__content { font-size: 11pt; line-height: 1.45; color: #000; }
 .fbhi-guide-header {
+	display: block !important;
 	background: none !important;
 	border-bottom: 1pt solid #888 !important;
 	border-radius: 0;

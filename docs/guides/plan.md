@@ -78,7 +78,7 @@ Layout inside the row (Salient grid classes for responsiveness):
 ```
 <article class="fbhi-guide" style="--fbhi-guide-accent: …">
   <div class="col span_8 fbhi-guide__main">
-    [chapter header]            templates/parts/chapter-header.php   (label, title, excerpt; tinted band)
+    [chapter header]            templates/parts/chapter-header.php   (label, title, excerpt; tinted band; print icon)
     [content]                   pre-rendered $content (see TOC below)
     [index cards]               root only, auto-appended unless fbhi/guide-index block present
     [last updated]              templates/parts/last-updated.php
@@ -138,6 +138,9 @@ modified date for now (Q2).
 - `h2, h3 { break-after: avoid }`, boxes/figures/tables `{ break-inside: avoid }`, `.fbhi-pagebreak { break-before: page }`.
 - Print button: `<button class="fbhi-guide__print">` → `window.print()` (label translatable). Prints the
   current page only.
+- Print icon (added 2026-09-28, D32): `<button class="fbhi-guide-header__print" data-guide-print>` top right in
+  the chapter header, same text as the print button (`Guide_Meta::print_label()`) as accessible name + tooltip,
+  hidden in print. Any `[data-guide-print]` element triggers `window.print()` in `guides.js`.
 
 ### Site menu highlighting
 `nav_menu_css_class` filter: on any guide post, the menu item whose object is the guide **root** gets
