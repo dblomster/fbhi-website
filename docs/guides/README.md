@@ -62,8 +62,8 @@ texts is open, pending Annika: see [../password-protection.md](../password-prote
 
 ## Outstanding (parked, revisit later)
 
-- **Protected-post wording**: reworded site-wide on **dev** 2026-09-28 ("Granskas:" / "In review:" + "under review"
-  excerpt, see [../password-protection.md](../password-protection.md)); prod deploy pending Daniel's check. Also check
+- **Protected-post wording**: reworded site-wide on dev + prod 2026-09-28 ("Granskas:" / "In review:" + "under review"
+  excerpt, see [../password-protection.md](../password-protection.md)). Still open: check
   prod's Nginx cache bypasses the `wp-postpass_*` cookie before publishing a password-protected guide.
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.

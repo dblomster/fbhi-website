@@ -1,10 +1,10 @@
 # Password-protected pages: the "Skyddad:" prefix and the protected-excerpt text
 
-Status 2026-09-28: **title prefix and excerpt text reworded site-wide, on dev only** (see "Implemented" below;
-prod deploy pending Daniel's check). Password form and `Privat:` left as core has them for now. The guide CPT
+Status 2026-09-28: **title prefix and excerpt text reworded site-wide, on dev and prod** (see "Implemented" below).
+Password form and `Privat:` left as core has them for now. The guide CPT
 follows core's handling (see below), so the change reaches the guides automatically.
 
-## Implemented (2026-09-28, dev)
+## Implemented (2026-09-28, dev + prod)
 
 Agreed with Annika. Site-wide (every password-protected post, not just guides), in `salient-child/functions.php`
 section "Password-protected posts", language picked from `get_locale()` (WPML switches it; `sv*` = Swedish,
@@ -20,8 +20,13 @@ new title in H1 and `<title>`, both languages; the excerpt checked via PHP in bo
 a temporary password: new title in header, sidebar, start-page card and next-link; new text as intro and card text;
 no "Skyddad" left in the HTML. Password removed again afterwards.
 
-Note: "Granskas" / "In review" now also appears on any other password-protected post, e.g. AgeWell.de if it is
-protected on prod as well.
+Deployed to prod the same day (commit fbff2d1). Nothing public shows it there yet: AgeWell.de is protected on dev
+only, and the guides are still drafts. "Granskas" / "In review" will appear on any password-protected post, not
+just guides.
+
+Decided 2026-09-28: the prefix **stays after unlocking** (core behaviour, kept on purpose: "Granskas" describes the
+content, and whoever has the password is reviewing it). Hiding it once unlocked would be a
+`post_password_required( $post )` check in the filter, but then unlocked pages must never be page-cached.
 
 ## What WordPress shows today (Swedish site, WP 7.1)
 
