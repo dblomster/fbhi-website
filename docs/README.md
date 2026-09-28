@@ -9,6 +9,7 @@ top level; finished records move to `archive/`.
 |---|---|
 | [cpt-navigation.md](cpt-navigation.md) | How the blog-like CPTs share the single layout and prev/next nav; how to add another CPT |
 | [list-spacing.md](list-spacing.md) | The body-text ul/ol spacing rules in `custom.css` (live on dev + prod), measurements and revert |
+| [password-protection.md](password-protection.md) | "Skyddad:" title prefix and protected-excerpt text: how to change/remove them (findings, awaiting Annika); guide CPT follows core's handling |
 | [guides/](guides/README.md) | Guides module (`guide` CPT) — built on dev, prod on hold; plan, decisions, content notes |
 | [page-content/](page-content/README.md) | Git-tracked reference copies of WP-managed page bodies (WPBakery shortcodes) |
 | [wpforms-corrupted-post-data/](wpforms-corrupted-post-data/README.md) | WPForms "corrupted post data" / tick-every-box — Phase 1 done, Phase 2 monitoring through the 30 Sep 2026 seminar |

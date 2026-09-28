@@ -89,11 +89,15 @@ final class Guide_TOC {
 
 	/**
 	 * Headings of another guide page, parsed from its blocks (not rendered),
-	 * with the same id algorithm as process_heading() so links match.
+	 * with the same id algorithm as process_heading() so links match. None for a
+	 * password-protected page until the visitor has entered its password.
 	 *
 	 * @return array<int, array{id:string, text:string, level:int}>
 	 */
 	public static function items_for_post( \WP_Post $post ): array {
+		if ( post_password_required( $post ) ) {
+			return array();
+		}
 		$items = array();
 		$used  = array();
 		$walk  = static function ( array $blocks ) use ( &$walk, &$items, &$used ): void {

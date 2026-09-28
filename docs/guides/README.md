@@ -56,7 +56,15 @@ shares the "AVSNITT n" label row so the title keeps the full width. Files: `temp
 `guides.css`, `guides-print.css`, `guides.js` (tooltip Esc). Reviewed in Chrome (desktop, 820px, 390px touch),
 then deployed to dev and prod the same day.
 
+**Update 2026-09-28**: **password-protected guide pages** now follow core (D33): no excerpt or chapter-heading leaks
+while locked, and core's "Skyddad:" / protected-excerpt texts are used as is. Whether to reword or remove those
+texts is open, pending Annika: see [../password-protection.md](../password-protection.md). Deployed to dev and prod.
+
 ## Outstanding (parked, revisit later)
+
+- **"Skyddad:" prefix / protected-excerpt text**: keep, reword or remove? Daniel checks with Annika. How-to in
+  [../password-protection.md](../password-protection.md). Also check prod's Nginx cache bypasses the `wp-postpass_*` cookie
+  before publishing a password-protected guide.
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
 - **Chapter 1 (13901)** was loaded before the converter existed: no H3 promotion / callouts yet. Re-run the

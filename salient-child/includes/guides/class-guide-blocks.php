@@ -68,14 +68,15 @@ final class Guide_Blocks {
 
 	/**
 	 * On the guide root, append the index after the content unless the
-	 * editor placed the block somewhere themselves.
+	 * editor placed the block somewhere themselves. Not while the root is
+	 * password-protected: core then shows only the password form as content.
 	 */
 	public static function auto_append_index( string $content ): string {
 		if ( ! Guide_Frontend::is_guide_view() || ! in_the_loop() || ! is_main_query() ) {
 			return $content;
 		}
 		$post_id = get_the_ID();
-		if ( ! $post_id || ! Guide_Hierarchy::is_root( $post_id ) || has_block( self::INDEX_BLOCK, $post_id ) ) {
+		if ( ! $post_id || ! Guide_Hierarchy::is_root( $post_id ) || post_password_required( $post_id ) || has_block( self::INDEX_BLOCK, $post_id ) ) {
 			return $content;
 		}
 		return $content . "\n" . self::render_index( $post_id );

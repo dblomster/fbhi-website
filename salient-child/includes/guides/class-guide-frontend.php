@@ -202,8 +202,15 @@ final class Guide_Frontend {
 			. implode( ' ', array_map( 'esc_html', $lines ) ) . '</div>';
 	}
 
-	/** Manual excerpt only (never auto-generated from content). */
+	/**
+	 * Manual excerpt only (never auto-generated from content). A password-protected
+	 * page gets core's excerpt instead, i.e. its "protected post" message, so any
+	 * later change to that phrase applies here too.
+	 */
 	public static function intro( \WP_Post $post ): string {
+		if ( post_password_required( $post ) ) {
+			return esc_html( get_the_excerpt( $post ) );
+		}
 		return has_excerpt( $post ) ? wp_kses_post( $post->post_excerpt ) : '';
 	}
 }
