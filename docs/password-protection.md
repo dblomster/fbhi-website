@@ -1,8 +1,27 @@
 # Password-protected pages: the "Skyddad:" prefix and the protected-excerpt text
 
-Status 2026-09-28: **findings only, nothing changed.** Daniel checks with Annika how the texts should read (remove,
-reword, site-wide or guides only). The guide CPT already follows core's handling (see below), so any change made
-the way this note describes reaches the guides automatically.
+Status 2026-09-28: **title prefix and excerpt text reworded site-wide, on dev only** (see "Implemented" below;
+prod deploy pending Daniel's check). Password form and `Privat:` left as core has them for now. The guide CPT
+follows core's handling (see below), so the change reaches the guides automatically.
+
+## Implemented (2026-09-28, dev)
+
+Agreed with Annika. Site-wide (every password-protected post, not just guides), in `salient-child/functions.php`
+section "Password-protected posts", language picked from `get_locale()` (WPML switches it; `sv*` = Swedish,
+anything else English):
+
+| Where | Swedish | English |
+|---|---|---|
+| Title prefix (`protected_title_format`) | `Granskas: <titel>` | `In review: <title>` |
+| Excerpt (`gettext`, core msgid checked on WP 7.1.2) | Detta innehåll granskas för tillfället. | This content is currently under review. |
+
+Verified on dev as a visitor: network project AgeWell.de (13013 sv / 13020 en, password-protected on dev) shows the
+new title in H1 and `<title>`, both languages; the excerpt checked via PHP in both languages. Guide chapter 13901 given
+a temporary password: new title in header, sidebar, start-page card and next-link; new text as intro and card text;
+no "Skyddad" left in the HTML. Password removed again afterwards.
+
+Note: "Granskas" / "In review" now also appears on any other password-protected post, e.g. AgeWell.de if it is
+protected on prod as well.
 
 ## What WordPress shows today (Swedish site, WP 7.1)
 
@@ -15,9 +34,10 @@ When a post has a password and the visitor has not entered it:
 | Content | Password form: "Detta innehåll är lösenordsskyddat. För att visa det, ange lösenordet nedan." / "Lösenord:" | `get_the_password_form()`, filter `the_password_form` |
 | Private posts (related) | `Privat: <title>` | `private_title_format` filter, default `__( 'Private: %s' )` |
 
-After the visitor enters the password, WordPress sets the `wp-postpass_<hash>` cookie and all of the above
-switches to the real title/excerpt/content. The cookie holds the password hash, so every post with the **same
-password** unlocks at once.
+After the visitor enters the password, WordPress sets the `wp-postpass_<hash>` cookie and the excerpt and content
+switch to the real ones. **The title prefix stays**: `get_the_title()` adds it whenever the post has a password
+(`! empty( $post->post_password )`), whether or not it is unlocked (checked in WP 7.1.2 source). The cookie holds
+the password hash, so every post with the **same password** unlocks at once.
 
 ## How to change or remove them (not implemented)
 

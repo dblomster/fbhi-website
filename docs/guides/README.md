@@ -62,9 +62,9 @@ texts is open, pending Annika: see [../password-protection.md](../password-prote
 
 ## Outstanding (parked, revisit later)
 
-- **"Skyddad:" prefix / protected-excerpt text**: keep, reword or remove? Daniel checks with Annika. How-to in
-  [../password-protection.md](../password-protection.md). Also check prod's Nginx cache bypasses the `wp-postpass_*` cookie
-  before publishing a password-protected guide.
+- **Protected-post wording**: reworded site-wide on **dev** 2026-09-28 ("Granskas:" / "In review:" + "under review"
+  excerpt, see [../password-protection.md](../password-protection.md)); prod deploy pending Daniel's check. Also check
+  prod's Nginx cache bypasses the `wp-postpass_*` cookie before publishing a password-protected guide.
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
 - **Chapter 1 (13901)** was loaded before the converter existed: no H3 promotion / callouts yet. Re-run the

@@ -706,6 +706,39 @@ add_action( 'wp_footer', function () {
 }, 90 );
 
 /* ========================================================================
+   Password-protected posts: "under review" wording (site-wide)
+   ======================================================================== */
+
+/**
+ * Whether the current language is Swedish (WPML switches the locale per language).
+ *
+ * @return bool
+ */
+function fbhi_is_swedish_locale(): bool {
+	return str_starts_with( get_locale(), 'sv' );
+}
+
+/**
+ * Title prefix for password-protected posts, replacing core's "Protected: %s" / "Skyddad: %s".
+ */
+add_filter( 'protected_title_format', function (): string {
+	return fbhi_is_swedish_locale() ? 'Granskas: %s' : 'In review: %s';
+} );
+
+/**
+ * Excerpt text for password-protected posts. get_the_excerpt() returns this string before
+ * its own filter runs, so gettext on core's source string is the only hook that reaches it.
+ */
+add_filter( 'gettext', function ( string $translation, string $text, string $domain ): string {
+	if ( 'default' === $domain && 'There is no excerpt because this is a protected post.' === $text ) {
+		return fbhi_is_swedish_locale()
+			? 'Detta innehåll granskas för tillfället.'
+			: 'This content is currently under review.';
+	}
+	return $translation;
+}, 10, 3 );
+
+/* ========================================================================
    The Events Calendar: Inject Salient Global Sections before/after list
    ======================================================================== */
 
