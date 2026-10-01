@@ -62,6 +62,10 @@ texts is open, pending Annika: see [../password-protection.md](../password-prote
 
 ## Outstanding (parked, revisit later)
 
+**Go-live (~2026-10-12)**: the items below plus the prod checks are collected in
+[go-live-checklist.md](go-live-checklist.md), to be run read-only on prod before publishing. Editor questions
+answered along the way are logged at its bottom.
+
 - **Protected-post wording**: reworded site-wide on dev + prod 2026-09-28 ("Granskas:" / "In review:" + "under review"
   excerpt, see [../password-protection.md](../password-protection.md)). Still open: check
   prod's Nginx cache bypasses the `wp-postpass_*` cookie before publishing a password-protected guide.
@@ -100,6 +104,7 @@ texts is open, pending Annika: see [../password-protection.md](../password-prote
 
 | File | What it answers |
 |---|---|
+| [go-live-checklist.md](go-live-checklist.md) | What to check (read-only on prod) before the FINGER guide is published, and editor questions answered so far |
 | [plan.md](plan.md) | *How* is it built: content model, file layout, each feature's mechanism, phases, QA list |
 | [decisions.md](decisions.md) | *Why* it is built that way: every decision taken with Daniel, plus the open questions and their current defaults |
 | [content-notes.md](content-notes.md) | The FINGER draft (4 chapters) and the FBHI colour palette with exact hex values, and what they imply for the build |
@@ -121,3 +126,5 @@ texts is open, pending Annika: see [../password-protection.md](../password-prote
 - **Deploy?** `./upload.sh d` for dev, `./upload.sh p` for prod (prod not before Daniel says so).
 - **Content on dev?** Loaded via Novamira dev MCP together with Daniel; every write confirmed first.
 - **Open questions?** Bottom of decisions.md.
+- **Paragraph → Heading shows no H1–H6?** Core behaviour in WP 7.x, not a restriction: choose "Rubrik" (H2), then
+  change the level. See go-live-checklist.md → "Editor questions handled so far".
