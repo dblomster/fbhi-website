@@ -53,3 +53,17 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   `contentOnly` or `allowedBlocks` anywhere; the guides' allowed-block list includes `core/heading`). In WP 7.x
   core lists level variations only for the block that is already selected. How to: choose "Rubrik" (gives an H2),
   then pick H3 in the toolbar; or type `### ` at the start of an empty paragraph. Explained to Annika by Daniel.
+- **2026-10-01, editor crash on a link title (Annika)**: "Copy error" screen, `TypeError: Cannot read properties
+  of undefined (reading 'replace')` in escape-html / rich-text. Bug in **AIOSEO 5.0.2's** replacement link
+  format (`dist/Lite/assets/link-format/link-format-block.js`, byte-identical on dev and prod), not our code.
+  Reproduced on dev: select text, Ctrl+K, type the URL but **don't submit it**, type a title in "Add title
+  attribute to link", then submit the URL. The link gets created without the title. On unmount, AIOSEO's settings
+  component re-sends the typed title through `onChange` without checking for a URL, which applies a `core/link`
+  format with `url: undefined`. `toHTMLString` then crashes on every render. Nothing broken is saved; unsaved
+  edits since the last save are lost. Safe order (tested): submit the URL first (Enter), then type the title and
+  press Enter or click away. Workaround for the editors; worth reporting to AIOSEO. `aioseo_disable_link_format`
+  would remove the bug but also the title/nofollow fields. Checked online 2026-10-01: not reported in the
+  wordpress.org forum or the AIOSEO changelog. 5.0.2.1 (released that day) ships the same link-format file
+  (same md5), so it is not fixed. The title field itself was reworked in 5.0.1.1 (empty-title / cut-off fixes),
+  so this is fresh code. **On hold** (Daniel, 2026-10-01): Annika is trying the workaround; no bug report for
+  now. If it recurs, re-check whether a newer AIOSEO changes `link-format-block.js` (md5 `4912c360…`).
