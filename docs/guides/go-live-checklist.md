@@ -8,6 +8,9 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
 15375–15379, `sv`), no menu item. ID table: [../updates-2026-09-24/README.md](../updates-2026-09-24/README.md)
 § Guide copy log.
 
+**Update 2026-10-02**: a read-only REST check showed root + chapters 15375–15378 and 15509 with status
+**publish** on prod (edited by the editors that day, password-protected); only 15379 is still a draft.
+
 ## 1. Due regardless of the guide
 
 - [ ] **WPForms "corrupted post data"**: Phase 2 monitoring ran through the 30 Sep seminar. Check WPForms →
@@ -67,3 +70,15 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   (same md5), so it is not fixed. The title field itself was reworked in 5.0.1.1 (empty-title / cut-off fixes),
   so this is fresh code. **On hold** (Daniel, 2026-10-01): Annika is trying the workaround; no bug report for
   now. If it recurs, re-check whether a newer AIOSEO changes `link-format-block.js` (md5 `4912c360…`).
+- **2026-10-02, PDF shown as content instead of a button (Annika)**: her File block on prod 15376
+  (`/sv/guide/finger/nulage-och-forarbete/`, attachment 11338) had `displayPreview: true`, so the PDF rendered
+  inline in a 600px `<object>` above the link and button. Core behaviour: picking a PDF in the File block turns
+  **"Show inline embed"** on by default (Daniel confirmed on dev). Our guide CSS doesn't style the embed, and it is
+  unreliable on mobile. How to: Block settings → Settings → switch "Show inline embed" off. Second finding (Daniel,
+  dev): the button text is saved into the content in the **editor's profile language** at insert time, so an
+  English profile gives "Download" on a Swedish page (and a WPML copy keeps the source wording). Fix by clicking
+  the button and typing "Ladda ner"/"Download". Ways to publish a PDF in a guide: inline link in body text (gets
+  the document icon), File block with the embed off (grey box + button, the recommended one), Button block. The
+  Embed block can't embed PDFs (oEmbed 404). The password on a guide page doesn't protect the PDF itself: files
+  in `wp-content/uploads/` stay public by URL. A render_block filter (strip the embed, localise default button
+  text) was considered; **no code change** for now (Daniel, 2026-10-02). Explained to Annika by Daniel.
