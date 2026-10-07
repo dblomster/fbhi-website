@@ -48,10 +48,7 @@
 /* ---------- block rhythm (top level) ---------- */
 .editor-styles-wrapper .is-root-container > .wp-block { margin-top: 0; margin-bottom: 0; }
 .editor-styles-wrapper .is-root-container > .wp-block + .wp-block { margin-top: 1.2em; }
-.editor-styles-wrapper .is-root-container > h2.wp-block { margin-top: 2em; }
-.editor-styles-wrapper .is-root-container > h3.wp-block { margin-top: 1.6em; }
-.editor-styles-wrapper .is-root-container > h2.wp-block + .wp-block,
-.editor-styles-wrapper .is-root-container > h3.wp-block + .wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
 .editor-styles-wrapper .is-root-container > .wp-block + ul.wp-block,
 .editor-styles-wrapper .is-root-container > .wp-block + ol.wp-block { margin-top: .7em; }
 .editor-styles-wrapper .is-root-container > .wp-block + figure.wp-block,
@@ -60,25 +57,29 @@
 .editor-styles-wrapper .is-root-container > .wp-block-file + .wp-block,
 .editor-styles-wrapper .is-root-container > .wp-block + .wp-block-media-text,
 .editor-styles-wrapper .is-root-container > .wp-block-media-text + .wp-block { margin-top: 1.8em; }
-.editor-styles-wrapper .is-root-container > h2.wp-block + figure.wp-block,
-.editor-styles-wrapper .is-root-container > h3.wp-block + figure.wp-block { margin-top: .8em; }
+/* Extra air above headings (after the figure/file rules, which they override as on the frontend). */
+.editor-styles-wrapper .is-root-container > .wp-block + h2.wp-block { margin-top: 2em; }
+.editor-styles-wrapper .is-root-container > .wp-block + h3.wp-block { margin-top: 1.6em; }
+.editor-styles-wrapper .is-root-container > .wp-block + h4.wp-block { margin-top: 1.4em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + figure.wp-block { margin-top: .8em; }
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-infobox,
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-callout,
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-checklist { margin-top: 2em; margin-bottom: 2em; }
 
 /* ---------- headings, text, lists, links ---------- */
-.editor-styles-wrapper h2.wp-block-heading {
-	font-size: 28px;
-	line-height: 1.2;
+.editor-styles-wrapper .wp-block-heading {
+	font-family: inherit;
 	font-weight: 700;
-	color: var(--fbhi-guide-teal, #006885);
-}
-.editor-styles-wrapper h3.wp-block-heading {
-	font-size: 21px;
-	line-height: 1.3;
-	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: none;
 	color: var(--fbhi-guide-text, #000);
 }
+/* Sizes come from the variables in guides.css (:root), loaded in the canvas too. */
+.editor-styles-wrapper h2.wp-block-heading { font-size: var(--fbhi-guide-h2-size, 28px); line-height: 1.2; color: var(--fbhi-guide-teal, #006885); }
+.editor-styles-wrapper h3.wp-block-heading { font-size: var(--fbhi-guide-h3-size, 22px); line-height: 1.3; }
+.editor-styles-wrapper h4.wp-block-heading { font-size: var(--fbhi-guide-h4-size, 19px); line-height: 1.35; }
+.editor-styles-wrapper h5.wp-block-heading { font-size: var(--fbhi-guide-h5-size, 17px); line-height: 1.4; }
+.editor-styles-wrapper h6.wp-block-heading { font-size: var(--fbhi-guide-h6-size, 15px); line-height: 1.4; }
 .editor-styles-wrapper p.wp-block-paragraph,
 .editor-styles-wrapper p.wp-block { font-size: inherit; line-height: inherit; }
 .editor-styles-wrapper ul.wp-block-list,
@@ -155,7 +156,7 @@
 .editor-styles-wrapper .wp-block-media-text .wp-block-media-text__content { padding: 24px 32px; }
 .editor-styles-wrapper .wp-block-media-text .wp-block-media-text__content > .wp-block { margin-top: 0; margin-bottom: 0; }
 .editor-styles-wrapper .wp-block-media-text .wp-block-media-text__content > .wp-block + .wp-block { margin-top: .8em; }
-.editor-styles-wrapper .wp-block-media-text h3.wp-block-heading { font-size: 19px; color: var(--fbhi-guide-navy, #213A6C); }
+.editor-styles-wrapper .wp-block-media-text h3.wp-block-heading { font-size: var(--fbhi-guide-box-heading-size, 20px); line-height: 1.3; color: var(--fbhi-guide-navy, #213A6C); }
 
 /* ---------- guide components (block styles on core/group) ---------- */
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox,
@@ -171,15 +172,28 @@
 	border: 2px solid var(--fbhi-guide-accent, #006885);
 }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > .wp-block,
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > .wp-block,
-.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block { margin-top: 0; margin-bottom: 0; }
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > .wp-block { margin-top: 0; margin-bottom: 0; }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > .wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > .wp-block + .wp-block,
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > .wp-block + .wp-block,
-.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block + .wp-block { margin-top: .8em; }
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > .wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > .wp-block + .wp-block { margin-top: .8em; }
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-infobox h3.wp-block-heading,
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-callout h3.wp-block-heading,
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist h3.wp-block-heading {
-	font-size: 19px;
+	font-size: var(--fbhi-guide-box-heading-size, 20px);
+	line-height: 1.3;
 	color: var(--fbhi-guide-navy, #213A6C);
 }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist ol.wp-block-list { list-style: decimal; padding-left: 1.6em; }

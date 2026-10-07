@@ -17,6 +17,14 @@
 	--fbhi-guide-sticky-top: 120px;
 	--fbhi-guide-accent: var(--fbhi-guide-teal);
 	--fbhi-guide-tint: #E6EEF1;
+	/* Heading sizes in the guide content (desktop; phones/tablets below 1000px further down).
+	   Also read by guides-editor.css, so the editor canvas follows these values. */
+	--fbhi-guide-h2-size: 28px;
+	--fbhi-guide-h3-size: 22px;
+	--fbhi-guide-h4-size: 19px;
+	--fbhi-guide-h5-size: 17px;
+	--fbhi-guide-h6-size: 15px;
+	--fbhi-guide-box-heading-size: 20px; /* H3 in info/callout/checklist boxes and Media & Text */
 }
 
 /* Salient styles ol/ul inside .container-wrap; our structural lists must stay unstyled. */
@@ -182,25 +190,35 @@
 }
 .fbhi-guide__content > * { margin-top: 0; margin-bottom: 0; }
 .fbhi-guide__content > * + * { margin-top: 1.2em; }
-.fbhi-guide__content > h2,
-.container-wrap .fbhi-guide__content > h2 {
-	margin-top: 2em;
-	font-size: 28px;
-	line-height: 1.2;
+/* Headings: sizes apply at any depth (so a heading inside a group never falls back to Salient's
+   site-wide sizes, e.g. a 52px H2); the extra space above applies to top-level headings only.
+   Only H2 carries a colour. The index cards' own headings (.fbhi-guide-*) are left alone. */
+.fbhi-guide__content :is(h2, h3, h4, h5, h6):not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content :is(h2, h3, h4, h5, h6):not([class*="fbhi-guide-"]) {
 	font-weight: 700;
-	color: var(--fbhi-guide-teal);
-	scroll-margin-top: calc(var(--fbhi-guide-sticky-top) + 8px);
-}
-.fbhi-guide__content > h3,
-.container-wrap .fbhi-guide__content > h3 {
-	margin-top: 1.6em;
-	font-size: 21px;
-	line-height: 1.3;
-	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: none;
 	color: var(--fbhi-guide-text);
 	scroll-margin-top: calc(var(--fbhi-guide-sticky-top) + 8px);
 }
-.fbhi-guide__content h2 + *, .fbhi-guide__content h3 + * { margin-top: .6em; }
+.fbhi-guide__content h2:not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content h2:not([class*="fbhi-guide-"]) {
+	font-size: var(--fbhi-guide-h2-size);
+	line-height: 1.2;
+	color: var(--fbhi-guide-teal);
+}
+.fbhi-guide__content h3:not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content h3:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h3-size); line-height: 1.3; }
+.fbhi-guide__content h4:not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content h4:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h4-size); line-height: 1.35; }
+.fbhi-guide__content h5:not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content h5:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h5-size); line-height: 1.4; }
+.fbhi-guide__content h6:not([class*="fbhi-guide-"]),
+.container-wrap .fbhi-guide__content h6:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h6-size); line-height: 1.4; }
+.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { margin-top: 2em; }
+.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { margin-top: 1.6em; }
+.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4 { margin-top: 1.4em; }
+.fbhi-guide__content :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
 .fbhi-guide__content ul,
 .fbhi-guide__content ol {
 	padding-left: 1.4em;
@@ -222,8 +240,7 @@
 .fbhi-guide__content > .wp-block-file + *,
 .fbhi-guide__content > * + .wp-block-media-text,
 .fbhi-guide__content > .wp-block-media-text + * { margin-top: 1.8em; }
-.fbhi-guide__content > h2 + figure,
-.fbhi-guide__content > h3 + figure { margin-top: .8em; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + figure { margin-top: .8em; }
 /* Links to PDF files carry a small document icon after the text. */
 .fbhi-guide__content a[href$=".pdf" i]:not(.wp-block-file__button)::after {
 	content: "";
@@ -296,7 +313,7 @@
 .fbhi-guide__content .wp-block-media-text .wp-block-media-text__content > * { margin-top: 0; margin-bottom: 0; }
 .fbhi-guide__content .wp-block-media-text .wp-block-media-text__content > * + * { margin-top: .8em; }
 .fbhi-guide__content .wp-block-media-text h3,
-.container-wrap .fbhi-guide__content .wp-block-media-text h3 { margin-top: 0; font-size: 19px; font-weight: 700; color: var(--fbhi-guide-navy); }
+.container-wrap .fbhi-guide__content .wp-block-media-text h3 { margin-top: 0; font-size: var(--fbhi-guide-box-heading-size); color: var(--fbhi-guide-navy); }
 @media (max-width: 600px) {
 	.fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 20px 22px; }
 }
@@ -349,23 +366,38 @@
 	border: 2px solid var(--fbhi-guide-accent);
 }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > :first-child,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout > :first-child,
-.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :first-child { margin-top: 0; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > :first-child { margin-top: 0; }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > :last-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > :last-child,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout > :last-child,
-.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :last-child { margin-bottom: 0; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > :last-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :last-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > :last-child { margin-bottom: 0; }
+/* Salient (no theme.json) wraps group content in .wp-block-group__inner-container, hence both forms. */
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > * + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > * + *,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout > * + *,
-.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > * + * { margin-top: .8em; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > * + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > * + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > * + * { margin-top: .8em; }
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-infobox > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-callout > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox h3,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout h3,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist h3,
 .container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox h3,
 .container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-callout h3,
 .container-wrap .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist h3 {
-	margin-top: 0;
-	font-size: 19px;
-	font-weight: 700;
+	font-size: var(--fbhi-guide-box-heading-size);
+	line-height: 1.3;
 	color: var(--fbhi-guide-navy);
 }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-checklist ol { list-style: decimal; padding-left: 1.6em; }
@@ -616,8 +648,15 @@
 	}
 	.fbhi-guide-header:has(.fbhi-guide-header__label) .fbhi-guide-header__label { align-self: center; margin-bottom: 0; }
 	.fbhi-guide-header:has(.fbhi-guide-header__label) .fbhi-guide-header__title { margin-top: 8px; }
-	.fbhi-guide__content { font-size: 16px; }
-	.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 24px; }
+	.fbhi-guide__content {
+		font-size: 16px;
+		--fbhi-guide-h2-size: 24px;
+		--fbhi-guide-h3-size: 20px;
+		--fbhi-guide-h4-size: 18px;
+		--fbhi-guide-h5-size: 16px;
+		--fbhi-guide-h6-size: 14px;
+		--fbhi-guide-box-heading-size: 19px;
+	}
 	.fbhi-guide-card { padding: 20px 20px 22px; }
 	.fbhi-guide-bottom-nav { grid-template-columns: 1fr; }
 	.fbhi-guide-bottom-nav__link--next { order: -1; }

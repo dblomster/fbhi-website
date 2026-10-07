@@ -48,10 +48,22 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 	break-after: avoid;
 }
 .fbhi-guide-header__label { font-size: 9pt; color: #000; }
-.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 22pt !important; color: #000 !important; }
+.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 24pt !important; color: #000 !important; }
 .fbhi-guide-header__intro { font-size: 12pt; }
-.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { font-size: 16pt !important; color: #000 !important; margin-top: 18pt; }
-.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { font-size: 13pt !important; margin-top: 14pt; }
+/* Heading sizes: the web scale (guides.css variables, desktop) mapped onto the 11pt body text,
+   i.e. the same ratios to body: H2 ×1.65, H3 ×1.29, box heading ×1.18, H4 ×1.12, H5 ×1, H6 ×0.88. */
+.fbhi-guide__content {
+	--fbhi-guide-h2-size: 18pt;
+	--fbhi-guide-h3-size: 14pt;
+	--fbhi-guide-h4-size: 12pt;
+	--fbhi-guide-h5-size: 11pt;
+	--fbhi-guide-h6-size: 10pt;
+	--fbhi-guide-box-heading-size: 13pt;
+}
+.fbhi-guide__content h2, .container-wrap .fbhi-guide__content h2 { color: #000 !important; }
+.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { margin-top: 18pt; }
+.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { margin-top: 14pt; }
+.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4 { margin-top: 12pt; }
 .fbhi-guide__content a { color: #000; text-decoration: underline; }
 /* Editorial links get their URL printed after them; the index cards' own links (li > h3 > a) do not. */
 .fbhi-guide__content p a[href^="http"]::after,

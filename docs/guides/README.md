@@ -60,6 +60,14 @@ then deployed to dev and prod the same day.
 while locked, and core's "Skyddad:" / protected-excerpt texts are used as is. Whether to reword or remove those
 texts is open, pending Annika: see [../password-protection.md](../password-protection.md). Deployed to dev and prod.
 
+**Update 2026-10-07**: **heading scale** (D34). H2–H6 all styled in the guide content (before, H4–H6 and
+headings inside boxes fell back to Salient's site-wide sizes): H2 28 teal, H3 22, H4 19, H5 17, H6 15 (phone
+24/20/18/16/14, print 18/14/12/11/10pt), box headings 20/19/13pt navy. One set of CSS variables in `guides.css`
+drives web and editor; print maps them onto 11pt. Also fixed: heading spacing in the editor and spacing inside
+boxes (Salient's inner-container wrapper). Values before/after, rationale and how to change them:
+[heading-scale.md](heading-scale.md). A heading demo sits at the top of Avsnitt 5 on **dev only** (13939) — keep it
+there, never on prod. Deployed to dev and prod.
+
 ## Outstanding (parked, revisit later)
 
 **Go-live (~2026-10-12)**: the items below plus the prod checks are collected in
@@ -104,6 +112,7 @@ answered along the way are logged at its bottom.
 
 | File | What it answers |
 |---|---|
+| [heading-scale.md](heading-scale.md) | Heading sizes (web, phone, editor, print): current values, the values before 2026-10-07, why, and where to change them |
 | [go-live-checklist.md](go-live-checklist.md) | What to check (read-only on prod) before the FINGER guide is published, and editor questions answered so far |
 | [plan.md](plan.md) | *How* is it built: content model, file layout, each feature's mechanism, phases, QA list |
 | [decisions.md](decisions.md) | *Why* it is built that way: every decision taken with Daniel, plus the open questions and their current defaults |
