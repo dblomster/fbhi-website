@@ -2,7 +2,7 @@
 
 Changes made after Annika's questions of 2026-10-12 (heading spacing, the foreword in columns, click to
 enlarge, rounded corners and shadow, caption colour/alignment). Decided with Daniel the same day: follow the
-behaviour of the rest of the site. **Status: dev only**; not yet on prod.
+behaviour of the rest of the site. **Status: on dev and prod since 2026-10-12.**
 
 Every change is listed with its files so it can be reverted or adjusted on its own.
 
@@ -52,4 +52,14 @@ every row above. Daniel wants it kept on dev; **never on prod**, and editors are
 ## Verified (2026-10-12, Chrome on dev)
 
 Desktop 1400px and phone 390px on the frontend, desktop in the editor: all rows above measured as described;
-lightbox opens on click (white background, no caption); linked image gets no lightbox. Not checked: print.
+lightbox opens on click (white background, no caption); linked image gets no lightbox. Print (headless Chrome,
+print media at A4 width): spacing, floats, boxes below floats, gallery captions fine; shadow dropped.
+Prod after deploy: foreword column paragraphs 20px, lightbox + 5px corners, gallery caption below the images.
+
+## Known, not fixed: Columns in print
+
+Core stacks columns below 782px, and a printed A4 page is ~717px wide, so a Columns block prints stacked: the
+foreword's portrait (Avsnitt 1) prints at full page width. Older than D35/D36. Fixing it in print would mean
+overriding core's `flex-basis: 100% !important`; column widths are inline styles, so keeping 2/3 + 1/3 needs
+attribute selectors per width or equal-width columns. Goes away if the foreword uses a right-aligned image
+instead (advice given to Annika). Open for Daniel.

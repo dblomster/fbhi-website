@@ -33,9 +33,8 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   WAF-blocked). See [../password-protection.md](../password-protection.md).
 - [ ] **Image/video handling** (parked until real content): with Annika's images in, check desktop, mobile and
   print (fixed height without an aspect ratio squashes on mobile). Details: README.md → Outstanding.
-- [ ] **Spacing and images (D35, D36)**: on dev since 2026-10-12, not on prod. Deploy to prod (`./upload.sh p`),
-  purge the Nginx cache, then check the prod foreword (Avsnitt 1) and galleries. See
-  [spacing-and-images.md](spacing-and-images.md).
+- [x] **Spacing and images (D35, D36)**: deployed to prod 2026-10-12 and checked (foreword, gallery). Nginx
+  cache purge by Daniel. Open: Columns print stacked (see [spacing-and-images.md](spacing-and-images.md)).
 - [ ] **Menu item + publish order**: who adds the Swedish menu item and publishes root + chapters (Daniel/editors).
   After publishing: purge the Nginx cache (Nginx Helper) and check the guide as a logged-out visitor.
 
@@ -93,5 +92,5 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   padding wouldn't help; alternative: a right-aligned image with the text flowing around it (as she did with the
   hand), made safe on phones by D35. (3) Click to enlarge → on by default (D36). (4) Rounded corners and shadow like
   the rest of the site → 5px corners by default, style "Med skugga", "Rundade hörn" kept (D36). (5) Caption colour
-  and alignment → one style, grey, left, below the image incl. galleries; no controls (D36). On dev; reply to
-  Annika drafted 2026-10-12, sent by Daniel.
+  and alignment → one style, grey, left, below the image incl. galleries; no controls (D36). On dev and prod 2026-10-12;
+  reply to Annika drafted the same day, sent by Daniel.
