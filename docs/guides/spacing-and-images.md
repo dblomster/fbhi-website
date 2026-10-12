@@ -56,10 +56,13 @@ lightbox opens on click (white background, no caption); linked image gets no lig
 print media at A4 width): spacing, floats, boxes below floats, gallery captions fine; shadow dropped.
 Prod after deploy: foreword column paragraphs 20px, lightbox + 5px corners, gallery caption below the images.
 
-## Known, not fixed: Columns in print
+## Print fixes (2026-10-12, after Daniel's print PDF)
 
-Core stacks columns below 782px, and a printed A4 page is ~717px wide, so a Columns block prints stacked: the
-foreword's portrait (Avsnitt 1) prints at full page width. Older than D35/D36. Fixing it in print would mean
-overriding core's `flex-basis: 100% !important`; column widths are inline styles, so keeping 2/3 + 1/3 needs
-attribute selectors per width or equal-width columns. Goes away if the foreword uses a right-aligned image
-instead (advice given to Annika). Open for Daniel.
+| # | Change | Files |
+|---|---|---|
+| 12 | Gallery with captions: images are stretched by the grid (`align-self: stretch`) instead of `height: 100%`, which print's `img { height: auto !important }` undid (images at natural height, captions out of line) | `guides.css` (cropped gallery rule) |
+| 13 | Columns stay side by side on paper. Core stacks them below 782px with `flex-basis: 100% !important` (a printed page is narrower), which also hid the editor's widths: the foreword's text broke across pages and the portrait filled a page. The editor's width presets (25 / 33.33 / 50 / 66.67 / 75%) are restored by attribute selector on the inline `flex-basis`; other widths get an equal share. | `guides-print.css` ("Columns stay side by side") |
+| 14 | Left/right-aligned images take at most 45% of the printed page, so the text beside them keeps room (the 445px hand left a ~180px text strip) | `guides-print.css` |
+
+Checked with headless Chrome: print-to-PDF of dev 13939, pages rendered with pdf.js. Known, by nature of floats: if
+an aligned image does not fit at the bottom of a page it moves to the next page and the text before it runs full width.

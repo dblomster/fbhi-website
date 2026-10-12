@@ -34,7 +34,8 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
 - [ ] **Image/video handling** (parked until real content): with Annika's images in, check desktop, mobile and
   print (fixed height without an aspect ratio squashes on mobile). Details: README.md → Outstanding.
 - [x] **Spacing and images (D35, D36)**: deployed to prod 2026-10-12 and checked (foreword, gallery). Nginx
-  cache purge by Daniel. Open: Columns print stacked (see [spacing-and-images.md](spacing-and-images.md)).
+  cache purge by Daniel. Print fixes (gallery captions, columns, aligned images) on prod the same day, see
+  [spacing-and-images.md](spacing-and-images.md).
 - [ ] **Menu item + publish order**: who adds the Swedish menu item and publishes root + chapters (Daniel/editors).
   After publishing: purge the Nginx cache (Nginx Helper) and check the guide as a logged-out visitor.
 

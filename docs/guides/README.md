@@ -73,7 +73,7 @@ heading → box pairs sit close; columns/groups get the block rhythm; left/right
 headings below them and drop into the column on phones. Images: enlarge on click by default, 5px corners, optional
 "Med skugga" style, captions grey/left/below everywhere (galleries via a grid). Every change with files and how to
 revert: [spacing-and-images.md](spacing-and-images.md). Test section on dev 13939 (after the heading demo), never on
-prod. Deployed to dev and prod. Open: Columns print stacked (spacing-and-images.md).
+prod. Deployed to dev and prod, print included (gallery captions, columns side by side, aligned images capped).
 
 ## Outstanding (parked, revisit later)
 

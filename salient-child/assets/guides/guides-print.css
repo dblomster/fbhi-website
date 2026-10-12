@@ -90,6 +90,19 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 8pt 10pt; }
 .fbhi-guide__content .wp-block-file .wp-block-file__button { display: none !important; } /* outranks the screen pill rule */
 
+/* Columns stay side by side on paper. Core stacks them below 782px (a printed page is narrower) with
+   flex-basis: 100% !important, which also hides the widths set in the editor (inline flex-basis). The
+   editor's presets are restored here; any other width gets an equal share. */
+.fbhi-guide__content .wp-block-columns { flex-wrap: nowrap !important; gap: 14pt; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column { flex: 1 1 0 !important; min-width: 0; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column[style*="flex-basis:25%"] { flex: 0 1 25% !important; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column:is([style*="flex-basis:33.33%"], [style*="flex-basis:33.34%"]) { flex: 0 1 33.33% !important; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column[style*="flex-basis:50%"] { flex: 0 1 50% !important; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column:is([style*="flex-basis:66.66%"], [style*="flex-basis:66.67%"]) { flex: 0 1 66.67% !important; }
+.fbhi-guide__content .wp-block-columns > .wp-block-column[style*="flex-basis:75%"] { flex: 0 1 75% !important; }
+/* Left/right-aligned images take at most 45% of the narrower printed page, so the text beside them keeps room. */
+.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { max-width: 45%; }
+
 /* Page-break behaviour */
 h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }
 h2 + *, h3 + * { break-before: avoid; }

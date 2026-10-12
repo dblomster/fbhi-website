@@ -392,7 +392,9 @@
 	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-2:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
 }
 .fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { width: 100%; }
-.fbhi-guide__content .wp-block-gallery.has-nested-images.is-cropped:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { height: 100%; object-fit: cover; }
+/* Cropped: the grid stretches each image to the row's height (align-self, not height: 100%, so print's
+   img { height: auto !important } can't undo it). */
+.fbhi-guide__content .wp-block-gallery.has-nested-images.is-cropped:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { align-self: stretch; height: auto; min-height: 0; object-fit: cover; }
 .fbhi-guide__content .wp-block-table table { width: 100%; border-collapse: collapse; }
 .fbhi-guide__content .wp-block-table td,
 .fbhi-guide__content .wp-block-table th { border: 1px solid var(--fbhi-guide-grey-dark); padding: .5em .75em; }
