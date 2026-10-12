@@ -15,7 +15,7 @@ Every change is listed with its files so it can be reverted or adjusted on its o
 | 3 | Block rhythm inside columns and plain groups (same as top level: 1.2em, lists 0.7em, after a heading 0.6em) | frontend 0px between paragraphs in a column, editor 28px → 20px in both | `guides.css` ("Nested flow containers"), `guides-editor.css` |
 | 4 | Images aligned left/right | text touching the image, 30px gap above the image → 1.6em air on the text side, image top level with the paragraph beside it, 1.6em below | `guides.css` ("Images aligned left/right"), `guides-editor.css` |
 | 5 | Headings, boxes, figures, columns, files, quotes and buttons always start below a floated image; the content area ends below the last one | could sit beside or run under the image → always below (27px gap) | `guides.css` (`clear: both` list, `.fbhi-guide__content::after`), `guides-editor.css` |
-| 6 | Phones (≤ 600px): floated images sit in the column like other figures (own width, left) | a narrow image left a thin strip of text beside it | `guides.css` (600px block after the float rules) |
+| 6 | Phones (≤ 600px): floated images sit in the column like other figures and fill its width, keeping their aspect ratio (the width set in the editor is for the desktop layout beside the text; `!important` because WP puts it inline on the img) | a narrow image left a thin strip of text beside it | `guides.css` (600px block after the float rules) |
 
 Markup note for 4–6: Salient has no theme.json, so WordPress renders an aligned image as
 `div.wp-block-image > figure.alignright` (the wrapper has no height; the figure floats). The editor wraps it as

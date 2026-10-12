@@ -270,9 +270,12 @@
    margin (1.6em, as on the text side) as its space above. */
 .fbhi-guide__content > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block) { clear: both; }
 .fbhi-guide__content::after { content: ""; display: table; clear: both; }
-/* Phones: no room to flow text beside an image, so it sits in the column like any other figure. */
+/* Phones: no room to flow text beside an image, so it sits in the column like any other figure and fills
+   its width (the width set in the editor is for the desktop layout beside the text). !important: WP puts
+   that width inline on the img; the aspect ratio is kept. */
 @media (max-width: 600px) {
-	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { float: none; margin: 0; }
+	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { float: none; width: 100%; margin: 0; }
+	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) img { width: 100% !important; height: auto !important; }
 	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)),
 	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
 	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) { margin-top: .8em; }
