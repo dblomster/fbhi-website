@@ -33,6 +33,9 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   WAF-blocked). See [../password-protection.md](../password-protection.md).
 - [ ] **Image/video handling** (parked until real content): with Annika's images in, check desktop, mobile and
   print (fixed height without an aspect ratio squashes on mobile). Details: README.md → Outstanding.
+- [ ] **Spacing and images (D35, D36)**: on dev since 2026-10-12, not on prod. Deploy to prod (`./upload.sh p`),
+  purge the Nginx cache, then check the prod foreword (Avsnitt 1) and galleries. See
+  [spacing-and-images.md](spacing-and-images.md).
 - [ ] **Menu item + publish order**: who adds the Swedish menu item and publishes root + chapters (Daniel/editors).
   After publishing: purge the Nginx cache (Nginx Helper) and check the guide as a logged-out visitor.
 
@@ -82,3 +85,13 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   Embed block can't embed PDFs (oEmbed 404). The password on a guide page doesn't protect the PDF itself: files
   in `wp-content/uploads/` stay public by URL. A render_block filter (strip the embed, localise default button
   text) was considered; **no code change** for now (Daniel, 2026-10-02). Explained to Annika by Daniel.
+- **2026-10-12, heading spacing, foreword columns, enlarge on click, corners/shadow, captions (Annika)**: five
+  questions by mail with screenshots (`incoming/screenshots/`, not in git). (1) Headings should have more space
+  above than below: true everywhere except H2 directly followed by H3 (3 places on prod) → fixed (D35). (2)
+  Foreword (Avsnitt 1) in a Columns block: no space between the paragraphs beside the photo → our bug, fixed
+  (D35); the gap below the columns comes from the photo column being taller; columns have no height setting and
+  padding wouldn't help; alternative: a right-aligned image with the text flowing around it (as she did with the
+  hand), made safe on phones by D35. (3) Click to enlarge → on by default (D36). (4) Rounded corners and shadow like
+  the rest of the site → 5px corners by default, style "Med skugga", "Rundade hörn" kept (D36). (5) Caption colour
+  and alignment → one style, grey, left, below the image incl. galleries; no controls (D36). On dev; reply to
+  Annika drafted 2026-10-12, sent by Daniel.

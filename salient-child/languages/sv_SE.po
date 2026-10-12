@@ -114,6 +114,9 @@ msgstr "Checklista"
 msgid "Print page break"
 msgstr "Sidbrytning vid utskrift"
 
+msgid "With shadow"
+msgstr "Med skugga"
+
 msgid "FBHI Guide"
 msgstr "FBHI-guide"
 

@@ -65,6 +65,31 @@
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-infobox,
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-callout,
 .editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-checklist { margin-top: 2em; margin-bottom: 2em; }
+/* A subheading straight after a heading, and a box straight after a heading, sit close under it. */
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5).wp-block + :is(h3, h4, h5, h6).wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
+
+/* Nested flow containers (columns, plain groups): the same rhythm as the top level instead of
+   the editor's default 28px paragraph margins, so the canvas matches the frontend. */
+.editor-styles-wrapper .wp-block-column > .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block { margin-top: 0; margin-bottom: 0; }
+.editor-styles-wrapper .wp-block-column > .wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + .wp-block { margin-top: 1.2em; }
+.editor-styles-wrapper .wp-block-column > .wp-block + :is(ul, ol).wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + :is(ul, ol).wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + :is(ul, ol).wp-block { margin-top: .7em; }
+.editor-styles-wrapper .wp-block-column > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
+
+/* Images aligned left/right (the editor wraps them in div[data-align]): air on the text side,
+   top aligned with the paragraph beside them; headings and boxed blocks start below them. */
+.editor-styles-wrapper .is-root-container > [data-align="right"] > .wp-block-image { margin: 0 0 1.6em 1.6em; }
+.editor-styles-wrapper .is-root-container > [data-align="left"] > .wp-block-image { margin: 0 1.6em 1.6em 0; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block).wp-block { clear: both; }
 
 /* ---------- headings, text, lists, links ---------- */
 .editor-styles-wrapper .wp-block-heading {
@@ -102,7 +127,29 @@
 
 /* ---------- figures, files, tables, quotes, separators ---------- */
 .editor-styles-wrapper .wp-block-image img { max-width: 100%; height: auto; }
-.editor-styles-wrapper figcaption { font-size: 14px; color: var(--fbhi-guide-muted, #4a4a4a); margin-top: .5em; }
+.editor-styles-wrapper figcaption { font-size: 14px; color: var(--fbhi-guide-muted, #4a4a4a); margin-top: .5em; text-align: left; }
+/* Image corners, "With shadow" and gallery captions below the image, as in guides.css. (The frontend's
+   caption grid that keeps gallery images level is not mirrored here.) */
+.editor-styles-wrapper .wp-block-image img { border-radius: 5px; }
+.editor-styles-wrapper .wp-block-image.is-style-rounded img { border-radius: 9999px; }
+.editor-styles-wrapper .wp-block-image.is-style-fbhi-shadow img {
+	box-shadow: rgba(0, 0, 0, .04) 0 1px 0, rgba(0, 0, 0, .05) 0 2px 7px, rgba(0, 0, 0, .06) 0 12px 22px;
+}
+.editor-styles-wrapper .wp-block-gallery.has-nested-images figure.wp-block-image figcaption {
+	position: static;
+	flex: none;
+	width: auto;
+	max-height: none;
+	overflow: visible;
+	margin: .5em 0 0;
+	padding: 0;
+	background: none;
+	color: var(--fbhi-guide-muted, #4a4a4a);
+	font-size: 14px;
+	text-align: left;
+	text-shadow: none;
+}
+.editor-styles-wrapper .wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption)::before { content: none; }
 .editor-styles-wrapper .wp-block-file {
 	font-size: 1em;
 	display: flex;

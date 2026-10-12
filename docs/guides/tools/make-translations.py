@@ -17,7 +17,7 @@ T = {
  'Chapter accent colour (hex).':'Avsnittets accentfärg (hex).', 'Chapter designation shown above the title, e.g. "Avsnitt 1".':'Avsnittets beteckning som visas ovanför titeln, t.ex. ”Avsnitt 1”.',
  'Teal':'Petrol', 'Green':'Grön', 'Yellow':'Gul', 'Peach':'Persika', 'Navy':'Marinblå',
  'Label':'Etikett', 'Colour':'Färg', '(inherited)':'(ärvd)',
- 'Info box':'Faktaruta', 'Callout (chapter colour)':'Markerad ruta (avsnittets färg)', 'Checklist':'Checklista', 'Print page break':'Sidbrytning vid utskrift',
+ 'Info box':'Faktaruta', 'Callout (chapter colour)':'Markerad ruta (avsnittets färg)', 'Checklist':'Checklista', 'Print page break':'Sidbrytning vid utskrift', 'With shadow':'Med skugga',
  'FBHI Guide':'FBHI-guide', 'A neutral box for background facts, tools or tips.':'En neutral ruta för bakgrundsfakta, verktyg eller tips.',
  'Good to know':'Bra att veta', 'Write the box text here.':'Skriv rutans text här.',
  'Callout with questions':'Markerad ruta med frågor', 'A box in the chapter colour, for reflection questions such as "Fundera på:".':'En ruta i avsnittets färg, för reflektionsfrågor som ”Fundera på:”.',

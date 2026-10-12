@@ -19,6 +19,7 @@ final class Guide_Frontend {
 		add_filter( 'body_class', array( __CLASS__, 'body_class' ) );
 		add_filter( 'wp_nav_menu_objects', array( __CLASS__, 'highlight_menu' ), 20, 2 );
 		add_action( 'template_redirect', array( __CLASS__, 'guard_unpublished' ) );
+		add_filter( 'render_block_data', array( __CLASS__, 'image_lightbox_default' ) );
 	}
 
 	/**
@@ -50,6 +51,27 @@ final class Guide_Frontend {
 
 	public static function is_guide_view(): bool {
 		return is_singular( Guide_Post_Type::POST_TYPE );
+	}
+
+	/**
+	 * Images in guides open enlarged on click by default, as images do on the rest of the site
+	 * (Salient's "Link to large image"). Only images without their own lightbox setting are
+	 * touched: an editor's explicit choice wins, and linked images never get a lightbox
+	 * (core only adds it when linkDestination is "none"). Same default in the editor:
+	 * Guide_Editor::editor_settings().
+	 *
+	 * @param array $parsed_block Parsed block.
+	 * @return array
+	 */
+	public static function image_lightbox_default( array $parsed_block ): array {
+		if ( 'core/image' !== ( $parsed_block['blockName'] ?? '' ) || isset( $parsed_block['attrs']['lightbox'] ) ) {
+			return $parsed_block;
+		}
+		if ( ! self::is_guide_view() || Guide_Post_Type::POST_TYPE !== get_post_type() ) {
+			return $parsed_block;
+		}
+		$parsed_block['attrs']['lightbox'] = array( 'enabled' => true );
+		return $parsed_block;
 	}
 
 	public static function assets(): void {

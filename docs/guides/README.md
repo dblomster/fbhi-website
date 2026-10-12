@@ -68,6 +68,13 @@ boxes (Salient's inner-container wrapper). Values before/after, rationale and ho
 [heading-scale.md](heading-scale.md). A heading demo sits at the top of Avsnitt 5 on **dev only** (13939) — keep it
 there, never on prod. Deployed to dev and prod.
 
+**Update 2026-10-12**: **spacing and images** after Annika's questions (D35, D36). Spacing: H2 → H3 and
+heading → box pairs sit close; columns/groups get the block rhythm; left/right-aligned images get air, keep
+headings below them and drop into the column on phones. Images: enlarge on click by default, 5px corners, optional
+"Med skugga" style, captions grey/left/below everywhere (galleries via a grid). Every change with files and how to
+revert: [spacing-and-images.md](spacing-and-images.md). Test section on dev 13939 (after the heading demo), never on
+prod. **Dev only so far.**
+
 ## Outstanding (parked, revisit later)
 
 **Go-live (~2026-10-12)**: the items below plus the prod checks are collected in

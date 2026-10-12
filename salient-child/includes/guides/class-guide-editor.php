@@ -18,6 +18,7 @@ final class Guide_Editor {
 
 	public static function register(): void {
 		add_filter( 'allowed_block_types_all', array( __CLASS__, 'allowed_blocks' ), 10, 2 );
+		add_filter( 'block_editor_settings_all', array( __CLASS__, 'editor_settings' ), 10, 2 );
 		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'editor_assets' ) );
 		add_action( 'enqueue_block_assets', array( __CLASS__, 'editor_content_styles' ) );
 		add_action( 'init', array( __CLASS__, 'register_block_styles' ) );
@@ -68,6 +69,22 @@ final class Guide_Editor {
 			return $allowed;
 		}
 		return self::allowed_block_list();
+	}
+
+	/**
+	 * Guide editor: images default to "Enlarge on click", matching the frontend default in
+	 * Guide_Frontend::image_lightbox_default(), so the link menu shows what visitors get.
+	 *
+	 * @param array                    $settings Editor settings.
+	 * @param \WP_Block_Editor_Context $context  Editor context.
+	 * @return array
+	 */
+	public static function editor_settings( array $settings, $context ): array {
+		if ( empty( $context->post ) || Guide_Post_Type::POST_TYPE !== $context->post->post_type ) {
+			return $settings;
+		}
+		$settings['__experimentalFeatures']['blocks']['core/image']['lightbox']['enabled'] = true;
+		return $settings;
 	}
 
 	public static function editor_assets(): void {
@@ -134,6 +151,10 @@ final class Guide_Editor {
 		register_block_style( 'core/group', array(
 			'name'  => 'fbhi-checklist',
 			'label' => __( 'Checklist', 'salient-child' ),
+		) );
+		register_block_style( 'core/image', array(
+			'name'  => 'fbhi-shadow',
+			'label' => __( 'With shadow', 'salient-child' ),
 		) );
 		register_block_style( 'core/separator', array(
 			'name'  => 'fbhi-pagebreak',

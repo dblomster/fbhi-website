@@ -102,6 +102,7 @@ figure, img, table, blockquote,
 	break-inside: avoid;
 }
 img { max-width: 100% !important; height: auto !important; }
+.fbhi-guide__content img { box-shadow: none !important; } /* the optional image shadow */
 .fbhi-guide__content .wp-block-separator.is-style-fbhi-pagebreak {
 	display: block !important;
 	height: 0;

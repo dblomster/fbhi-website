@@ -219,6 +219,24 @@
 .fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { margin-top: 1.6em; }
 .fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4 { margin-top: 1.4em; }
 .fbhi-guide__content :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
+/* A subheading straight after a heading (H2 → H3) stays close to it, so the first heading
+   reads as part of what follows rather than floating between the blocks above and below. */
+.fbhi-guide__content > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6),
+.container-wrap .fbhi-guide__content > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6) { margin-top: .6em; }
+/* Nested flow containers (columns, plain groups) get the same rhythm as the top level;
+   without this, paragraphs in a column sit flush against each other. */
+.fbhi-guide__content .wp-block-column > *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * { margin-top: 0; margin-bottom: 0; }
+.fbhi-guide__content .wp-block-column > * + *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + * { margin-top: 1.2em; }
+.fbhi-guide__content .wp-block-column > * + :is(ul, ol),
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + :is(ul, ol),
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + :is(ul, ol) { margin-top: .7em; }
+.fbhi-guide__content .wp-block-column > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > :is(h2, h3, h4, h5, h6) + *,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
 .fbhi-guide__content ul,
 .fbhi-guide__content ol {
 	padding-left: 1.4em;
@@ -241,6 +259,25 @@
 .fbhi-guide__content > * + .wp-block-media-text,
 .fbhi-guide__content > .wp-block-media-text + * { margin-top: 1.8em; }
 .fbhi-guide__content > :is(h2, h3, h4, h5, h6) + figure { margin-top: .8em; }
+/* Images aligned left/right. Salient has no theme.json, so WP wraps them as div.wp-block-image >
+   figure.alignright; the wrapper has no height and the figure floats. Air on the text side, the image
+   lines up with the paragraph beside it, and that paragraph keeps the normal block rhythm. */
+.fbhi-guide__content > .wp-block-image > .alignright { float: right; margin: 0 0 1.6em 1.6em; }
+.fbhi-guide__content > .wp-block-image > .alignleft { float: left; margin: 0 1.6em 1.6em 0; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: .6em; }
+/* Headings, boxed blocks and other figures always start below a floated image, never beside it; the
+   content area itself ends below the last one. A heading pushed below an image gets the image's bottom
+   margin (1.6em, as on the text side) as its space above. */
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block) { clear: both; }
+.fbhi-guide__content::after { content: ""; display: table; clear: both; }
+/* Phones: no room to flow text beside an image, so it sits in the column like any other figure. */
+@media (max-width: 600px) {
+	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { float: none; margin: 0; }
+	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)),
+	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
+	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) { margin-top: .8em; }
+	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
+}
 /* Links to PDF files carry a small document icon after the text. */
 .fbhi-guide__content a[href$=".pdf" i]:not(.wp-block-file__button)::after {
 	content: "";
@@ -283,7 +320,76 @@
 }
 .fbhi-guide__content .wp-block-file .wp-block-file__button:hover,
 .fbhi-guide__content .wp-block-file .wp-block-file__button:focus-visible { background: var(--fbhi-guide-teal); color: #fff; }
-.fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; }
+.fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; text-align: left; }
+/* Images get 5px corners, as on the rest of the site (Salient image "Border radius 5px"); core's "Rounded"
+   style keeps its full rounding. The "With shadow" style adds Salient's image "Small depth" shadow.
+   Media & Text needs neither: its card already clips the image to its own corners. */
+.fbhi-guide__content .wp-block-image img { border-radius: 5px; }
+.fbhi-guide__content .wp-block-image.is-style-rounded img { border-radius: 9999px; }
+.fbhi-guide__content .wp-block-image.is-style-fbhi-shadow img {
+	box-shadow: rgba(0, 0, 0, .04) 0 1px 0, rgba(0, 0, 0, .05) 0 2px 7px, rgba(0, 0, 0, .06) 0 12px 22px;
+}
+/* Gallery captions sit below the image like every other caption (grey, left-aligned), instead of
+   core's white text on a dark gradient over the photo. */
+.fbhi-guide__content .wp-block-gallery.has-nested-images figure.wp-block-image figcaption {
+	position: static;
+	flex: none;
+	width: auto;
+	max-height: none;
+	overflow: visible;
+	margin: .5em 0 0;
+	padding: 0;
+	background: none;
+	color: var(--fbhi-guide-muted);
+	font-size: 14px;
+	text-align: left;
+	text-shadow: none;
+}
+.fbhi-guide__content .wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption)::before { content: none; }
+.fbhi-guide__content .wp-block-gallery > .blocks-gallery-caption { text-align: left; }
+/* A caption below the image would make that image shorter than its neighbours (core stretches every
+   figure in a row to the same height). Galleries with image captions are therefore laid out as a grid in
+   which each figure spans an image row and a caption row (subgrid), so images line up and captions
+   start at the same height. Columns follow core: two on phones, the gallery's column setting from 600px
+   ("default" = up to three). Galleries without image captions keep core's layout. */
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) {
+	--fbhi-gallery-cols: 2;
+	display: grid;
+	grid-template-columns: repeat(var(--fbhi-gallery-cols), minmax(0, 1fr));
+	align-items: start;
+}
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption):not(:has(> figure:nth-of-type(2))),
+.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-1:has(figure figcaption) { --fbhi-gallery-cols: 1; }
+@media (min-width: 600px) {
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-default:has(figure figcaption):has(> figure:nth-of-type(3)),
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-3:has(figure figcaption) { --fbhi-gallery-cols: 3; }
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-4:has(figure figcaption) { --fbhi-gallery-cols: 4; }
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-5:has(figure figcaption) { --fbhi-gallery-cols: 5; }
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-6:has(figure figcaption) { --fbhi-gallery-cols: 6; }
+}
+/* !important: core sizes gallery figures with per-position rules that carry an ID in their specificity. */
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) {
+	display: grid;
+	grid-row: span 2;
+	grid-template-rows: subgrid;
+	grid-template-columns: minmax(0, 1fr);
+	row-gap: 0;
+	align-self: stretch;
+	width: auto !important;
+	margin: 0;
+}
+/* A lone image in the last row fills the row, as in core's layout (two columns on phones, default
+   three from 600px; other column counts leave it in its column). */
+@media (max-width: 599px) {
+	.fbhi-guide__content .wp-block-gallery.has-nested-images:not(.columns-1):has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 600px) {
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-default:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(3n+1),
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-3:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(3n+1),
+	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-2:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+}
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { width: 100%; }
+.fbhi-guide__content .wp-block-gallery.has-nested-images.is-cropped:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { height: 100%; object-fit: cover; }
 .fbhi-guide__content .wp-block-table table { width: 100%; border-collapse: collapse; }
 .fbhi-guide__content .wp-block-table td,
 .fbhi-guide__content .wp-block-table th { border: 1px solid var(--fbhi-guide-grey-dark); padding: .5em .75em; }
@@ -355,6 +461,8 @@
 	margin-bottom: 2em;
 	break-inside: avoid;
 }
+/* A box introduced by a heading sits close under it, like a paragraph would. */
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox {
 	background: var(--fbhi-guide-grey);
 }
