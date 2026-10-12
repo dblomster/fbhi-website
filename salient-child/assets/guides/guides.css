@@ -323,7 +323,9 @@
 }
 .fbhi-guide__content .wp-block-file .wp-block-file__button:hover,
 .fbhi-guide__content .wp-block-file .wp-block-file__button:focus-visible { background: var(--fbhi-guide-teal); color: #fff; }
-.fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; text-align: left; }
+/* No bottom margin (core gives captions 1em), so a captioned image doesn't add space below itself,
+   e.g. at the foot of a column. */
+.fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; margin-bottom: 0; text-align: left; }
 /* Images get 5px corners, as on the rest of the site (Salient image "Border radius 5px"); core's "Rounded"
    style keeps its full rounding. The "With shadow" style adds Salient's image "Small depth" shadow.
    Media & Text needs neither: its card already clips the image to its own corners. */

@@ -127,7 +127,7 @@
 
 /* ---------- figures, files, tables, quotes, separators ---------- */
 .editor-styles-wrapper .wp-block-image img { max-width: 100%; height: auto; }
-.editor-styles-wrapper figcaption { font-size: 14px; color: var(--fbhi-guide-muted, #4a4a4a); margin-top: .5em; text-align: left; }
+.editor-styles-wrapper figcaption { font-size: 14px; color: var(--fbhi-guide-muted, #4a4a4a); margin-top: .5em; margin-bottom: 0; text-align: left; }
 /* Image corners, "With shadow" and gallery captions below the image, as in guides.css. (The frontend's
    caption grid that keeps gallery images level is not mirrored here.) */
 .editor-styles-wrapper .wp-block-image img { border-radius: 5px; }

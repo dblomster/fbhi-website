@@ -62,6 +62,7 @@ Prod after deploy: foreword column paragraphs 20px, lightbox + 5px corners, gall
 |---|---|---|
 | 12 | Gallery with captions: images are stretched by the grid (`align-self: stretch`) instead of `height: 100%`, which print's `img { height: auto !important }` undid (images at natural height, captions out of line) | `guides.css` (cropped gallery rule) |
 | 13 | Columns stay side by side on paper. Core stacks them below 782px with `flex-basis: 100% !important` (a printed page is narrower), which also hid the editor's widths: the foreword's text broke across pages and the portrait filled a page. The editor's width presets (25 / 33.33 / 50 / 66.67 / 75%) are restored by attribute selector on the inline `flex-basis`; other widths get an equal share. | `guides-print.css` ("Columns stay side by side") |
+| 15 | Captions have no bottom margin (core's 1em made a captioned image in a column 14px taller; the foreword's gap to "del 2" went 43 → 29px, the rest is the two-line caption reaching below the text) | `guides.css`, `guides-editor.css` (figcaption rule) |
 | 14 | Left/right-aligned images take at most 45% of the printed page, so the text beside them keeps room (the 445px hand left a ~180px text strip) | `guides-print.css` |
 
 Checked with headless Chrome: print-to-PDF of dev 13939, pages rendered with pdf.js. Known, by nature of floats: if
