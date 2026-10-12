@@ -2,7 +2,8 @@
 
 Changes made after Annika's questions of 2026-10-12 (heading spacing, the foreword in columns, click to
 enlarge, rounded corners and shadow, caption colour/alignment). Decided with Daniel the same day: follow the
-behaviour of the rest of the site. **Status: on dev and prod since 2026-10-12.**
+behaviour of the rest of the site. **Status: on dev and prod since 2026-10-12;** reply sent to Annika the same day (incl. advice to use a
+right-aligned image instead of Columns for the foreword).
 
 Every change is listed with its files so it can be reverted or adjusted on its own.
 

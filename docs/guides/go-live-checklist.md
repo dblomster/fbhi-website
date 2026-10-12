@@ -94,4 +94,4 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   hand), made safe on phones by D35. (3) Click to enlarge → on by default (D36). (4) Rounded corners and shadow like
   the rest of the site → 5px corners by default, style "Med skugga", "Rundade hörn" kept (D36). (5) Caption colour
   and alignment → one style, grey, left, below the image incl. galleries; no controls (D36). On dev and prod 2026-10-12;
-  reply to Annika drafted the same day, sent by Daniel.
+  reply to Annika sent by Daniel the same day.
