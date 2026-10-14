@@ -74,6 +74,9 @@ headings below them and drop into the column on phones. Images: enlarge on click
 "Med skugga" style, captions grey/left/below everywhere (galleries via a grid). Every change with files and how to
 revert: [spacing-and-images.md](spacing-and-images.md). Test section on dev 13939 (after the heading demo), never on
 prod. Deployed to dev and prod, print included (gallery captions, columns side by side, aligned images capped).
+**Update 2026-10-15**: gallery captions follow-up (Annika): editor shows the gallery caption grid, the gallery's own
+caption spans the full width, all captions 7px under what's above them (rows 16–18 in spacing-and-images.md). Dev
+demo "Test 10" on 13939 (never prod). On dev and prod.
 
 ## Outstanding (parked, revisit later)
 

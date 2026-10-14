@@ -33,7 +33,7 @@ Gap left by design: a heading pushed below an image (text beside it shorter than
 | 8 | **5px corners** on all guide images, as on the rest of the site (Salient image "Border radius 5px"). Core's "Rundade hörn" (is-style-rounded) keeps its full rounding. Media & Text unchanged (its card already clips the image to 4px corners). | `guides.css`, `guides-editor.css` |
 | 9 | **New image style "Med skugga"** (`is-style-fbhi-shadow`): Salient's image "Small depth" shadow, `rgba(0,0,0,.04) 0 1px 0, rgba(0,0,0,.05) 0 2px 7px, rgba(0,0,0,.06) 0 12px 22px`. Dropped in print. | `class-guide-editor.php` (`register_block_styles`), `guides.css`, `guides-editor.css`, `guides-print.css`, translation via `docs/guides/tools/make-translations.py` → `languages/sv_SE.po/.mo` |
 | 10 | **Captions**: one style everywhere, grey (#4a4a4a), 14px, left-aligned, below the image. Gallery captions included (before: core's white centred text on a dark gradient over the photo). No per-caption colour/alignment controls. | `guides.css`, `guides-editor.css` |
-| 11 | **Galleries with image captions** are laid out as a grid with subgrid rows (image row + caption row per figure), so images stay level and captions start at the same height. Columns: 2 on phones; from 600px the gallery's column setting (default = up to 3). A lone image in the last row fills the row (phones, default/3 and 2 columns), as in core. Galleries without image captions keep core's layout. The editor shows captions below but does not mirror the grid. | `guides.css` ("A caption below the image would make…") |
+| 11 | **Galleries with image captions** are laid out as a grid with subgrid rows (image row + caption row per figure), so images stay level and captions start at the same height. Columns: 2 on phones; from 600px the gallery's column setting (default = up to 3). A lone image in the last row fills the row (phones, default/3 and 2 columns), as in core. Galleries without image captions keep core's layout. The editor mirrors the grid since 2026-10-15 (row 16). | `guides.css` ("A caption below the image would make…"), `guides-editor.css` |
 
 ## Reverting
 
@@ -68,3 +68,26 @@ Prod after deploy: foreword column paragraphs 20px, lightbox + 5px corners, gall
 
 Checked with headless Chrome: print-to-PDF of dev 13939, pages rendered with pdf.js. Known, by nature of floats: if
 an aligned image does not fit at the bottom of a page it moves to the next page and the text before it runs full width.
+
+## Gallery captions follow-up (2026-10-15, after Annika's reply)
+
+Annika liked the caption style but saw a two-image gallery with one caption misaligned (caption on a white strip,
+captioned image cropped at the bottom). That was the **editor**: it didn't mirror the frontend grid (row 11), so core
+stretched both figures to the same height and the caption ate into the captioned image. The frontend was already right.
+She also asked for one shared caption across a whole gallery: core has it (the gallery block's own caption, toolbar
+"Lägg till bildtext" with the gallery selected), but our grid squeezed it into the first column when images had captions too.
+
+| # | Change | Files |
+|---|---|---|
+| 16 | Editor mirrors the gallery caption grid (images level, captions start at the same height), plus left-aligned gallery caption | `guides-editor.css` ("Galleries with image captions") |
+| 17 | The gallery's own caption spans the full width below the grid when images have captions too (as in core's layout without image captions); print included | `guides.css`, `guides-editor.css` |
+| 18 | **Same caption spacing everywhere**: the gallery's own caption sits 0.5em (7px) under whatever is directly above it (images or image captions, any column count, phones included), like every caption. Its margin is `.5em` minus the gallery's row gap; the gap is a registered `@property` length (`--fbhi-gallery-gap`) so it resolves in the gallery's font, not the caption's. In galleries with image captions the row gap is replaced by padding under each figure (a subgrid splits a row gap between the image and the empty caption row, leaving 4px under an uncaptioned image in the last row), and a negative bottom margin of one gap takes it back unless the gallery caption follows, so the space after the gallery is unchanged. Before: 16px (frontend) / 9px (editor), 11px on phones when the last image had no caption | `guides.css`, `guides-editor.css` (`--fbhi-gallery-gap`, `.blocks-gallery-caption`, gallery grid rules) |
+
+Demo on dev 13939: "Test 10: Bildtexter i galleri (2026-10-15)" after Test 9 (10a Annika's case, 10b shared caption
+only, 10c both, 10d three mixed formats + shared). Same rule as the test section: dev only, never prod.
+Verified 2026-10-15 on dev: editor (blocks valid, images level, shared caption 780px left), frontend 1400px and
+390px, print-to-PDF; row 18 re-checked the same way (7px everywhere on desktop, phone and in the editor; space after galleries equal with and without image captions). **Status: on dev and prod since 2026-10-15** (commit 4a91a82; prod checked: the Autoptimize copy of guides.css
+keeps `@property`, no published prod guide page had a gallery at the time). Reply to Annika drafted 2026-10-15
+(`incoming/`, not in git), Daniel edits and sends it. Galleries line up at the bottom only with "crop images" on (core
+default): without it, images keep their own aspect ratio, so the reply asks her to leave it on.
+

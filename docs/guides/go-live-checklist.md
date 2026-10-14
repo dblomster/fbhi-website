@@ -95,3 +95,8 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
   the rest of the site → 5px corners by default, style "Med skugga", "Rundade hörn" kept (D36). (5) Caption colour
   and alignment → one style, grey, left, below the image incl. galleries; no controls (D36). On dev and prod 2026-10-12;
   reply to Annika sent by Daniel the same day.
+- **2026-10-15, gallery captions (Annika)**: likes the grey left-aligned style; a two-image gallery with one caption
+  looked misaligned (caption on a white strip, image cropped). That was the editor, which didn't mirror the frontend
+  grid; fixed, plus a shared gallery caption (core's own gallery caption) now spans the full width and every caption
+  sits 7px under what's above it. On dev and prod 2026-10-15, see [spacing-and-images.md](spacing-and-images.md) rows
+  16–18. Reply drafted the same day (`incoming/`), Daniel sends.
