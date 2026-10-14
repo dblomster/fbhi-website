@@ -351,18 +351,29 @@
 	text-shadow: none;
 }
 .fbhi-guide__content .wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption)::before { content: none; }
-.fbhi-guide__content .wp-block-gallery > .blocks-gallery-caption { text-align: left; }
+/* The gallery's own caption sits .5em under whatever is directly above it (images or image captions, any row
+   layout), like every caption. The gallery's row gap is already there, so the margin is .5em minus that gap. The
+   gap is registered as a length so it resolves on the gallery (0.5em of 17px = 8.5px by default) rather than in
+   the caption's smaller font. Without @property support the caption just gets .5em on top of the gap. */
+@property --fbhi-gallery-gap { syntax: '<length>'; inherits: true; initial-value: 0px; }
+.fbhi-guide__content .wp-block-gallery.has-nested-images { --fbhi-gallery-gap: var(--wp--style--unstable-gallery-gap, .5em); }
+.fbhi-guide__content .wp-block-gallery > .blocks-gallery-caption { margin-top: calc(.5em - var(--fbhi-gallery-gap)); text-align: left; }
 /* A caption below the image would make that image shorter than its neighbours (core stretches every
    figure in a row to the same height). Galleries with image captions are therefore laid out as a grid in
    which each figure spans an image row and a caption row (subgrid), so images line up and captions
    start at the same height. Columns follow core: two on phones, the gallery's column setting from 600px
-   ("default" = up to three). Galleries without image captions keep core's layout. */
+   ("default" = up to three). Galleries without image captions keep core's layout.
+   The space between image rows is padding under each figure instead of a row gap: a subgrid shares a row gap
+   between its image and (possibly empty) caption row, which left half a gap under an image without a caption.
+   The negative margin takes that padding back under the last row unless the gallery's own caption follows. */
 .fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) {
 	--fbhi-gallery-cols: 2;
 	display: grid;
 	grid-template-columns: repeat(var(--fbhi-gallery-cols), minmax(0, 1fr));
+	row-gap: 0;
 	align-items: start;
 }
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption):not(:has(> .blocks-gallery-caption)) { margin-bottom: calc(-1 * var(--fbhi-gallery-gap)); }
 .fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption):not(:has(> figure:nth-of-type(2))),
 .fbhi-guide__content .wp-block-gallery.has-nested-images.columns-1:has(figure figcaption) { --fbhi-gallery-cols: 1; }
 @media (min-width: 600px) {
@@ -382,6 +393,7 @@
 	align-self: stretch;
 	width: auto !important;
 	margin: 0;
+	padding-bottom: var(--fbhi-gallery-gap);
 }
 /* A lone image in the last row fills the row, as in core's layout (two columns on phones, default
    three from 600px; other column counts leave it in its column). */
@@ -393,6 +405,8 @@
 	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-3:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(3n+1),
 	.fbhi-guide__content .wp-block-gallery.has-nested-images.columns-2:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
 }
+/* The gallery's own caption (one text for all its images) spans the full width below the grid, as in core's layout. */
+.fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) > .blocks-gallery-caption { grid-column: 1 / -1; }
 .fbhi-guide__content .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { width: 100%; }
 /* Cropped: the grid stretches each image to the row's height (align-self, not height: 100%, so print's
    img { height: auto !important } can't undo it). */

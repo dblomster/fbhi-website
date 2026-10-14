@@ -128,8 +128,7 @@
 /* ---------- figures, files, tables, quotes, separators ---------- */
 .editor-styles-wrapper .wp-block-image img { max-width: 100%; height: auto; }
 .editor-styles-wrapper figcaption { font-size: 14px; color: var(--fbhi-guide-muted, #4a4a4a); margin-top: .5em; margin-bottom: 0; text-align: left; }
-/* Image corners, "With shadow" and gallery captions below the image, as in guides.css. (The frontend's
-   caption grid that keeps gallery images level is not mirrored here.) */
+/* Image corners, "With shadow" and gallery captions below the image, as in guides.css. */
 .editor-styles-wrapper .wp-block-image img { border-radius: 5px; }
 .editor-styles-wrapper .wp-block-image.is-style-rounded img { border-radius: 9999px; }
 .editor-styles-wrapper .wp-block-image.is-style-fbhi-shadow img {
@@ -150,6 +149,50 @@
 	text-shadow: none;
 }
 .editor-styles-wrapper .wp-block-gallery.has-nested-images figure.wp-block-image:has(figcaption)::before { content: none; }
+/* Gallery caption .5em under whatever is above it; --fbhi-gallery-gap is registered in guides.css (loaded here too). */
+.editor-styles-wrapper .wp-block-gallery.has-nested-images { --fbhi-gallery-gap: var(--wp--style--unstable-gallery-gap, .5em); }
+.editor-styles-wrapper .wp-block-gallery > .blocks-gallery-caption { margin-top: calc(.5em - var(--fbhi-gallery-gap)); text-align: left; }
+/* Galleries with image captions: the frontend's grid (image row + caption row per figure), so images stay
+   level here too. Copied from guides.css. */
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption) {
+	--fbhi-gallery-cols: 2;
+	display: grid;
+	grid-template-columns: repeat(var(--fbhi-gallery-cols), minmax(0, 1fr));
+	row-gap: 0;
+	align-items: start;
+}
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption):not(:has(> .blocks-gallery-caption)) { margin-bottom: calc(-1 * var(--fbhi-gallery-gap)); }
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption):not(:has(> figure:nth-of-type(2))),
+.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-1:has(figure figcaption) { --fbhi-gallery-cols: 1; }
+@media (min-width: 600px) {
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-default:has(figure figcaption):has(> figure:nth-of-type(3)),
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-3:has(figure figcaption) { --fbhi-gallery-cols: 3; }
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-4:has(figure figcaption) { --fbhi-gallery-cols: 4; }
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-5:has(figure figcaption) { --fbhi-gallery-cols: 5; }
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-6:has(figure figcaption) { --fbhi-gallery-cols: 6; }
+}
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) {
+	display: grid;
+	grid-row: span 2;
+	grid-template-rows: subgrid;
+	grid-template-columns: minmax(0, 1fr);
+	row-gap: 0;
+	align-self: stretch;
+	width: auto !important;
+	margin: 0;
+	padding-bottom: var(--fbhi-gallery-gap);
+}
+@media (max-width: 599px) {
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images:not(.columns-1):has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 600px) {
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-default:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(3n+1),
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-3:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(3n+1),
+	.editor-styles-wrapper .wp-block-gallery.has-nested-images.columns-2:has(figure figcaption) > figure.wp-block-image:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+}
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption) > .blocks-gallery-caption { grid-column: 1 / -1; }
+.editor-styles-wrapper .wp-block-gallery.has-nested-images:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { width: 100%; }
+.editor-styles-wrapper .wp-block-gallery.has-nested-images.is-cropped:has(figure figcaption) figure.wp-block-image:not(#individual-image) > img { align-self: stretch; height: auto; min-height: 0; object-fit: cover; }
 .editor-styles-wrapper .wp-block-file {
 	font-size: 1em;
 	display: flex;
