@@ -188,8 +188,14 @@
 	line-height: 1.6;
 	color: var(--fbhi-guide-text);
 }
-.fbhi-guide__content > * { margin-top: 0; margin-bottom: 0; }
-.fbhi-guide__content > * + * { margin-top: 1.2em; }
+/* The top-level layout rules below also apply inside a Section (group style "fbhi-section", the content
+   of a chapter set off in the chapter colour): each one lists the section's content beside the top level.
+   :where() keeps both at the same specificity, so they behave the same against every other rule. Salient
+   (no theme.json) wraps group content in .wp-block-group__inner-container, hence both forms. */
+.fbhi-guide__content > *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * { margin-top: 0; margin-bottom: 0; }
+.fbhi-guide__content > * + *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + * { margin-top: 1.2em; }
 /* Headings: sizes apply at any depth (so a heading inside a group never falls back to Salient's
    site-wide sizes, e.g. a 52px H2); the extra space above applies to top-level headings only.
    Only H2 carries a colour. The index cards' own headings (.fbhi-guide-*) are left alone. */
@@ -215,14 +221,22 @@
 .container-wrap .fbhi-guide__content h5:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h5-size); line-height: 1.4; }
 .fbhi-guide__content h6:not([class*="fbhi-guide-"]),
 .container-wrap .fbhi-guide__content h6:not([class*="fbhi-guide-"]) { font-size: var(--fbhi-guide-h6-size); line-height: 1.4; }
-.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { margin-top: 2em; }
-.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { margin-top: 1.6em; }
-.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4 { margin-top: 1.4em; }
+.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h2,
+.container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h2 { margin-top: 2em; }
+.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h3,
+.container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h3 { margin-top: 1.6em; }
+.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h4,
+.container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h4 { margin-top: 1.4em; }
 .fbhi-guide__content :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
 /* A subheading straight after a heading (H2 → H3) stays close to it, so the first heading
    reads as part of what follows rather than floating between the blocks above and below. */
 .fbhi-guide__content > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6),
-.container-wrap .fbhi-guide__content > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6) { margin-top: .6em; }
+.container-wrap .fbhi-guide__content > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6),
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6),
+.container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5) + :is(h3, h4, h5, h6) { margin-top: .6em; }
 /* Nested flow containers (columns, plain groups) get the same rhythm as the top level;
    without this, paragraphs in a column sit flush against each other. */
 .fbhi-guide__content .wp-block-column > *,
@@ -234,6 +248,16 @@
 .fbhi-guide__content .wp-block-column > * + :is(ul, ol),
 .fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + :is(ul, ol),
 .fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + :is(ul, ol) { margin-top: .7em; }
+/* Headings get the top level's extra space above (a subheading straight after a heading stays close, next rule). */
+.fbhi-guide__content .wp-block-column > * + h2,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + h2,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + h2 { margin-top: 2em; }
+.fbhi-guide__content .wp-block-column > * + h3,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + h3,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + h3 { margin-top: 1.6em; }
+.fbhi-guide__content .wp-block-column > * + h4,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > * + h4,
+.fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > * + h4 { margin-top: 1.4em; }
 .fbhi-guide__content .wp-block-column > :is(h2, h3, h4, h5, h6) + *,
 .fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > :is(h2, h3, h4, h5, h6) + *,
 .fbhi-guide__content .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6) + * { margin-top: .6em; }
@@ -243,8 +267,8 @@
 	list-style: disc;
 }
 /* A list usually continues the paragraph before it: tighter than the 1.2em block rhythm. */
-.fbhi-guide__content > * + ul,
-.fbhi-guide__content > * + ol { margin-top: .7em; }
+.fbhi-guide__content > * + :is(ul, ol),
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + :is(ul, ol) { margin-top: .7em; }
 .fbhi-guide__content ol { list-style: decimal; }
 .fbhi-guide__content li { margin-bottom: .4em; }
 .fbhi-guide__content ol li::marker { font-weight: 700; }
@@ -257,29 +281,64 @@
 .fbhi-guide__content > * + .wp-block-file,
 .fbhi-guide__content > .wp-block-file + *,
 .fbhi-guide__content > * + .wp-block-media-text,
-.fbhi-guide__content > .wp-block-media-text + * { margin-top: 1.8em; }
-.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + figure { margin-top: .8em; }
+.fbhi-guide__content > .wp-block-media-text + *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + figure,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > figure + *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + .wp-block-file,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-file + *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + .wp-block-media-text,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-media-text + * { margin-top: 1.8em; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + figure,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + figure { margin-top: .8em; }
 /* Images aligned left/right. Salient has no theme.json, so WP wraps them as div.wp-block-image >
    figure.alignright; the wrapper has no height and the figure floats. Air on the text side, the image
    lines up with the paragraph beside it, and that paragraph keeps the normal block rhythm. */
-.fbhi-guide__content > .wp-block-image > .alignright { float: right; margin: 0 0 1.6em 1.6em; }
-.fbhi-guide__content > .wp-block-image > .alignleft { float: left; margin: 0 1.6em 1.6em 0; }
-.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: .6em; }
+.fbhi-guide__content > .wp-block-image > .alignright,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image > .alignright { float: right; margin: 0 0 1.6em 1.6em; }
+.fbhi-guide__content > .wp-block-image > .alignleft,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image > .alignleft { float: left; margin: 0 1.6em 1.6em 0; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + *,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: .6em; }
 /* Headings, boxed blocks and other figures always start below a floated image, never beside it; the
    content area itself ends below the last one. A heading pushed below an image gets the image's bottom
    margin (1.6em, as on the text side) as its space above. */
-.fbhi-guide__content > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block) { clear: both; }
-.fbhi-guide__content::after { content: ""; display: table; clear: both; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block),
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons) { clear: both; }
+.fbhi-guide__content::after,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container)::after { content: ""; display: table; clear: both; }
 /* Phones: no room to flow text beside an image, so it sits in the column like any other figure and fills
    its width (the width set in the editor is for the desktop layout beside the text). !important: WP puts
    that width inline on the img; the aspect ratio is kept. */
 @media (max-width: 600px) {
-	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { float: none; width: 100%; margin: 0; }
-	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) img { width: 100% !important; height: auto !important; }
+	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright),
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image > :is(.alignleft, .alignright) { float: none; width: 100%; margin: 0; }
+	.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) img,
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image > :is(.alignleft, .alignright) img { width: 100% !important; height: auto !important; }
 	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)),
-	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
-	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) { margin-top: .8em; }
-	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
+	.fbhi-guide__content > .wp-block-image:has(> :is(.alignleft, .alignright)) + *,
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image:has(> :is(.alignleft, .alignright)),
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
+	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)),
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) { margin-top: .8em; }
+	.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + *,
+	.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: 1.8em; }
+}
+/* Aligned images in boxes (info box, callout, checklist): the same air on the text side, and headings and other
+   blocks start below them, so nothing is squeezed beside the image. Boxes keep their own tighter rhythm. */
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > .wp-block-image > .alignright,
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > .wp-block-image > .alignright { float: right; margin: 0 0 1.6em 1.6em; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > .wp-block-image > .alignleft,
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > .wp-block-image > .alignleft { float: left; margin: 0 1.6em 1.6em 0; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons),
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > :is(h2, h3, h4, h5, h6, hr, figure, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-file, .wp-block-quote, .wp-block-buttons) { clear: both; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + *,
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: .6em; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist)::after { content: ""; display: table; clear: both; }
+@media (max-width: 600px) {
+	.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + *,
+	.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > :is(h2, h3, h4, h5, h6) + .wp-block-image:has(> :is(.alignleft, .alignright)) + * { margin-top: .8em; }
+	.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) .wp-block-image > :is(.alignleft, .alignright) { float: none; width: 100%; margin: 0; }
+	.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) .wp-block-image > :is(.alignleft, .alignright) img { width: 100% !important; height: auto !important; }
 }
 /* Links to PDF files carry a small document icon after the text. */
 .fbhi-guide__content a[href$=".pdf" i]:not(.wp-block-file__button)::after {
@@ -427,6 +486,15 @@
 	max-width: 120px;
 	margin-left: 0;
 }
+/* "Wide Line" spans the text column. A colour picked in the editor (core sets it as both text and background
+   colour) colours the line; the background itself stays off, core would add it as a second line below.
+   "Dots" also gets the full width: core centres its three spaced dots, which 120px cut down to two. */
+.fbhi-guide__content .wp-block-separator:is(.is-style-wide, .is-style-dots) { max-width: none; }
+.fbhi-guide__content .wp-block-separator:is(.has-text-color, .has-background):not(.is-style-dots) {
+	border-top-color: currentColor;
+	background: none;
+	height: 0;
+}
 /* Media & Text: a grey card with the image flush against one edge and the text beside it
    (core supplies the two-column grid and stacks it on small screens). */
 .fbhi-guide__content .wp-block-media-text {
@@ -482,8 +550,25 @@
 	margin-bottom: 2em;
 	break-inside: avoid;
 }
+/* Section: a longer part of a chapter set off in the chapter colour. Unlike the boxes, its content keeps the
+   page's own layout (heading sizes and spacing, lists, figures, aligned images): the top-level rules above
+   also list the section's content. On paper it may break across pages (guides-print.css). */
+.fbhi-guide__content .wp-block-group.is-style-fbhi-section {
+	padding: 28px 32px;
+	border-radius: 4px;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	background: var(--fbhi-guide-tint);
+}
+/* The section's first block starts at the top of the box, a heading too. */
+.fbhi-guide__content .wp-block-group.is-style-fbhi-section > :first-child,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-section > .wp-block-group__inner-container > :first-child { margin-top: 0; }
+@media (max-width: 600px) {
+	.fbhi-guide__content .wp-block-group.is-style-fbhi-section { padding: 22px 20px; }
+}
 /* A box introduced by a heading sits close under it, like a paragraph would. */
-.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
+.fbhi-guide__content > :is(h2, h3, h4, h5, h6) + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section),
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6) + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox {
 	background: var(--fbhi-guide-grey);
 }

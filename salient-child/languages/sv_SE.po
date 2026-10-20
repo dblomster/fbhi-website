@@ -111,6 +111,9 @@ msgstr "Markerad ruta (avsnittets färg)"
 msgid "Checklist"
 msgstr "Checklista"
 
+msgid "Section (chapter colour)"
+msgstr "Sektion (avsnittets färg)"
+
 msgid "Print page break"
 msgstr "Sidbrytning vid utskrift"
 

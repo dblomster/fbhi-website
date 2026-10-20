@@ -61,9 +61,12 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 	--fbhi-guide-box-heading-size: 13pt;
 }
 .fbhi-guide__content h2, .container-wrap .fbhi-guide__content h2 { color: #000 !important; }
-.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2 { margin-top: 18pt; }
-.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3 { margin-top: 14pt; }
-.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4 { margin-top: 12pt; }
+.fbhi-guide__content > h2, .container-wrap .fbhi-guide__content > h2,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h2, .container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h2 { margin-top: 18pt; }
+.fbhi-guide__content > h3, .container-wrap .fbhi-guide__content > h3,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h3, .container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h3 { margin-top: 14pt; }
+.fbhi-guide__content > h4, .container-wrap .fbhi-guide__content > h4,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h4, .container-wrap .fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > h4 { margin-top: 12pt; }
 .fbhi-guide__content a { color: #000; text-decoration: underline; }
 /* Editorial links get their URL printed after them; the index cards' own links (li > h3 > a) do not. */
 .fbhi-guide__content p a[href^="http"]::after,
@@ -101,7 +104,9 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .fbhi-guide__content .wp-block-columns > .wp-block-column:is([style*="flex-basis:66.66%"], [style*="flex-basis:66.67%"]) { flex: 0 1 66.67% !important; }
 .fbhi-guide__content .wp-block-columns > .wp-block-column[style*="flex-basis:75%"] { flex: 0 1 75% !important; }
 /* Left/right-aligned images take at most 45% of the narrower printed page, so the text beside them keeps room. */
-.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright) { max-width: 45%; }
+.fbhi-guide__content > .wp-block-image > :is(.alignleft, .alignright),
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-image > :is(.alignleft, .alignright),
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) .wp-block-image > :is(.alignleft, .alignright) { max-width: 45%; }
 
 /* Page-break behaviour */
 h1, h2, h3, h4 { break-after: avoid; break-inside: avoid; }
@@ -125,10 +130,12 @@ img { max-width: 100% !important; height: auto !important; }
 	page-break-before: always;
 }
 
-/* Boxes: keep a visible outline without heavy fills. */
+/* Boxes and sections: keep a visible outline without heavy fills. A section is not kept whole (it is usually
+   longer than a page); it breaks across pages like the rest of the text. */
 .fbhi-guide__content .wp-block-group.is-style-fbhi-infobox,
 .fbhi-guide__content .wp-block-group.is-style-fbhi-callout,
-.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist {
+.fbhi-guide__content .wp-block-group.is-style-fbhi-checklist,
+.fbhi-guide__content .wp-block-group.is-style-fbhi-section {
 	background: none !important;
 	border: 1pt solid #888 !important;
 	padding: 8pt 12pt !important;

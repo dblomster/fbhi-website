@@ -152,6 +152,10 @@ final class Guide_Editor {
 			'name'  => 'fbhi-checklist',
 			'label' => __( 'Checklist', 'salient-child' ),
 		) );
+		register_block_style( 'core/group', array(
+			'name'  => 'fbhi-section',
+			'label' => __( 'Section (chapter colour)', 'salient-child' ),
+		) );
 		register_block_style( 'core/image', array(
 			'name'  => 'fbhi-shadow',
 			'label' => __( 'With shadow', 'salient-child' ),

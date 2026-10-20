@@ -127,12 +127,14 @@
 		}
 		return accent ? 'color-mix(in srgb, ' + accent + ' 30%, white)' : '';
 	}
+	/* The canvas iframe loads after the editor's data, and is rebuilt e.g. when switching the preview
+	   device, so the colour is applied per canvas: nothing until the iframe's wrapper exists. */
 	function canvasRoot() {
 		var frame = document.querySelector( 'iframe[name="editor-canvas"]' );
-		var doc = frame && frame.contentDocument ? frame.contentDocument : document;
-		return doc.querySelector( '.editor-styles-wrapper' ) || doc.body;
+		var doc = frame ? frame.contentDocument : document;
+		return doc ? doc.querySelector( '.editor-styles-wrapper' ) : null;
 	}
-	var lastAccent;
+	var lastAccent, lastRoot;
 	wp.data.subscribe( function () {
 		var editor = wp.data.select( 'core/editor' );
 		if ( ! editor || editor.getCurrentPostType() !== ( config.postType || 'guide' ) ) {
@@ -140,14 +142,12 @@
 		}
 		var meta = editor.getEditedPostAttribute( 'meta' ) || {};
 		var accent = meta[ metaAccent ] || '';
-		if ( accent === lastAccent ) {
+		var root = canvasRoot();
+		if ( ! root || ( accent === lastAccent && root === lastRoot ) ) {
 			return;
 		}
 		lastAccent = accent;
-		var root = canvasRoot();
-		if ( ! root ) {
-			return;
-		}
+		lastRoot = root;
 		if ( accent ) {
 			root.style.setProperty( '--fbhi-guide-accent', accent );
 			root.style.setProperty( '--fbhi-guide-tint', tintFor( accent ) );

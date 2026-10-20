@@ -46,28 +46,44 @@
 }
 
 /* ---------- block rhythm (top level) ---------- */
-.editor-styles-wrapper .is-root-container > .wp-block { margin-top: 0; margin-bottom: 0; }
-.editor-styles-wrapper .is-root-container > .wp-block + .wp-block { margin-top: 1.2em; }
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block { margin-top: 0; margin-bottom: 0; }
+.editor-styles-wrapper .is-root-container > .wp-block + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + .wp-block { margin-top: 1.2em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
 .editor-styles-wrapper .is-root-container > .wp-block + ul.wp-block,
-.editor-styles-wrapper .is-root-container > .wp-block + ol.wp-block { margin-top: .7em; }
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + ul.wp-block,
+.editor-styles-wrapper .is-root-container > .wp-block + ol.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + ol.wp-block { margin-top: .7em; }
 .editor-styles-wrapper .is-root-container > .wp-block + figure.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + figure.wp-block,
 .editor-styles-wrapper .is-root-container > figure.wp-block + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > figure.wp-block + .wp-block,
 .editor-styles-wrapper .is-root-container > .wp-block + .wp-block-file,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + .wp-block-file,
 .editor-styles-wrapper .is-root-container > .wp-block-file + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-file + .wp-block,
 .editor-styles-wrapper .is-root-container > .wp-block + .wp-block-media-text,
-.editor-styles-wrapper .is-root-container > .wp-block-media-text + .wp-block { margin-top: 1.8em; }
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + .wp-block-media-text,
+.editor-styles-wrapper .is-root-container > .wp-block-media-text + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-media-text + .wp-block { margin-top: 1.8em; }
 /* Extra air above headings (after the figure/file rules, which they override as on the frontend). */
-.editor-styles-wrapper .is-root-container > .wp-block + h2.wp-block { margin-top: 2em; }
-.editor-styles-wrapper .is-root-container > .wp-block + h3.wp-block { margin-top: 1.6em; }
-.editor-styles-wrapper .is-root-container > .wp-block + h4.wp-block { margin-top: 1.4em; }
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + figure.wp-block { margin-top: .8em; }
-.editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-infobox,
-.editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-callout,
-.editor-styles-wrapper .is-root-container > .wp-block-group.is-style-fbhi-checklist { margin-top: 2em; margin-bottom: 2em; }
+.editor-styles-wrapper .is-root-container > .wp-block + h2.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + h2.wp-block { margin-top: 2em; }
+.editor-styles-wrapper .is-root-container > .wp-block + h3.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + h3.wp-block { margin-top: 1.6em; }
+.editor-styles-wrapper .is-root-container > .wp-block + h4.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + h4.wp-block { margin-top: 1.4em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + figure.wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6).wp-block + figure.wp-block { margin-top: .8em; }
+.editor-styles-wrapper .is-root-container > .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section),
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: 2em; margin-bottom: 2em; }
 /* A subheading straight after a heading, and a box straight after a heading, sit close under it. */
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5).wp-block + :is(h3, h4, h5, h6).wp-block { margin-top: .6em; }
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5).wp-block + :is(h3, h4, h5, h6).wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5).wp-block + :is(h3, h4, h5, h6).wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section),
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6).wp-block + .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) { margin-top: .8em; }
 
 /* Nested flow containers (columns, plain groups): the same rhythm as the top level instead of
    the editor's default 28px paragraph margins, so the canvas matches the frontend. */
@@ -80,16 +96,40 @@
 .editor-styles-wrapper .wp-block-column > .wp-block + :is(ul, ol).wp-block,
 .editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + :is(ul, ol).wp-block,
 .editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + :is(ul, ol).wp-block { margin-top: .7em; }
+.editor-styles-wrapper .wp-block-column > .wp-block + h2.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + h2.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + h2.wp-block { margin-top: 2em; }
+.editor-styles-wrapper .wp-block-column > .wp-block + h3.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + h3.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + h3.wp-block { margin-top: 1.6em; }
+.editor-styles-wrapper .wp-block-column > .wp-block + h4.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block + h4.wp-block,
+.editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > .wp-block + h4.wp-block { margin-top: 1.4em; }
 .editor-styles-wrapper .wp-block-column > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
 .editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > :is(h2, h3, h4, h5, h6).wp-block + .wp-block,
 .editor-styles-wrapper .wp-block-group:not([class*="is-style-fbhi-"]) > .wp-block-group__inner-container > :is(h2, h3, h4, h5, h6).wp-block + .wp-block { margin-top: .6em; }
 
 /* Images aligned left/right (the editor wraps them in div[data-align]): air on the text side,
    top aligned with the paragraph beside them; headings and boxed blocks start below them. */
-.editor-styles-wrapper .is-root-container > [data-align="right"] > .wp-block-image { margin: 0 0 1.6em 1.6em; }
-.editor-styles-wrapper .is-root-container > [data-align="left"] > .wp-block-image { margin: 0 1.6em 1.6em 0; }
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block { margin-top: .6em; }
-.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block).wp-block { clear: both; }
+.editor-styles-wrapper .is-root-container > [data-align="right"] > .wp-block-image,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > [data-align="right"] > .wp-block-image { margin: 0 0 1.6em 1.6em; }
+.editor-styles-wrapper .is-root-container > [data-align="left"] > .wp-block-image,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > [data-align="left"] > .wp-block-image { margin: 0 1.6em 1.6em 0; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block { margin-top: .6em; }
+.editor-styles-wrapper .is-root-container > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons, .fbhi-guide-index-block).wp-block,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons).wp-block { clear: both; }
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container)::after { content: ""; display: table; clear: both; }
+/* Aligned images in boxes: the same air on the text side, and headings and other blocks start below them. */
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > [data-align="right"] > .wp-block-image,
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > [data-align="right"] > .wp-block-image { margin: 0 0 1.6em 1.6em; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > [data-align="left"] > .wp-block-image,
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > [data-align="left"] > .wp-block-image { margin: 0 1.6em 1.6em 0; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons).wp-block,
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > :is(h2, h3, h4, h5, h6, hr, .wp-block-group, .wp-block-media-text, .wp-block-columns, .wp-block-gallery, .wp-block-table, .wp-block-file, .wp-block-quote, .wp-block-buttons).wp-block { clear: both; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) :where(.wp-block-group__inner-container) > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block,
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist) > :is(h2, h3, h4, h5, h6).wp-block + [data-align] + .wp-block { margin-top: .6em; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist)::after { content: ""; display: table; clear: both; }
 
 /* ---------- headings, text, lists, links ---------- */
 .editor-styles-wrapper .wp-block-heading {
@@ -235,6 +275,13 @@
 	margin-left: 0;
 	opacity: 1;
 }
+/* Wide Line and a picked colour, as in guides.css. */
+.editor-styles-wrapper hr.wp-block-separator:is(.is-style-wide, .is-style-dots) { max-width: none; }
+.editor-styles-wrapper hr.wp-block-separator:is(.has-text-color, .has-background):not(.is-style-dots, .is-style-fbhi-pagebreak) {
+	border-top-color: currentColor;
+	background: none;
+	height: 0;
+}
 
 /* ---------- Media & Text: grey card, image flush left/right ---------- */
 .editor-styles-wrapper .wp-block-media-text {
@@ -285,6 +332,17 @@
 	font-size: var(--fbhi-guide-box-heading-size, 20px);
 	line-height: 1.3;
 	color: var(--fbhi-guide-navy, #213A6C);
+}
+/* Section: the boxes' padding and the chapter tint; its content follows the top-level rules above. */
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-section {
+	padding: 28px 32px;
+	border-radius: 4px;
+	background: var(--fbhi-guide-tint, #E6EEF1);
+}
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-section > .wp-block:first-child,
+.editor-styles-wrapper .wp-block-group.is-style-fbhi-section > .wp-block-group__inner-container > .wp-block:first-child { margin-top: 0; }
+@media (max-width: 600px) {
+	.editor-styles-wrapper .wp-block-group.is-style-fbhi-section { padding: 22px 20px; }
 }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist ol.wp-block-list { list-style: decimal; padding-left: 1.6em; }
 .editor-styles-wrapper .wp-block-group.is-style-fbhi-checklist li.wp-block { padding-left: .3em; margin-bottom: .6em; }

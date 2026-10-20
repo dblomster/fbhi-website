@@ -91,3 +91,38 @@ keeps `@property`, no published prod guide page had a gallery at the time). Repl
 (`incoming/`, not in git), Daniel edits and sends it. Galleries line up at the bottom only with "crop images" on (core
 default): without it, images keep their own aspect ratio, so the reply asks her to leave it on.
 
+
+## Section style, separators, headings in groups (2026-10-20, D37, after Annika's questions)
+
+Annika asked (1) why the separator styles Default and Wide Line look the same and why the colour does nothing, and (2)
+why headings in a "Group" don't get the spacing from row 1. Her group on prod (15377, "Utforma och genomföra", bottom)
+is a **Callout** holding a whole section (H2, six H3s, nine H4s, a right-aligned image, a gallery, lists: 56 blocks).
+Callout is built for short notes (tight 0.8em rhythm, H3 as dark-blue box title, kept whole in print), so the headings
+sat 16/15px under the text above and 10px over the text below, and the heading after the image was squeezed beside it.
+Decided with Daniel: a new group style for long sections instead of stretching Callout; Callout stays for short notes.
+
+| # | Change | Files |
+|---|---|---|
+| 19 | **New group style "Section (chapter colour)" / "Sektion (avsnittets färg)"** (`is-style-fbhi-section`): Callout's background (chapter tint), padding and 2em margins (22px 20px padding on ≤600px). Its content follows the **top-level rules** (heading sizes and colours, space above/below headings, lists, figures, aligned images incl. clearing and the phone layout): every top-level rule lists the section's content beside `.fbhi-guide__content`, using `:where()` so both have the same specificity. The first block starts at the top of the box. | `class-guide-editor.php` (`register_block_styles`), `guides.css`, `guides-editor.css`, translation via `make-translations.py` |
+| 20 | Section in **print**: outline like the boxes, no tint, **not** kept whole (breaks across pages like text); headings and the 45% float limit as on the top level | `guides-print.css` |
+| 21 | **Plain groups and columns**: headings get the top level's space above (H2 2em, H3 1.6em, H4 1.4em); a subheading straight after a heading stays 0.6em | `guides.css`, `guides-editor.css` ("Nested flow containers") |
+| 22 | **Aligned images in boxes** (info box, callout, checklist): same air on the text side as on the page, top level with the paragraph after a heading, headings and other blocks start below the image, stacked on phones; print ≤45%. Boxes keep their own rhythm. | `guides.css`, `guides-editor.css`, `guides-print.css` |
+| 23 | **Separators**: Default stays the short 120px line; **Wide Line** spans the text column; a **picked colour** colours the line (core stores it as text + background colour; the background stays off). **Dots** gets the full width: core centres three spaced dots, which 120px cut down to two (the "funny" look). | `guides.css`, `guides-editor.css` |
+| 24 | **Editor: chapter colour in the canvas** (bug fix): the colour was applied once, before the editor's canvas iframe existed, so boxes in the editor always showed the default tint (#E6EEF1) instead of the chapter's. Now applied per canvas (also after the preview device switch rebuilds it). | `guides-editor.js` |
+
+Not changed (seen while testing): the editor's own phone preview keeps desktop heading sizes and floats aligned images
+(page-wide, not specific to Section; the ≤999px / ≤600px rules live on the frontend only). Sub-pages that inherit their
+chapter's colour still show the default tint in the editor (the editor reads the page's own colour only).
+
+Demo on dev 13939, after Test 10: paragraph `fbhi-section-demo` ("Tillfällig testyta (2026-10-20)"), Test 11 (Annika's
+group as Callout, copied from prod), Test 12 (the same as Section), Test 13 (short Callout with a right-aligned image),
+Test 14 (headings in a plain group and in columns), Test 15 (separators). Dev only, never prod.
+
+Verified 2026-10-20 on dev (frontend 1400px and 390px phone emulation, editor desktop + editor phone preview,
+print-to-PDF via headless Chrome rendered with pdf.js): Section H3 35px above / 10px below and H4 27/10 (phone 32/10 and
+25/10), identical to the top level; the editor measures the same to the pixel; Callout unchanged (16/10, dark-blue H3);
+images in boxes level with the paragraph, headings below them; Wide Line 780px (phone 320px), colour on the line; all
+blocks valid in the editor; print: Section breaks across pages with its outline, separators print.
+
+**Prod plan:** deploy, purge Nginx, then switch Annika's group on 15377 from Callout to Section (Daniel's go, one
+style change), check the page, tell Annika.
