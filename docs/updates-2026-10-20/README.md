@@ -58,3 +58,15 @@ Main (en) 21 / Main (swedish) 25, `guide` and `network-project` translatable; re
 Captures: `~/fbhi-baselines/{dev,prod}-baseline-2026-10-20/` (urls.txt, html, html-after; prod also screens,
 screens-after). Dev regression: 8 pages 200, WPML fingerprint identical, calendar clean for visitors, language
 switcher SV/EN correct; logged-in console shows "AIOSEO translations couldn't be loaded" (admin bar only).
+
+## Afterwards (2026-10-20)
+
+- WPML 5 Settings shows "Automatically translate content when the Translation Editor opens" as enabled. Not stored in
+  the site's options (searched all WPML options), so probably held in WPML's ATE account; unknown whether it was on
+  before. No cost as things stand: `WPML(TM/Account::credits)` = balance 0, never deposited or spent (188 old ATE
+  jobs, 0 credits), no subscription, pay-as-you-go off; "Translate Everything" off. It would start spending only if
+  pay-as-you-go/credits were set up, e.g. via the new dashboard notice "Your automatic translation pricing has been
+  upgraded … Finish the recommended setup" — leave that alone unless paid machine translation is wanted. Advised
+  Daniel to switch the setting off.
+- Reply to Annika (Section style, separators) sent by Daniel.
+- Daniel disabled and deactivated Novamira on prod afterwards.

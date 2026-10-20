@@ -126,5 +126,5 @@ blocks valid in the editor; print: Section breaks across pages with its outline,
 
 **Status: on dev and prod since 2026-10-20** (commit 303978a, Nginx purged). Annika's group on prod 15377 switched from
 Callout to Section the same day (one class change in the block markup, revision kept); checked on prod: H3 35/10, H4
-27/10, image level with the paragraph, heading below the image, her Wide Line 780px, chapter tint kept. Reply drafted
-2026-10-20 (`incoming/`, not in git); Daniel edits and sends it.
+27/10, image level with the paragraph, heading below the image, her Wide Line 780px, chapter tint kept. Reply sent to
+Annika by Daniel 2026-10-20 (draft in `incoming/`, not in git).
