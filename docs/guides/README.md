@@ -81,7 +81,7 @@ demo "Test 10" on 13939 (never prod). On dev and prod.
 **Update 2026-10-20**: new group style **Section** ("Sektion (avsnittets färg)") for long parts of a chapter in the
 chapter colour, with the page's own layout inside; separators fixed (Wide Line, colour, Dots); headings in plain
 groups/columns get the page's space above; editor canvas shows the chapter colour (D37, change log rows 19–24 in
-[spacing-and-images.md](spacing-and-images.md)). On dev; prod after Daniel's go, then Annika's group is switched to Section.
+[spacing-and-images.md](spacing-and-images.md)). On dev and prod since 2026-10-20; Annika's group switched to Section, reply drafted in `incoming/`.
 
 ## Outstanding (parked, revisit later)
 

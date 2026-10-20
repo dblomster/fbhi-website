@@ -124,5 +124,7 @@ print-to-PDF via headless Chrome rendered with pdf.js): Section H3 35px above / 
 images in boxes level with the paragraph, headings below them; Wide Line 780px (phone 320px), colour on the line; all
 blocks valid in the editor; print: Section breaks across pages with its outline, separators print.
 
-**Prod plan:** deploy, purge Nginx, then switch Annika's group on 15377 from Callout to Section (Daniel's go, one
-style change), check the page, tell Annika.
+**Status: on dev and prod since 2026-10-20** (commit 303978a, Nginx purged). Annika's group on prod 15377 switched from
+Callout to Section the same day (one class change in the block markup, revision kept); checked on prod: H3 35/10, H4
+27/10, image level with the paragraph, heading below the image, her Wide Line 780px, chapter tint kept. Reply drafted
+2026-10-20 (`incoming/`, not in git); Daniel edits and sends it.
