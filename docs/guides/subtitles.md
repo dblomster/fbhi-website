@@ -6,6 +6,8 @@ guide start page, but not in the menu. She found no way to add such a field hers
 
 **Status: on dev and prod since 2026-10-26** (commit d1e4475). Prod titles are unchanged; splitting them (shorter
 title + subtitle field on 15376–15378) is Annika's content step. Dev test values: subtitles on 13902–13904.
+Reply to Annika (subtitles, and slugs: she changes them herself when the guide is finished, no redirects needed
+while password-protected) sent by Daniel 2026-10-26.
 
 ## Behaviour
 
