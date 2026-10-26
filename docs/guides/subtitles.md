@@ -4,8 +4,8 @@ Annika's request (2026-10-26): the chapter titles have become long ("Hur kommer 
 förutsättningar"). The second part should be a **subtitle** on the chapter page and on the chapter's card on the
 guide start page, but not in the menu. She found no way to add such a field herself.
 
-**Status: on dev since 2026-10-26, not on prod.** Prod titles are unchanged; splitting them (shorter title +
-subtitle field) is a content step for after the prod deploy.
+**Status: on dev and prod since 2026-10-26** (commit d1e4475). Prod titles are unchanged; splitting them (shorter
+title + subtitle field on 15376–15378) is Annika's content step. Dev test values: subtitles on 13902–13904.
 
 ## Behaviour
 

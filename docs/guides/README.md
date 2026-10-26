@@ -85,7 +85,8 @@ groups/columns get the page's space above; editor canvas shows the chapter colou
 
 **Update 2026-10-26**: **subtitles** (D38, Annika): new field "Underrubrik" in the Guidesida panel, shown under the
 chapter title and on the start page's cards, not in the menu; live in the editor's title band. Change log and revert
-notes: [subtitles.md](subtitles.md). **On dev only**; prod after Daniel's review.
+notes: [subtitles.md](subtitles.md). The editor's title band also shows the excerpt (intro) now. On dev and prod since 2026-10-26;
+Annika fills the fields herself (reply drafted).
 
 ## Outstanding (parked, revisit later)
 
