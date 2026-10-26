@@ -5,6 +5,7 @@
   <custom-fields>
     <custom-field action="copy">_fbhi_guide_accent</custom-field>
     <custom-field action="translate">_fbhi_guide_label</custom-field>
+    <custom-field action="translate">_fbhi_guide_subtitle</custom-field>
     <custom-field action="translate">_fbhi_guide_print_label</custom-field>
   </custom-fields>
 </wpml-config>

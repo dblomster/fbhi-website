@@ -49,6 +49,7 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 }
 .fbhi-guide-header__label { font-size: 9pt; color: #000; }
 .fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 24pt !important; color: #000 !important; }
+.fbhi-guide-header__subtitle { margin-top: 5pt; font-size: 15pt; color: #000; }
 .fbhi-guide-header__intro { font-size: 12pt; }
 /* Heading sizes: the web scale (guides.css variables, desktop) mapped onto the 11pt body text,
    i.e. the same ratios to body: H2 ×1.65, H3 ×1.29, box heading ×1.18, H4 ×1.12, H5 ×1, H6 ×0.88. */
@@ -145,6 +146,7 @@ img { max-width: 100% !important; height: auto !important; }
 /* Index cards on the root page. */
 .fbhi-guide-card { background: none !important; border: 1pt solid #888 !important; padding: 8pt 12pt !important; }
 .fbhi-guide-index__list { gap: 8pt; }
+.fbhi-guide-card__subtitle { font-size: 11pt; color: #000; }
 
 /* Last updated stays, small. */
 .fbhi-guide__updated { font-size: 9pt; margin-top: 18pt; border-top: 1pt solid #888; }

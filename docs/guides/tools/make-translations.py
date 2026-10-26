@@ -30,6 +30,9 @@ T = {
  'Contents':'Innehåll', 'Chapters':'Avsnitt', 'Read more':'Läs mer', 'Read more: %s':'Läs mer: %s',
  'Start':'Start', 'Guide navigation':'Guidens navigation', 'Guide pages':'Guidens sidor', 'Show contents':'Visa innehåll',
  'Previous':'Föregående', 'Next':'Nästa', 'Back to the guide':'Tillbaka till startsidan', 'Last updated:':'Senast uppdaterad:', 'Print':'Skriv ut', 'Text of the print button. Empty means the default.':'Utskriftsknappens text. Tom betyder standardtexten.',
+ 'Subtitle':'Underrubrik', 'Shown under the title on the page and on the index card, not in the menu.':'Visas under titeln på sidan och på innehållskortet, men inte i menyn.',
+ 'Subtitle shown under the title on the page and on the index card, not in the menu.':'Underrubrik som visas under titeln på sidan och på innehållskortet, men inte i menyn.',
+ 'Edit in the Guide page panel.':'Ändras i panelen Guidesida.', 'Edit via "Edit excerpt" in the sidebar.':'Ändras via ”Redigera utdrag” i sidopanelen.',
  'Print button text':'Text på utskriftsknappen', 'Leave empty for the default text.':'Lämna tomt för standardtexten.',
  'Guide page':'Guidesida', 'Accent colour':'Accentfärg', 'Shown above the title and on the index card, e.g. "Avsnitt 1".':'Visas ovanför titeln och på innehållskortet, t.ex. ”Avsnitt 1”.',
  'Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.':'Ärvs av undersidor till detta avsnitt. Lämna tomt för att ärva från överordnad sida.',
@@ -43,7 +46,7 @@ T = {
  'The guide start page is not published yet, so the whole guide is hidden from visitors.':'Guidens startsida är inte publicerad ännu, så hela guiden är dold för besökare.',
  'A parent page of this page is not published, so visitors cannot reach it.':'En överordnad sida är inte publicerad, så besökare kan inte nå den här sidan.',
 }
-JS1 = ['Guide page','Label','Print button text','Leave empty for the default text.','Shown above the title and on the index card, e.g. "Avsnitt 1".','Accent colour','Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.','Optional colour for the guide start page. Chapters set their own colour.']
+JS1 = ['Guide page','Label','Subtitle','Shown under the title on the page and on the index card, not in the menu.','Edit in the Guide page panel.','Edit via "Edit excerpt" in the sidebar.','Print button text','Leave empty for the default text.','Shown above the title and on the index card, e.g. "Avsnitt 1".','Accent colour','Inherited by sub-pages of this chapter. Leave empty to inherit from the parent.','Optional colour for the guide start page. Chapters set their own colour.']
 JS2 = ['Guide index','Heading','Leave empty for the default heading.','Guide index — generated automatically from the chapter pages.']
 os.makedirs(LANG, exist_ok=True)
 def q(s): return '"'+s.replace('\\','\\\\').replace('"','\\"').replace('\n','\\n')+'"'

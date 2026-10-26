@@ -83,6 +83,10 @@ chapter colour, with the page's own layout inside; separators fixed (Wide Line, 
 groups/columns get the page's space above; editor canvas shows the chapter colour (D37, change log rows 19–24 in
 [spacing-and-images.md](spacing-and-images.md)). On dev and prod since 2026-10-20; Annika's group switched to Section, reply sent to Annika the same day.
 
+**Update 2026-10-26**: **subtitles** (D38, Annika): new field "Underrubrik" in the Guidesida panel, shown under the
+chapter title and on the start page's cards, not in the menu; live in the editor's title band. Change log and revert
+notes: [subtitles.md](subtitles.md). **On dev only**; prod after Daniel's review.
+
 ## Outstanding (parked, revisit later)
 
 **Go-live (~2026-10-12)**: the items below plus the prod checks are collected in
@@ -127,6 +131,7 @@ answered along the way are logged at its bottom.
 
 | File | What it answers |
 |---|---|
+| [subtitles.md](subtitles.md) | Chapter subtitles (D38): behaviour, sizes, files and how to revert |
 | [heading-scale.md](heading-scale.md) | Heading sizes (web, phone, editor, print): current values, the values before 2026-10-07, why, and where to change them |
 | [go-live-checklist.md](go-live-checklist.md) | What to check (read-only on prod) before the FINGER guide is published, and editor questions answered so far |
 | [plan.md](plan.md) | *How* is it built: content model, file layout, each feature's mechanism, phases, QA list |

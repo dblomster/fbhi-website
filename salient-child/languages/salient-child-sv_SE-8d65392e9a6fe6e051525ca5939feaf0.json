@@ -1,5 +1,5 @@
 {
-"translation-revision-date": "2026-10-20 02:13+0000",
+"translation-revision-date": "2026-10-26 19:49+0000",
 "generator": "make-translations.py",
 "domain": "messages",
 "locale_data": {
@@ -14,6 +14,18 @@
 ],
 "Label": [
 "Etikett"
+],
+"Subtitle": [
+"Underrubrik"
+],
+"Shown under the title on the page and on the index card, not in the menu.": [
+"Visas under titeln på sidan och på innehållskortet, men inte i menyn."
+],
+"Edit in the Guide page panel.": [
+"Ändras i panelen Guidesida."
+],
+"Edit via \"Edit excerpt\" in the sidebar.": [
+"Ändras via ”Redigera utdrag” i sidopanelen."
 ],
 "Print button text": [
 "Text på utskriftsknappen"

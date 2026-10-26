@@ -2,8 +2,9 @@
  * FBHI Guides — block editor additions.
  *
  * Adds a "Guide page" document-settings panel with the chapter label, the
- * accent colour (FBHI palette swatches, custom colour still allowed) and the
- * print-button text.
+ * subtitle, the accent colour (FBHI palette swatches, custom colour still
+ * allowed) and the print-button text. The canvas mirrors the accent colour and
+ * shows the subtitle and the excerpt (intro) under the title, as on the frontend.
  * Hand-written (no build step): uses wp.element.createElement, no JSX.
  */
 ( function ( wp ) {
@@ -33,6 +34,7 @@
 
 	var metaAccent = config.metaAccent || '_fbhi_guide_accent';
 	var metaLabel = config.metaLabel || '_fbhi_guide_label';
+	var metaSubtitle = config.metaSubtitle || '_fbhi_guide_subtitle';
 	var metaPrintLabel = config.metaPrintLabel || '_fbhi_guide_print_label';
 
 	function GuidePanel() {
@@ -75,6 +77,16 @@
 				value: meta[ metaLabel ] || '',
 				onChange: function ( value ) {
 					setMeta( metaLabel, value );
+				},
+				__nextHasNoMarginBottom: true,
+				__next40pxDefaultSize: true,
+			} ),
+			el( TextControl, {
+				label: __( 'Subtitle', 'salient-child' ),
+				help: __( 'Shown under the title on the page and on the index card, not in the menu.', 'salient-child' ),
+				value: meta[ metaSubtitle ] || '',
+				onChange: function ( value ) {
+					setMeta( metaSubtitle, value );
 				},
 				__nextHasNoMarginBottom: true,
 				__next40pxDefaultSize: true,
@@ -134,6 +146,67 @@
 		var doc = frame ? frame.contentDocument : document;
 		return doc ? doc.querySelector( '.editor-styles-wrapper' ) : null;
 	}
+	/* Excerpt → paragraphs as wpautop makes them on the frontend: a blank line starts a new paragraph,
+	   a single line break stays a line break. Text only (any HTML in the excerpt is shown as its text). */
+	function excerptParagraphs( doc, excerpt ) {
+		var text = new DOMParser().parseFromString( excerpt, 'text/html' ).body.textContent || '';
+		return text.split( /\n\s*\n/ ).map( function ( para ) {
+			return para.trim();
+		} ).filter( Boolean ).map( function ( para ) {
+			var p = doc.createElement( 'p' );
+			para.split( '\n' ).forEach( function ( line, i ) {
+				if ( i ) {
+					p.appendChild( doc.createElement( 'br' ) );
+				}
+				p.appendChild( doc.createTextNode( line ) );
+			} );
+			return p;
+		} );
+	}
+	/* Subtitle and intro (the manual excerpt): a read-only block under the title, as in the frontend
+	   header. Rebuilt when either text changes, the title is re-rendered or the canvas rebuilt; removed
+	   when both are empty. */
+	function syncHeaderBand( root, subtitle, excerpt ) {
+		var title = root.querySelector( '.wp-block-post-title' );
+		var band = root.querySelector( '.fbhi-guide-editor-band' );
+		subtitle = String( subtitle || '' ).trim();
+		excerpt = String( excerpt || '' ).trim();
+		if ( ! title || ( ! subtitle && ! excerpt ) ) {
+			if ( band ) {
+				band.remove();
+			}
+			return;
+		}
+		var sig = subtitle + '\u0000' + excerpt;
+		if ( band && band.previousElementSibling === title && band.getAttribute( 'data-sig' ) === sig ) {
+			return;
+		}
+		if ( band ) {
+			band.remove();
+		}
+		var doc = title.ownerDocument;
+		band = doc.createElement( 'div' );
+		band.className = 'fbhi-guide-editor-band';
+		band.setAttribute( 'data-sig', sig );
+		if ( subtitle ) {
+			var sub = doc.createElement( 'p' );
+			sub.className = 'fbhi-guide-editor-subtitle';
+			sub.title = __( 'Edit in the Guide page panel.', 'salient-child' );
+			sub.textContent = subtitle;
+			band.appendChild( sub );
+		}
+		var paras = excerpt ? excerptParagraphs( doc, excerpt ) : [];
+		if ( paras.length ) {
+			var intro = doc.createElement( 'div' );
+			intro.className = 'fbhi-guide-editor-intro';
+			intro.title = __( 'Edit via "Edit excerpt" in the sidebar.', 'salient-child' );
+			paras.forEach( function ( p ) {
+				intro.appendChild( p );
+			} );
+			band.appendChild( intro );
+		}
+		title.insertAdjacentElement( 'afterend', band );
+	}
 	var lastAccent, lastRoot;
 	wp.data.subscribe( function () {
 		var editor = wp.data.select( 'core/editor' );
@@ -143,7 +216,11 @@
 		var meta = editor.getEditedPostAttribute( 'meta' ) || {};
 		var accent = meta[ metaAccent ] || '';
 		var root = canvasRoot();
-		if ( ! root || ( accent === lastAccent && root === lastRoot ) ) {
+		if ( ! root ) {
+			return;
+		}
+		syncHeaderBand( root, meta[ metaSubtitle ] || '', editor.getEditedPostAttribute( 'excerpt' ) || '' );
+		if ( accent === lastAccent && root === lastRoot ) {
 			return;
 		}
 		lastAccent = accent;

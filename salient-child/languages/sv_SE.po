@@ -216,6 +216,21 @@ msgstr "Skriv ut"
 msgid "Text of the print button. Empty means the default."
 msgstr "Utskriftsknappens text. Tom betyder standardtexten."
 
+msgid "Subtitle"
+msgstr "Underrubrik"
+
+msgid "Shown under the title on the page and on the index card, not in the menu."
+msgstr "Visas under titeln på sidan och på innehållskortet, men inte i menyn."
+
+msgid "Subtitle shown under the title on the page and on the index card, not in the menu."
+msgstr "Underrubrik som visas under titeln på sidan och på innehållskortet, men inte i menyn."
+
+msgid "Edit in the Guide page panel."
+msgstr "Ändras i panelen Guidesida."
+
+msgid "Edit via \"Edit excerpt\" in the sidebar."
+msgstr "Ändras via ”Redigera utdrag” i sidopanelen."
+
 msgid "Print button text"
 msgstr "Text på utskriftsknappen"
 

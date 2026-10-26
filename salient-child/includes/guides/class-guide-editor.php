@@ -1,7 +1,7 @@
 <?php
 /**
  * Editor experience for guides: curated block list, editor assets for the
- * "Guide page" settings panel (label, accent, print-button text), and admin list columns.
+ * "Guide page" settings panel (label, subtitle, accent, print-button text), and admin list columns.
  *
  * Block styles and patterns (phase 4) are also registered here.
  *
@@ -115,6 +115,7 @@ final class Guide_Editor {
 				'postType'  => Guide_Post_Type::POST_TYPE,
 				'metaAccent'=> Guide_Meta::ACCENT,
 				'metaLabel' => Guide_Meta::LABEL,
+				'metaSubtitle'      => Guide_Meta::SUBTITLE,
 				'metaPrintLabel'    => Guide_Meta::PRINT_LABEL,
 				'printLabelDefault' => Guide_Meta::default_print_label(),
 				'palette'   => $palette,

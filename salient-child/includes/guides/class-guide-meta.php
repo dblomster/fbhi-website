@@ -1,6 +1,6 @@
 <?php
 /**
- * Guide post meta: accent colour, chapter label and print-button label, plus the FBHI palette
+ * Guide post meta: accent colour, chapter label, subtitle and print-button label, plus the FBHI palette
  * and accent inheritance (chapter → nearest ancestor → guide root).
  *
  * Keys are underscore-prefixed so they stay out of the generic Custom Fields
@@ -19,6 +19,7 @@ final class Guide_Meta {
 
 	public const ACCENT = '_fbhi_guide_accent';
 	public const LABEL  = '_fbhi_guide_label';
+	public const SUBTITLE = '_fbhi_guide_subtitle';
 	public const PRINT_LABEL = '_fbhi_guide_print_label';
 
 	public static function register(): void {
@@ -51,6 +52,21 @@ final class Guide_Meta {
 			array(
 				'type'              => 'string',
 				'description'       => __( 'Chapter designation shown above the title, e.g. "Avsnitt 1".', 'salient-child' ),
+				'single'            => true,
+				'default'           => '',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => $auth,
+				'revisions_enabled' => false,
+			)
+		);
+
+		register_post_meta(
+			Guide_Post_Type::POST_TYPE,
+			self::SUBTITLE,
+			array(
+				'type'              => 'string',
+				'description'       => __( 'Subtitle shown under the title on the page and on the index card, not in the menu.', 'salient-child' ),
 				'single'            => true,
 				'default'           => '',
 				'show_in_rest'      => true,
@@ -110,6 +126,11 @@ final class Guide_Meta {
 
 	public static function label( int $post_id ): string {
 		return (string) get_post_meta( $post_id, self::LABEL, true );
+	}
+
+	/** Subtitle of a page (trimmed), empty when none. No inheritance. */
+	public static function subtitle( int $post_id ): string {
+		return trim( (string) get_post_meta( $post_id, self::SUBTITLE, true ) );
 	}
 
 	/** Print-button text for a page: its own value, else the default. No inheritance. */

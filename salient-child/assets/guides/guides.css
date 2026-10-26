@@ -96,12 +96,24 @@
 	text-transform: none;
 	color: var(--fbhi-guide-navy);
 }
+/* Subtitle (meta _fbhi_guide_subtitle): the second part of a long chapter title, shown here and on the
+   index card but not in the sidebar, prev/next or the browser tab. Black like the content H3 (same size),
+   a step lighter (600). Spacing as on the index cards: title → subtitle → intro look evenly spaced
+   (about 25px from baseline to the next line's cap height), so the intro moves up when a subtitle is set. */
+.fbhi-guide-header__subtitle {
+	margin: 10px 0 0;
+	font-size: 22px;
+	line-height: 1.35;
+	font-weight: 600;
+	color: var(--fbhi-guide-text);
+}
 .fbhi-guide-header__intro {
 	margin-top: 18px;
 	font-size: 18px;
 	line-height: 1.5;
 	color: var(--fbhi-guide-text);
 }
+.fbhi-guide-header__subtitle ~ .fbhi-guide-header__intro { margin-top: 12px; }
 .fbhi-guide-header__intro p { margin: 0; }
 .fbhi-guide-header__intro p + p { margin-top: .8em; }
 
@@ -113,11 +125,13 @@
 	grid-template-areas:
 		"label print"
 		"title print"
+		"subtitle print"
 		"intro intro";
 	column-gap: 20px;
 }
 .fbhi-guide-header__label { grid-area: label; }
 .fbhi-guide-header__title { grid-area: title; }
+.fbhi-guide-header__subtitle { grid-area: subtitle; }
 .fbhi-guide-header__intro { grid-area: intro; }
 .fbhi-guide-header__print {
 	grid-area: print;
@@ -682,6 +696,14 @@
 }
 .fbhi-guide-card__title a { color: inherit; text-decoration: none; }
 .fbhi-guide-card__title a:hover { text-decoration: underline; }
+.fbhi-guide-card__subtitle {
+	margin: 4px 0 0;
+	font-size: 18px;
+	line-height: 1.35;
+	font-weight: 600;
+	color: var(--fbhi-guide-text);
+}
+.fbhi-guide-card__subtitle + .fbhi-guide-card__intro { margin-top: 12px; }
 .fbhi-guide-card__intro { margin-top: 10px; font-size: 16px; line-height: 1.55; }
 .fbhi-guide-card__intro p { margin: 0; }
 .fbhi-guide-card__more { margin-top: 16px; background: #fff; }
@@ -849,6 +871,7 @@
 	.container-wrap .fbhi-guide-nav__list { margin-top: 8px; padding: 12px; border: 1px solid var(--fbhi-guide-grey-dark); border-radius: 4px; }
 	.fbhi-guide-header { padding: 24px 22px 22px; margin-bottom: 28px; }
 	.fbhi-guide-header__title, .container-wrap .fbhi-guide-header__title { font-size: 28px; }
+	.fbhi-guide-header__subtitle { font-size: 20px; }
 	.fbhi-guide-header__intro { font-size: 16px; }
 	.fbhi-guide-header { column-gap: 12px; }
 	.fbhi-guide-header__print { width: 36px; height: 36px; margin: -2px -4px 0 0; }
@@ -858,6 +881,7 @@
 		grid-template-areas:
 			"label print"
 			"title title"
+			"subtitle subtitle"
 			"intro intro";
 	}
 	.fbhi-guide-header:has(.fbhi-guide-header__label) .fbhi-guide-header__label { align-self: center; margin-bottom: 0; }

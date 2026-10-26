@@ -25,6 +25,7 @@ $fbhi_idx_wrapper = $args['wrapper'] ?? '';
 	<ol class="fbhi-guide-index__list">
 		<?php foreach ( $fbhi_idx_chapters as $fbhi_card ) :
 			$fbhi_card_label = Guide_Meta::label( $fbhi_card->ID );
+			$fbhi_card_sub   = Guide_Meta::subtitle( $fbhi_card->ID );
 			$fbhi_card_intro = Guide_Frontend::intro( $fbhi_card );
 			?>
 			<li class="fbhi-guide-card" style="<?php echo esc_attr( Guide_Meta::inline_style( $fbhi_card->ID ) ); ?>">
@@ -34,6 +35,9 @@ $fbhi_idx_wrapper = $args['wrapper'] ?? '';
 				<h3 class="fbhi-guide-card__title">
 					<a href="<?php echo esc_url( get_permalink( $fbhi_card ) ); ?>"><?php echo esc_html( get_the_title( $fbhi_card ) ); ?></a><?php echo Guide_Frontend::status_badge_html( $fbhi_card ); // escaped inside. ?>
 				</h3>
+				<?php if ( $fbhi_card_sub ) : ?>
+					<p class="fbhi-guide-card__subtitle"><?php echo esc_html( $fbhi_card_sub ); ?></p>
+				<?php endif; ?>
 				<?php if ( $fbhi_card_intro ) : ?>
 					<div class="fbhi-guide-card__intro"><?php echo wpautop( $fbhi_card_intro ); ?></div>
 				<?php endif; ?>

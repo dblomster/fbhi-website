@@ -44,6 +44,37 @@
 	font-weight: 700;
 	color: var(--fbhi-guide-navy, #213A6C);
 }
+/* Subtitle and intro (manual excerpt): read-only copies placed under the title by guides-editor.js in one
+   block that continues the band, as in the frontend header (guides.css .fbhi-guide-header__subtitle /
+   __intro). Spacing uses padding so nothing collapses out of the band. */
+.editor-styles-wrapper .editor-visual-editor__post-title-wrapper:has(.fbhi-guide-editor-band) .wp-block-post-title {
+	padding-bottom: 0;
+	border-radius: 4px 4px 0 0;
+}
+.editor-styles-wrapper .editor-visual-editor__post-title-wrapper > .fbhi-guide-editor-band {
+	margin: 0;
+	padding: 0 40px 32px;
+	border-radius: 0 0 4px 4px;
+	background: var(--fbhi-guide-tint, #E6EEF1);
+	cursor: default;
+}
+.editor-styles-wrapper .fbhi-guide-editor-band .fbhi-guide-editor-subtitle {
+	margin: 0;
+	padding-top: 10px;
+	font-size: 22px;
+	line-height: 1.35;
+	font-weight: 600;
+	color: var(--fbhi-guide-text, #000);
+}
+.editor-styles-wrapper .fbhi-guide-editor-band .fbhi-guide-editor-intro {
+	padding-top: 18px;
+	font-size: 18px;
+	line-height: 1.5;
+	color: var(--fbhi-guide-text, #000);
+}
+.editor-styles-wrapper .fbhi-guide-editor-band .fbhi-guide-editor-subtitle + .fbhi-guide-editor-intro { padding-top: 12px; }
+.editor-styles-wrapper .fbhi-guide-editor-band .fbhi-guide-editor-intro p { margin: 0; }
+.editor-styles-wrapper .fbhi-guide-editor-band .fbhi-guide-editor-intro p + p { margin-top: .8em; }
 
 /* ---------- block rhythm (top level) ---------- */
 .editor-styles-wrapper .is-root-container > .wp-block,
