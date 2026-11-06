@@ -233,6 +233,16 @@ header .sf-menu ul.sub-menu li[class*="current-"] > a .menu-title-text {
   background-size: 100% 2px;
 }
 
+/* --------------------------------------------------------------------------
+   Complianz cookie banner — no list bullets on the link row
+   Salient's global `ul li { list-style: outside disc }` reaches the <li>s of
+   the banner's link lists (Complianz only resets the <ul>), so "Privacy policy"
+   and the two hidden placeholder links each got a stray bullet.
+   -------------------------------------------------------------------------- */
+.cmplz-cookiebanner .cmplz-links li {
+  list-style: none;
+}
+
 
 /* ==========================================================================
    2. CUSTOM FEATURES
