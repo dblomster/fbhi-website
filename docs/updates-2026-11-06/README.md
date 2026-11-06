@@ -137,3 +137,6 @@ Not done, for Daniel to decide:
 2. Cap guide revisions (e.g. a `wp_revisions_to_keep` filter for `guide` in the child theme) and/or prune old ones
    — fewer large objects per editor load. Content decision (Annika may use the revision history).
 3. Optional: MonsterInsights' 0.9 MB `monsterinsights_notifications` option.
+
+Reply to Annika (cause in plain terms, error page fixed, revision cap not mentioned) **sent by Daniel 2026-11-06**.
+Afterwards Daniel disabled Novamira on prod.
