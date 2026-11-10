@@ -275,7 +275,16 @@
 	background: var(--fbhi-guide-grey, #F3F4F6);
 	border-radius: 4px;
 }
-.editor-styles-wrapper .wp-block-file .wp-block-file__content-wrapper { flex: 1 1 auto; }
+/* The editor wraps name and button in one content wrapper (inline: the button sat right after the name); laid
+   out like the frontend, name left and button right. */
+.editor-styles-wrapper .wp-block-file .wp-block-file__content-wrapper {
+	flex: 1 1 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: .6em 1.2em;
+}
 .editor-styles-wrapper .wp-block-file .wp-block-file__button {
 	display: inline-block;
 	border: 2px solid var(--fbhi-guide-teal, #006885);
@@ -289,6 +298,19 @@
 	background: transparent;
 	text-decoration: none;
 }
+/* File blocks inside a box or section: plain rows close together, no lines (as guides.css). */
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file {
+	padding: .45em 0;
+	background: none;
+	border-radius: 0;
+}
+/* .wp-block twice: outranks the boxes' own ".wp-block + .wp-block" rhythm further down. */
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file.wp-block + .wp-block-file.wp-block { margin-top: 0; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file .wp-block-file__content-wrapper { flex-wrap: nowrap; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file .wp-block-file__content-wrapper > :not(.wp-block-file__button-richtext-wrapper) { flex: 1 1 auto; min-width: 0; }
+.editor-styles-wrapper .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file .wp-block-file__button-richtext-wrapper { flex: none; margin-left: 0; }
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block + .wp-block-file,
+.editor-styles-wrapper .is-root-container :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-file + .wp-block { margin-top: 1.2em; }
 .editor-styles-wrapper .wp-block-table table { width: 100%; border-collapse: collapse; }
 .editor-styles-wrapper .wp-block-table td,
 .editor-styles-wrapper .wp-block-table th { border: 1px solid var(--fbhi-guide-grey-dark, #D5D3D3); padding: .5em .75em; }

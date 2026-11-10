@@ -90,6 +90,8 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 }
 .fbhi-guide-card a::after { content: none !important; }
 .fbhi-guide__content .wp-block-file { border: 1pt solid #888; padding: 6pt 10pt; }
+/* Inside a box or section (already outlined): plain rows, no border per file. */
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file { border: 0; padding: 3pt 0; }
 .fbhi-guide__content .wp-block-media-text { background: none; border: 1pt solid #888; break-inside: avoid; }
 .fbhi-guide__content .wp-block-media-text .wp-block-media-text__content { padding: 8pt 10pt; }
 .fbhi-guide__content .wp-block-file .wp-block-file__button { display: none !important; } /* outranks the screen pill rule */

@@ -128,3 +128,45 @@ blocks valid in the editor; print: Section breaks across pages with its outline,
 Callout to Section the same day (one class change in the block markup, revision kept); checked on prod: H3 35/10, H4
 27/10, image level with the paragraph, heading below the image, her Wide Line 780px, chapter tint kept. Reply sent to
 Annika by Daniel 2026-10-20 (draft in `incoming/`, not in git).
+
+## D39: file lists in boxes (2026-11-10, Annika)
+
+Annika's question: four document links (File blocks) in a Faktaruta on prod 15377 sat far apart and in grey instead of
+the chapter colour. Cause: each File block was styled as its own grey plate (1em 1.4em padding) — invisible inside the
+equally grey Faktaruta, but its padding plus the box rhythm spread the rows; and the colour came from the Faktaruta
+style, which is always grey. Switching to Markerad ruta alone would have left four grey plates on the chapter tint.
+Her editor screenshot also showed the button right after the name: in the editor core wraps name and button in one
+inline content wrapper.
+
+| # | Change | Files |
+|---|---|---|
+| 25 | **File blocks inside a box or section** (info box, callout, checklist, Section): no plate of their own (no background, `.45em 0` padding — about 15px between the buttons, raised from .3em after Daniel saw it on prod — no radius); consecutive files sit flush (no margin), **no line between them** — the pill buttons stack in a column on the box colour. Name left (wraps beside the button), button right; ≤600px the button drops below the name at its left edge (core's .75em button margin removed there), .35em under its own name, rows `.6em 0` so a button reads as belonging to the name above it. In a Section the space above/below a file row is the normal 1.2em (was 1.8em for the plate). File blocks directly in the text keep the grey plate. | `guides.css` (after the file-block button rules) |
+| 26 | **Editor**: the content wrapper is laid out like the frontend (name left, button right) for every file block; the box/section rules of row 25 mirrored. | `guides-editor.css` |
+| 27 | **Print**: inside a box or section no extra 1pt border per file (the box is already outlined), 3pt row padding, no lines. | `guides-print.css` |
+
+Demo on dev 13939, after Test 15: paragraph `fbhi-files-demo` ("Tillfällig testyta (2026-11-10)"), Test 16 (Annika's
+list as Faktaruta, her link texts), Test 17 (as Markerad ruta, rewritten link texts), Test 18 (two files in a Section with
+text around), Test 19 (stand-alone file block and an inline PDF link — must be unchanged). Dev only, never prod.
+
+**Divider dropped (same day, Daniel):** the first version had a 1px line between files. Survey of prod: documents are
+linked as stacked outline pill buttons (Tryckt material / Materials, news posts), a bold text link in a coloured box
+(Bjuv) or inline links; Salient line dividers only frame sections (1–2 per page, e.g. Karriär), never separate list
+items. Three variants mocked up in the browser on Avsnitt 3's yellow (line / no line, tighter / white strips per row);
+Daniel chose **no line, tighter rows** (variant A). Phone fix found while checking A: without lines a stacked button
+was as close to the next name as to its own, hence the ≤600px spacing in row 25.
+
+Verified 2026-11-10 on dev with Chrome (first with the line, then re-run for variant A against the same baseline): layout of every element in `.fbhi-guide__content` of all six dev guide pages
+measured before and after the deploy at 1400px and 390px — the five other pages identical (0 changes), on 13939 only
+the file blocks in Tests 16–18 and their boxes changed (Test 19 and everything else only moved up). Rows 48px at
+desktop, 53px after the padding was raised to .45em (15px between buttons) (were 72px, 109px for the long name whose button wrapped); 0px between files, no line. Yellow chapter tint
+(#FFF3D8, Avsnitt 3) previewed in the browser. Phone: rows stack name / button, button 5px under its name. Editor: all
+400 blocks valid, 48px rows, 0px between files, no line, stand-alone block keeps its plate. Print (print sheet forced to `media=all`, line version): rows inside
+the box outline, URLs printed, buttons hidden.
+
+**Status: on dev and prod since 2026-11-10** (Daniel's go). Prod: `./upload.sh p` (only the three guide CSS files), then
+Annika's group on 15377 switched from Faktaruta to Markerad ruta (one class change, `is-style-fbhi-infobox` →
+`is-style-fbhi-callout`, in the block comment and the div; page unmodified since 2026-11-09 and no edit lock checked
+first; revision kept; language sv). Her four file blocks unchanged. Nginx purge via `rt_nginx_helper_purge_all` threw
+"Operation not permitted" on the fastcgi cache dirs, but a logged-out visitor (with the page password) got the new page.
+Checked on prod: yellow tint #FFF3D8, four rows (48px, then 53px with .45em), 0px between them, no lines; phone stacked name/button.
+Link texts are Annika's to change (click the name in the block and type; "Anmälningsfromulär" is a typo in hers).

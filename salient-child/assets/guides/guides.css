@@ -396,6 +396,28 @@
 }
 .fbhi-guide__content .wp-block-file .wp-block-file__button:hover,
 .fbhi-guide__content .wp-block-file .wp-block-file__button:focus-visible { background: var(--fbhi-guide-teal); color: #fff; }
+/* File blocks inside a box (info box, callout, checklist) or a section: the box is already the plate, so each
+   file is a plain row (name left, button right) on the box's colour and consecutive files sit close together
+   as a list, the pill buttons stacked in a column (no lines between them: the rest of the site never lines
+   up list items, it only spaces them). A long name wraps beside the button; on narrow screens the button
+   drops below the name, at its left edge (core's .75em button margin would indent it). */
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file {
+	padding: .45em 0;
+	background: none;
+	border-radius: 0;
+	flex-wrap: nowrap;
+}
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file + .wp-block-file { margin-top: 0; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file > a:not(.wp-block-file__button) { flex: 1 1 auto; min-width: 0; }
+.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file .wp-block-file__button { flex: none; margin-left: 0; }
+/* Phones: name and button stack, so the button sits close under its own name and the rows get more space
+   between them (otherwise a button is as close to the next name as to its own). */
+@media (max-width: 600px) {
+	.fbhi-guide__content .wp-block-group:is(.is-style-fbhi-infobox, .is-style-fbhi-callout, .is-style-fbhi-checklist, .is-style-fbhi-section) .wp-block-file { flex-wrap: wrap; row-gap: .35em; padding: .6em 0; }
+}
+/* In a section, a file row no longer needs the extra air the grey plate had: the normal block rhythm. */
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > * + .wp-block-file,
+.fbhi-guide__content :where(.is-style-fbhi-section, .is-style-fbhi-section > .wp-block-group__inner-container) > .wp-block-file + * { margin-top: 1.2em; }
 /* No bottom margin (core gives captions 1em), so a captioned image doesn't add space below itself,
    e.g. at the foot of a column. */
 .fbhi-guide__content figcaption { font-size: 14px; color: var(--fbhi-guide-muted); margin-top: .5em; margin-bottom: 0; text-align: left; }

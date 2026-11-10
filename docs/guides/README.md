@@ -88,6 +88,11 @@ chapter title and on the start page's cards, not in the menu; live in the editor
 notes: [subtitles.md](subtitles.md). The editor's title band also shows the excerpt (intro) now. On dev and prod since 2026-10-26;
 Annika fills the fields herself (reply sent 2026-10-26).
 
+**Update 2026-11-10**: **file lists in boxes** (D39, Annika): File blocks inside a box or Section become plain rows close
+together on the box colour (no grey plate each, no lines); editor name left / button right like the frontend. Demo Tests
+16–19 on dev 13939. Change log: [spacing-and-images.md](spacing-and-images.md) rows 25–27. On dev and prod since 2026-11-10; Annika's
+group on 15377 switched to Markerad ruta. Reply to Annika still to send.
+
 ## Outstanding (parked, revisit later)
 
 **Go-live (~2026-10-12)**: the items below plus the prod checks are collected in
