@@ -91,7 +91,7 @@ Annika fills the fields herself (reply sent 2026-10-26).
 **Update 2026-11-10**: **file lists in boxes** (D39, Annika): File blocks inside a box or Section become plain rows close
 together on the box colour (no grey plate each, no lines); editor name left / button right like the frontend. Demo Tests
 16–19 on dev 13939. Change log: [spacing-and-images.md](spacing-and-images.md) rows 25–27. On dev and prod since 2026-11-10; Annika's
-group on 15377 switched to Markerad ruta. Reply to Annika still to send.
+group on 15377 switched to Markerad ruta. Reply sent to Annika 2026-11-10.
 
 ## Outstanding (parked, revisit later)
 

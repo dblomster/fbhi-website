@@ -170,3 +170,6 @@ first; revision kept; language sv). Her four file blocks unchanged. Nginx purge 
 "Operation not permitted" on the fastcgi cache dirs, but a logged-out visitor (with the page password) got the new page.
 Checked on prod: yellow tint #FFF3D8, four rows (48px, then 53px with .45em), 0px between them, no lines; phone stacked name/button.
 Link texts are Annika's to change (click the name in the block and type; "Anmälningsfromulär" is a typo in hers).
+Reply sent to Annika by Daniel 2026-11-10 (draft in `incoming/`, not in git; edited by Daniel before sending): the box
+change, renaming link texts, inline PDF links with the icon, file-block colour (use Markerad ruta), and a plain-language
+guide to the group styles with Swedish and English names.
