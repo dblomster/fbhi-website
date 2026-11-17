@@ -24,3 +24,4 @@ top level; finished records move to `archive/`.
 | [archive/updates-2026-09/](archive/updates-2026-09/README.md) | Update round Sep 2026 (dev + prod on WP 7.1); prod-via-Novamira batch procedure and quirks |
 | [archive/mailpoet-subscriber-fields-2026-09/](archive/mailpoet-subscriber-fields-2026-09/2026-09-plan.md) | Setting up MailPoet custom fields from WPForms exports — plan and execution record, closed 2026-09-18 |
 | [archive/mailpoet-blocked-lists-2026-09/](archive/mailpoet-blocked-lists-2026-09/2026-09-investigation.md) | Why two MailPoet lists refused to trash (stuck never-sent newsletters) and the fix, closed 2026-09-18 |
+| [archive/mailpoet-phone-map-link-2026-11/](archive/mailpoet-phone-map-link-2026-11/README.md) | Newsletter words turned into a map link on phones: the phone's mail app (data detectors) does it, not MailPoet; closed 2026-11-18 by replying to Annika |
