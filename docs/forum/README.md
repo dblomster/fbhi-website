@@ -15,7 +15,9 @@ demo on dev that she can try, and we suggest **Pro only if a Pro feature is actu
 - Email: dev's FluentSMTP has **simulate emails = yes**, so nothing leaves dev.
 - Demo content (fictional people and organisations, all `@example.com`, user meta
   `fbhi_demo_user = fluent-community-demo-2026-11`, WP role subscriber, locale sv_SE):
-  - users 8–13: demo-karin, demo-erik, demo-sara, demo-ahmed, demo-maria, **demo-medlem** (test login to see the
+  - users 8–14: demo-karin, demo-erik, demo-sara, demo-maria, **demo-medlem**, demo-johan (14, Johan Andersson,
+    Sjöby kommun; replaced demo-ahmed, ID 11, whom Daniel deleted as a test, see "Removing a member" — orphans
+    cleaned and post counters recounted afterwards, poll and comments re-created under Johan) (test login to see the
     forum as an ordinary member; password given to Daniel out of band, not stored here)
   - space group 1 "Regioner och kommuner": *Diskussion*, *Möten och aktiviteter*, *Tips och material* (all
     **secret** = invite-only, invisible to non-members); Karin is space moderator in the first two
@@ -28,8 +30,10 @@ demo on dev that she can try, and we suggest **Pro only if a Pro feature is actu
   `fluent_community/super_admin_capability`) as **forum super-admin**, so all WP administrators can read and manage
   every space, secret ones included. On dev that is Annika, Daniel, Emelie, infobahn.fbhi and provideit. Worth
   telling Annika before go-live: the group's "closed" content is visible to every site administrator.
-- Annika's access: demo-medlem (member view) + her existing dev admin account (= forum admin). Reply draft:
-  `incoming/2026-11-17-svar-annika-forum.md` (Daniel fills in the password and sends).
+- Annika's access: demo-medlem (member view) + her existing dev admin account (= forum admin). Reply drafted in
+  `incoming/2026-11-17-svar-annika-forum.md` (how to add members in free, Pro features incl. email invitations /
+  CSV import, six requirement questions); **SENT by Daniel 2026-11-17 in a modified version. Waiting for her
+  feedback** before translating or doing anything else.
 
 Cleanup when done: deactivate + delete the plugin (its tables are `wp_fbhi__1_fcom_*`, option
 `fluent_community_settings`), delete users with meta `fbhi_demo_user`.
@@ -37,6 +41,29 @@ Cleanup when done: deactivate + delete the plugin (its tables are `wp_fbhi__1_fc
 Seeding gotcha: when calling FluentCommunity routes with `rest_do_request()` several times in one PHP run, the
 framework's `Request` singleton **keeps earlier params** (array_merge), so e.g. a poll's `survey` leaked into later
 posts and `parent_id` into later comments. Pass every key explicitly (`survey => []`, `parent_id => 0`, …).
+
+## Adding a member (free)
+
+1. wp-admin → Användare → Lägg till användare: email, name, role **Prenumerant**, language Svenska, tick "send the
+   new user an email" (WP's set-password email; on prod this really sends).
+2. Forum → the space → Members → **Add Member** → tab *WP Users* → search the person → role Member / Moderator /
+   Admin → Add as member. Repeat per space (or tab *From Space/Course* to copy a whole member list).
+
+Pro-only in that panel: **Invitations** (email invite; the invitee creates their own account even with
+registration off) and **CSV import** (Name, Email, Username).
+
+## Removing a member
+
+Tested 2026-11-17 by deleting demo-ahmed (ID 11) in wp-admin. FluentCommunity's `deleted_user` handler
+(`CleanupHandler::handleUserDeleted`) wipes **all their forum content**: posts, comments, likes, notifications,
+space memberships, profile; media is flagged for cron deletion. WP's "attribute all content to …" choice is
+**ignored** for forum content. Side effects (raw SQL deletes): other members' comments on the deleted posts stay in
+the DB as invisible orphans (here comment 11 on post 11), and counters on remaining posts are not recalculated
+(post 13 still says 2 comments, has 1).
+
+To keep the discussions when someone leaves, don't delete the WP user: remove them from the spaces (Members →
+remove), or set their forum status to **blocked** (free; `PATCH members/{id}` with `status`, in the member admin
+UI), which keeps their posts but locks them out.
 
 ## Free vs Pro (as seen in the free admin, 2026-11-17)
 
