@@ -44,6 +44,9 @@ function fbhi_blog_like_cpts() {
 			// /sv/kommuner/ — Swedish page (no English translation exists yet).
 			'archive_page_id' => 14055,
 			'adjacent_order'  => 'title',
+			// Swedish alphabetical order (Å, Ä, Ö after Z) for title sorting — see
+			// "Title collation for blog-like CPTs" below.
+			'title_collation' => 'utf8mb4_swedish_ci',
 		),
 	);
 }
@@ -213,14 +216,15 @@ function fbhi_adjacent_post_title_where( $where, $post, $op ) {
 	}
 
 	global $wpdb;
-	$title = $wpdb->prepare( '%s', $post->post_title );
+	$title  = $wpdb->prepare( '%s', $post->post_title );
+	$column = 'p.post_title' . fbhi_title_collate_sql( $post->post_type );
 
 	// Replace the single post_date comparison WP core emits at the head of
 	// the WHERE clause; leaves post_type / post_status / taxonomy / WPML
 	// clauses intact.
 	return preg_replace(
 		"/p\.post_date\s*[<>]\s*'[^']*'/",
-		"p.post_title $op $title",
+		"$column $op $title",
 		$where,
 		1
 	);
@@ -230,7 +234,8 @@ function fbhi_adjacent_post_title_sort( $order_by, $post, $direction ) {
 	if ( 'title' !== fbhi_adjacent_order_for_post( $post ) ) {
 		return $order_by;
 	}
-	return "ORDER BY p.post_title $direction LIMIT 1";
+	$column = 'p.post_title' . fbhi_title_collate_sql( $post->post_type );
+	return "ORDER BY $column $direction LIMIT 1";
 }
 
 add_filter( 'get_previous_post_where', function ( $where, $in_same_term, $excluded_terms, $taxonomy, $post ) {
@@ -248,6 +253,59 @@ add_filter( 'get_previous_post_sort', function ( $order_by, $post ) {
 add_filter( 'get_next_post_sort', function ( $order_by, $post ) {
 	return fbhi_adjacent_post_title_sort( $order_by, $post, 'ASC' );
 }, 10, 2 );
+
+/* ========================================================================
+   Title collation for blog-like CPTs
+   ------------------------------------------------------------------------
+   The posts table uses utf8mb4_unicode_520_ci (dev and prod), which sorts
+   Å and Ä as A and Ö as O. A CPT in the registry can set 'title_collation'
+   (e.g. 'utf8mb4_swedish_ci') to sort its titles by another collation:
+     - every WP_Query for that post type ordered by title — e.g. Salient's
+       Post Grid on /sv/inspirerande-exempel/, including its AJAX
+       category filter
+     - the title-based prev/next walk above ('adjacent_order' => 'title')
+   ======================================================================== */
+
+/**
+ * SQL " COLLATE …" suffix for a post type's titles, or '' when none is set.
+ *
+ * @param string $post_type Post type name.
+ * @return string
+ */
+function fbhi_title_collate_sql( $post_type ) {
+	$cpts      = fbhi_blog_like_cpts();
+	$collation = $cpts[ $post_type ]['title_collation'] ?? '';
+
+	// Collation names go into SQL unquoted; only allow plain identifiers.
+	if ( '' === $collation || ! preg_match( '/^[a-z0-9_]+$/', $collation ) ) {
+		return '';
+	}
+	return ' COLLATE ' . $collation;
+}
+
+/**
+ * Add the CPT's title collation to "ORDER BY …post_title" in its queries.
+ *
+ * @param string   $orderby ORDER BY clause (without the keyword).
+ * @param WP_Query $query   The query.
+ * @return string
+ */
+function fbhi_title_orderby_collation( $orderby, $query ) {
+	$post_types = (array) $query->get( 'post_type' );
+	if ( 1 !== count( $post_types ) ) {
+		return $orderby;
+	}
+
+	$collate = fbhi_title_collate_sql( (string) reset( $post_types ) );
+	if ( '' === $collate ) {
+		return $orderby;
+	}
+
+	global $wpdb;
+	$column = preg_quote( "{$wpdb->posts}.post_title", '/' );
+	return preg_replace( "/($column)(?!\s+COLLATE)/", '$1' . $collate, $orderby );
+}
+add_filter( 'posts_orderby', 'fbhi_title_orderby_collation', 10, 2 );
 
 /* ========================================================================
    Custom Post Type: Network Projects
@@ -741,6 +799,23 @@ add_filter( 'gettext', function ( string $translation, string $text, string $dom
 		return fbhi_is_swedish_locale()
 			? 'Detta innehåll granskas för tillfället.'
 			: 'This content is currently under review.';
+	}
+	return $translation;
+}, 10, 3 );
+
+/* ========================================================================
+   Salient Post Grid: Swedish "Load More" button
+   ------------------------------------------------------------------------
+   The Post Grid element prints its button text with
+   esc_html__( 'Load More', 'salient-core' ) into data-load-more-text, and
+   Salient's JS builds the button from that attribute (also after AJAX
+   loads). salient-core has no Swedish translation, so translate it here for
+   Swedish pages (e.g. /sv/forskningsprojekt/, /sv/inspirerande-exempel/).
+   ======================================================================== */
+
+add_filter( 'gettext', function ( string $translation, string $text, string $domain ): string {
+	if ( 'salient-core' === $domain && 'Load More' === $text && fbhi_is_swedish_locale() ) {
+		return 'Visa fler';
 	}
 	return $translation;
 }, 10, 3 );
