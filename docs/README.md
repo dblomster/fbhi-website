@@ -7,6 +7,8 @@ top level; finished records move to `archive/`.
 
 | Path | What |
 |---|---|
+| [update-procedure.md](update-procedure.md) | **Standing checklist for plugin/core update rounds** (dev first, then prod; WPForms only via wp-admin) — each round's record goes in `updates-YYYY-MM-DD/` |
+| [updates-2026-11-18/](updates-2026-11-18/README.md) | Latest update round (closed green): AIOSEO, MapPress, Redis Object Cache, TEC, MailPoet, WPForms 2.0.5 |
 | [cpt-navigation.md](cpt-navigation.md) | How the blog-like CPTs share the single layout and prev/next nav; how to add another CPT |
 | [list-spacing.md](list-spacing.md) | The body-text ul/ol spacing rules in `custom.css` (live on dev + prod), measurements and revert |
 | [password-protection.md](password-protection.md) | "Skyddad:" title prefix and protected-excerpt text: how to change/remove them (findings, awaiting Annika); guide CPT follows core's handling |
@@ -15,6 +17,7 @@ top level; finished records move to `archive/`.
 | [wpbakery-image-captions/](wpbakery-image-captions/README.md) | Caption field for Salient's Image With Animation in the guide caption style — demo on dev (13972 sv / 13974 en), awaiting decision; revert steps |
 | [page-content/](page-content/README.md) | Git-tracked reference copies of WP-managed page bodies (WPBakery shortcodes) |
 | [wpforms-corrupted-post-data/](wpforms-corrupted-post-data/README.md) | WPForms "corrupted post data" / tick-every-box — Phase 1 done, Phase 2 monitoring through the 30 Sep 2026 seminar |
+| [mailpoet-unsubscribe-manage/](mailpoet-unsubscribe-manage/README.md) | MailPoet footer "Avsluta prenumeration" / "Ändra mejladress": pages render in English, can't change email — investigating, awaiting go-ahead |
 | [mailpoet-subscriber-fields/how-to-import.md](mailpoet-subscriber-fields/how-to-import.md) | Routine: WPForms export → MailPoet import with subscriber fields (Annika) |
 
 ## Archive (closed)
