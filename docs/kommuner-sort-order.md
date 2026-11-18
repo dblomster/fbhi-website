@@ -75,5 +75,10 @@ never show on the page: today Östersund, Sollentuna, Umeå, Värnamo; after the
    filters), and Swedish Post Grid texts via `gettext` (`salient-core`): "Load More" → "Visa fler", "All" → "Alla"
    (Swedish pages only).
 
+**Prev/next labels (2026-11-18, dev + prod):** the shared partial `includes/partials/shared/bottom-post-navigation.php` used WP core's
+`__( 'Previous' )` / `__( 'Next' )`; core's Swedish translation lacks a bare "Previous", so Swedish singles showed "Previous" next to
+"Nästa" (Annika's follow-up on /sv/kommuner/bollnas-kommun/). Defaults are now "Föregående"/"Nästa" on Swedish pages and
+"Previous"/"Next" in English (kommuner + network projects). Checked on prod: Bollnäs → "Föregående | Nästa".
+
 **`/sv/forskningsprojekt/` was not broken.** It stops at 18 because Swedish has 18 published network projects (English
 25); the 2 extra per language that a logged-in count shows are **private** posts.

@@ -58,8 +58,9 @@ Leave dev-only plugins (Jetpack Boost, LiteSpeed Cache, WP Mail SMTP, WP Super C
 **Prod Nginx 504** on the bigger batches is normal: PHP keeps running. Don't rerun; check read-only (versions, no
 `.maintenance`, empty upgrade folders, MailPoet `db_version` in `{prefix}mailpoet_settings`).
 
-After the prod batches: `do_action('rt_nginx_helper_purge_all'); wp_cache_flush();` (hundreds of "unlink …
-Operation not permitted" warnings are normal; the cache is still refreshed).
+After the prod batches: `do_action('rt_nginx_helper_purge_all'); wp_cache_flush();`. It emits ~1,300 harmless "unlink …
+Operation not permitted" warnings; since 2026-11-18 a call that returns them all can fail with "fetch failed", so swallow
+them: `set_error_handler( fn() => true ); do_action( 'rt_nginx_helper_purge_all' ); restore_error_handler(); wp_cache_flush();`.
 
 ## 4. Regression
 

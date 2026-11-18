@@ -9,8 +9,10 @@
  *
  * Args:
  *   - archive_url (string, required) — "Back to all" link target.
- *   - prev_label  (string, optional) — defaults to WP core __( 'Previous' ).
- *   - next_label  (string, optional) — defaults to WP core __( 'Next' ).
+ *   - prev_label  (string, optional) — defaults to "Föregående" / "Previous" by language.
+ *   - next_label  (string, optional) — defaults to "Nästa" / "Next" by language.
+ *     (Not WP core's __( 'Previous' ): its Swedish translation lacks that string, so Swedish
+ *     pages showed "Previous" next to "Nästa".)
  *   - back_title  (string, optional) — title attribute on the "back" link.
  *
  * @package Salient-Child
@@ -21,8 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $archive_url = isset( $args['archive_url'] ) ? $args['archive_url'] : home_url();
-$prev_label  = isset( $args['prev_label'] )  ? $args['prev_label']  : __( 'Previous' );
-$next_label  = isset( $args['next_label'] )  ? $args['next_label']  : __( 'Next' );
+$is_swedish  = function_exists( 'fbhi_is_swedish_locale' ) && fbhi_is_swedish_locale();
+$prev_label  = isset( $args['prev_label'] )  ? $args['prev_label']  : ( $is_swedish ? 'Föregående' : 'Previous' );
+$next_label  = isset( $args['next_label'] )  ? $args['next_label']  : ( $is_swedish ? 'Nästa' : 'Next' );
 $back_title  = isset( $args['back_title'] )  ? $args['back_title']  : '';
 ?>
 
