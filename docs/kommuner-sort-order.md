@@ -80,5 +80,13 @@ never show on the page: today Östersund, Sollentuna, Umeå, Värnamo; after the
 "Nästa" (Annika's follow-up on /sv/kommuner/bollnas-kommun/). Defaults are now "Föregående"/"Nästa" on Swedish pages and
 "Previous"/"Next" in English (kommuner + network projects). Checked on prod: Bollnäs → "Föregående | Nästa".
 
+**Why only 9 were shown (revision history of page 14055, read 2026-11-18):** the kommuner grid was added on
+2026-03-16 by Emelie with "load more" and 9 per page (styling copied from the network-projects grid, same
+`network-projects` class). It went to `pagination="none"` and back that day and the next, and on **2026-04-21 (Daniel)**
+to `none` with 9 per page, which stayed until today. Most likely the load-more button was removed because it never hid
+(kommuner have no categories, see above), which turned the 9 per page into a hard limit. That was invisible until the
+10th kommun: **Bollnäs, published 2026-10-22**. From then on, kommuner were silently missing (4 of 13 by 2026-11-18). Now
+`none` + 50 per page.
+
 **`/sv/forskningsprojekt/` was not broken.** It stops at 18 because Swedish has 18 published network projects (English
 25); the 2 extra per language that a logged-in count shows are **private** posts.
