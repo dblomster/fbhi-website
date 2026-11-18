@@ -46,6 +46,10 @@ padding + enlarge on click (Goodes Prize), 4 centred image at 75 %, 5 two lines 
 
 ## The proposal (what the demo code does)
 
+**Naming:** the element is shown as **"Single Image"** in WPBakery (Salient's map name), but its shortcode is
+`image_with_animation` and Salient's code/docs call it "Image With Animation". It is *not* WPBakery's own Single
+Image (`vc_single_image`), which Salient hides. Say "Single Image" to editors.
+
 Two new settings at the bottom of the **General** tab of Image With Animation:
 
 - **Caption** (textarea): printed below the image. Line breaks kept; `a`, `em`, `strong`, `b`, `i`, `br` allowed.
