@@ -4,7 +4,7 @@
 `/sv/inspirerande-exempel/` shows **all 13** kommuner in Swedish order (Bjuv … Värnamo, "Granskas: Åstorps kommun",
 Östersund), no button, console clean; prev/next Malmö → Lund/Sollentuna, Värnamo → Umeå/Åstorp.
 `/sv/forskningsprojekt/` shows "Alla" and "Visa fler", 9 → 18 and then hides; English pages keep "All" / "Load More".
-Reply to Annika (items 1 + 2) drafted in `incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`.
+Reply to Annika (items 1 + 2) **SENT by Daniel 2026-11-18** (his own version of `incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`).
 Item 1 of Annika's email of 2026-11-18
 (the reply covers item 1 and item 2, the MailPoet footer links: [mailpoet-unsubscribe-manage/](mailpoet-unsubscribe-manage/README.md)).
 
@@ -48,8 +48,10 @@ Item 1 of Annika's email of 2026-11-18
 Dev's `wp-config.php` has `DB_CHARSET` = `latin1` (prod: `utf8`, which WordPress upgrades to `utf8mb4`). The dev connection
 is therefore latin1, and text is stored **double-encoded** in the utf8mb4 tables ("å" = `C3 83 C2 A5` instead of `C3 A5`).
 Pages look right because the round trip reverses it, but MySQL sorts and compares the wrong characters on dev, and
-`$wpdb` rejects queries with literal non-latin1 characters ("contains invalid data"). Not fixed (dev only; a proper fix
-is a charset conversion of the dev DB or a fresh prod → dev copy with `DB_CHARSET` `utf8mb4`). Keep in mind when testing
+`$wpdb` rejects queries with literal non-latin1 characters ("contains invalid data"). Not fixed (dev only). Plan (Daniel, 2026-11-18): the next prod → dev copy is a **manual transfer** (no Duplicator or
+similar, they perform badly on the Loopia prod host), and Claude checks DB charset/collation then: dev `DB_CHARSET`
+`utf8mb4` (not `latin1`), tables `utf8mb4_unicode_520_ci` like prod, and no double-encoded text (e.g. `HEX(post_title)`
+of a title with å = `C3 A5`, not `C3 83 C2 A5`). Keep in mind when testing
 anything text-sorting or search-related on dev.
 
 ## Also noticed: the grid only shows 9 of 13 kommuner

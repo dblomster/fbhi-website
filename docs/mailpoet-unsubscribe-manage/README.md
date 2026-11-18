@@ -1,8 +1,8 @@
 # MailPoet footer links: "Avsluta prenumeration" / "Ändra mejladress" (2026-11)
 
 **Status: step 1 IMPLEMENTED on dev + prod 2026-11-18** (`salient-child/includes/mailpoet.php`, required from
-`functions.php`; deployed with `./upload.sh p`, Daniel's OK). Reply to Annika (item 2 of her email, covering steps 2–3)
-**drafted** in `incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`; Daniel sends, then mark it sent here.
+`functions.php`; deployed with `./upload.sh p`, Daniel's OK). Reply to Annika (items 1 + 2, covering steps 2–3 here) **SENT by Daniel 2026-11-18** (his own version, based on
+`incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`).
 
 Verified on prod after deploy + purge: `get_permalink(10860)` = `https://fbhi.se/sv/?mailpoet_page=subscriptions`;
 `SubscriptionUrlFactory` confirm-unsubscribe / unsubscribe / manage / confirmation URLs all start with
