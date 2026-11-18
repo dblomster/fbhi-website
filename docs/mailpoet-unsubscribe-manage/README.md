@@ -2,7 +2,7 @@
 
 **Status: step 1 IMPLEMENTED on dev + prod 2026-11-18** (`salient-child/includes/mailpoet.php`, required from
 `functions.php`; deployed with `./upload.sh p`, Daniel's OK). Reply to Annika (item 2 of her email, covering steps 2–3)
-**drafted** in `incoming/2026-11-18-svar-annika-mailpoet.md`; Daniel sends, then mark it sent here.
+**drafted** in `incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`; Daniel sends, then mark it sent here.
 
 Verified on prod after deploy + purge: `get_permalink(10860)` = `https://fbhi.se/sv/?mailpoet_page=subscriptions`;
 `SubscriptionUrlFactory` confirm-unsubscribe / unsubscribe / manage / confirmation URLs all start with

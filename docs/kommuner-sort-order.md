@@ -4,7 +4,7 @@
 `/sv/inspirerande-exempel/` shows **all 13** kommuner in Swedish order (Bjuv … Värnamo, "Granskas: Åstorps kommun",
 Östersund), no button, console clean; prev/next Malmö → Lund/Sollentuna, Värnamo → Umeå/Åstorp.
 `/sv/forskningsprojekt/` shows "Alla" and "Visa fler", 9 → 18 and then hides; English pages keep "All" / "Load More".
-Reply to Annika (items 1 + 2) drafted in `incoming/2026-11-18-svar-annika-mailpoet.md`.
+Reply to Annika (items 1 + 2) drafted in `incoming/2026-11-18-svar-annika-kommuner-mailpoet.md`.
 Item 1 of Annika's email of 2026-11-18
 (the reply covers item 1 and item 2, the MailPoet footer links: [mailpoet-unsubscribe-manage/](mailpoet-unsubscribe-manage/README.md)).
 
