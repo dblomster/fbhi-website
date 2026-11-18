@@ -54,6 +54,12 @@ Two new settings at the bottom of the **General** tab of Image With Animation:
 
 - **Caption** (textarea): printed below the image. Line breaks kept; `a`, `em`, `strong`, `b`, `i`, `br` allowed.
   Shown in the backend editor box as "Caption: …" (admin label).
+  Plain textarea, no toolbar: bold/italic/links need typed HTML. Decided 2026-11-18 (Daniel): keep the tags
+  allowed but don't advertise them to editors (email says only "Radbrytningar behålls"); demo case 5 keeps its
+  link example. A rich-text (`textarea_html`) field was ruled out: it stores the caption as shortcode content with a
+  closing tag, and mixing enclosing and self-closing `[image_with_animation]` on one page breaks WordPress's parser.
+  Field descriptions shortened by Daniel: "Shown below the image. Leave empty for no caption." / "Shows the caption
+  saved on the image in the Media Library."
 - **Use Media Library caption** (checkbox, off by default): when the Caption field is empty, shows the image's Media
   Library caption, in the page language (WPML Media copy of the attachment, same lookup as Salient's template).
   The core image block instead *copies* the library caption once when the image is picked; WPBakery has no hook for
