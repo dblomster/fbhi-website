@@ -846,6 +846,51 @@ add_filter( 'gettext', function ( string $translation, string $text, string $dom
 }, 10, 3 );
 
 /* ========================================================================
+   Salient search: Swedish texts
+   ------------------------------------------------------------------------
+   Salient ships no Swedish translation (theme lang/ only has default.po /
+   the .pot), so the header search overlay (includes/header-search.php), the
+   results page (search.php, nectar/helpers/pagination.php) and the search
+   form (searchform.php) were English on /sv/. Translate those texts of the
+   'salient' domain on Swedish pages.
+   ======================================================================== */
+
+/**
+ * Swedish texts for Salient's search overlay and search results page.
+ *
+ * @return array<string, string> Source text => Swedish text.
+ */
+function fbhi_salient_search_sv_texts(): array {
+	return array(
+		// Header search overlay.
+		'Search'                                    => 'Sök',
+		'search'                                    => 'sök',
+		'Start Typing...'                           => 'Börja skriva …',
+		'Hit enter to search or ESC to close'       => 'Tryck Enter för att söka eller Esc för att stänga',
+		'Close Search'                              => 'Stäng sökningen',
+		// Search results page.
+		'Results For'                               => 'Resultat för',
+		'results found'                             => 'träffar',
+		'Page'                                      => 'Sida',
+		'Blog Post'                                 => 'Inlägg',
+		'Previous'                                  => 'Föregående',
+		'Next'                                      => 'Nästa',
+		'Sorry, no results were found.'             => 'Tyvärr hittades inga resultat.',
+		'Please try again with different keywords.' => 'Försök igen med andra sökord.',
+		// Search form (searchform.php: no-results page, search widgets).
+		'Search...'                                 => 'Sök …',
+		'Search for:'                               => 'Sök efter:',
+	);
+}
+
+add_filter( 'gettext', function ( string $translation, string $text, string $domain ): string {
+	if ( 'salient' !== $domain || ! fbhi_is_swedish_locale() ) {
+		return $translation;
+	}
+	return fbhi_salient_search_sv_texts()[ $text ] ?? $translation;
+}, 10, 3 );
+
+/* ========================================================================
    The Events Calendar: Inject Salient Global Sections before/after list
    ======================================================================== */
 

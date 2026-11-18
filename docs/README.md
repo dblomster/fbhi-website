@@ -9,6 +9,8 @@ top level; finished records move to `archive/`.
 |---|---|
 | [update-procedure.md](update-procedure.md) | **Standing checklist for plugin/core update rounds** (dev first, then prod; WPForms only via wp-admin) — each round's record goes in `updates-YYYY-MM-DD/` |
 | [updates-2026-11-18/](updates-2026-11-18/README.md) | Latest update round (closed green): AIOSEO, MapPress, Redis Object Cache, TEC, MailPoet, WPForms 2.0.5 |
+| [swedish-theme-texts.md](swedish-theme-texts.md) | Salient has no Swedish translation: which theme texts we translate in `functions.php` (search, Post Grid) and how to add more |
+| [kommuner-sort-order.md](kommuner-sort-order.md) | Kommuner in Swedish ÅÄÖ order (COLLATE), grid shows all, prev/next labels; dev DB double-encoding |
 | [cpt-navigation.md](cpt-navigation.md) | How the blog-like CPTs share the single layout and prev/next nav; how to add another CPT |
 | [list-spacing.md](list-spacing.md) | The body-text ul/ol spacing rules in `custom.css` (live on dev + prod), measurements and revert |
 | [password-protection.md](password-protection.md) | "Skyddad:" title prefix and protected-excerpt text: how to change/remove them (findings, awaiting Annika); guide CPT follows core's handling |
