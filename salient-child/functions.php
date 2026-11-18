@@ -791,6 +791,24 @@ add_filter( 'protected_title_format', function (): string {
 } );
 
 /**
+ * Same prefix for cards that Salient's Post Grid loads with "Load More" / its category filter.
+ * Those come from admin-ajax.php (action nectar_get_post_grid_segment), where is_admin() is true,
+ * so core's get_the_title() skips the protected-title prefix.
+ */
+add_filter( 'the_title', function ( $title, $post_id = 0 ) {
+	if ( ! wp_doing_ajax() || 'nectar_get_post_grid_segment' !== ( $_REQUEST['action'] ?? '' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return $title;
+	}
+	$post = get_post( $post_id );
+	if ( ! $post || '' === $post->post_password ) {
+		return $title;
+	}
+	/* translators: %s: Protected post title. */
+	$format = apply_filters( 'protected_title_format', __( 'Protected: %s' ), $post );
+	return sprintf( $format, $title );
+}, 10, 2 );
+
+/**
  * Excerpt text for password-protected posts. get_the_excerpt() returns this string before
  * its own filter runs, so gettext on core's source string is the only hook that reaches it.
  */
@@ -804,18 +822,25 @@ add_filter( 'gettext', function ( string $translation, string $text, string $dom
 }, 10, 3 );
 
 /* ========================================================================
-   Salient Post Grid: Swedish "Load More" button
+   Salient Post Grid: Swedish "Load More" button and "All" filter
    ------------------------------------------------------------------------
    The Post Grid element prints its button text with
-   esc_html__( 'Load More', 'salient-core' ) into data-load-more-text, and
-   Salient's JS builds the button from that attribute (also after AJAX
-   loads). salient-core has no Swedish translation, so translate it here for
-   Swedish pages (e.g. /sv/forskningsprojekt/, /sv/inspirerande-exempel/).
+   esc_html__( 'Load More', 'salient-core' ) into data-load-more-text (Salient's
+   JS builds the button from that attribute, also after AJAX loads), and the
+   first category filter link with esc_html__( 'All', 'salient-core' ).
+   salient-core has no Swedish translation, so translate both here for Swedish
+   pages (e.g. /sv/forskningsprojekt/).
    ======================================================================== */
 
 add_filter( 'gettext', function ( string $translation, string $text, string $domain ): string {
-	if ( 'salient-core' === $domain && 'Load More' === $text && fbhi_is_swedish_locale() ) {
+	if ( 'salient-core' !== $domain || ! fbhi_is_swedish_locale() ) {
+		return $translation;
+	}
+	if ( 'Load More' === $text ) {
 		return 'Visa fler';
+	}
+	if ( 'All' === $text ) {
+		return 'Alla';
 	}
 	return $translation;
 }, 10, 3 );

@@ -1,9 +1,10 @@
 # Kommuner in Swedish alphabetical order (Å, Ä, Ö) — 2026-11
 
-**Status (2026-11-18):** Swedish sort **live on dev + prod** (Daniel's OK; checked on prod: grid Bjuv → Sollentuna in the
-first 9, prev/next Malmö ↔ Lund/Sollentuna, Värnamo → Umeå/Åstorp). Follow-up "Load more" on the grid (Daniel's decision,
-like /sv/forskningsprojekt/) + Swedish button text "Visa fler": the **text filter is on dev**, prod deploy and the
-page-14055 setting change are **pending** (the prod deploy was blocked by the permission check; waiting for Daniel).
+**Status: DONE on dev + prod 2026-11-18** (all with Daniel's OK). Verified on prod as a visitor:
+`/sv/inspirerande-exempel/` shows **all 13** kommuner in Swedish order (Bjuv … Värnamo, "Granskas: Åstorps kommun",
+Östersund), no button, console clean; prev/next Malmö → Lund/Sollentuna, Värnamo → Umeå/Åstorp.
+`/sv/forskningsprojekt/` shows "Alla" and "Visa fler", 9 → 18 and then hides; English pages keep "All" / "Load More".
+Reply to Annika (items 1 + 2) drafted in `incoming/2026-11-18-svar-annika-mailpoet.md`.
 Item 1 of Annika's email of 2026-11-18
 (the reply covers item 1 and item 2, the MailPoet footer links: [mailpoet-unsubscribe-manage/](mailpoet-unsubscribe-manage/README.md)).
 
@@ -57,12 +58,22 @@ The Post Grid has `posts_per_page="9"` with `pagination="none"`, so no load-more
 never show on the page: today Östersund, Sollentuna, Umeå, Värnamo; after the fix Umeå, Värnamo, Åstorp, Östersund
 (Åstorp is password-protected, shown as "Granskas: Åstorps kommun").
 
-**Decision (Daniel):** use "Load more" like `/sv/forskningsprojekt/` (page 9807, sv translation of 7360: `pagination="load-more"`,
-`posts_per_page="9"`). Plan:
-1. Page 14055: `pagination="none"` → `pagination="load-more"` in its `nectar_post_grid` shortcode (one attribute, a
-   revision is kept). Equivalent in WPBakery: Post Grid → Pagination → Load More.
-2. The button text is `esc_html__( 'Load More', 'salient-core' )` in `data-load-more-text` (Salient's JS builds the
-   button from it). salient-core has no Swedish translation, so the English text also shows on /sv/forskningsprojekt/.
-   Fixed with a `gettext` filter in `functions.php` (section "Salient Post Grid: Swedish 'Load More' button"):
-   "Visa fler" on Swedish pages. Checked on dev: `/sv/forskningsprojekt/` → `Visa fler`, `/network-projects/` →
-   `Load More`.
+**What was tried, and the outcome:**
+1. First "Load more" like `/sv/forskningsprojekt/` (page 14055 `pagination="none"` → `"load-more"`). The button then
+   **never hid** after all were loaded: Salient's JS (`init.js`, post grid) hides it when the number of cards reaches
+   `data-total-count` of the active category filter link, and Salient only renders filter links when the grid has
+   taxonomy terms (`nectar_post_grid.php:219`, needs `custom_query_tax`). `kommuner-category` has **no terms**, so the
+   total was `parseInt(undefined)` = NaN. Cards loaded via the button also **lost the "Granskas:" prefix**: they come
+   from `admin-ajax.php` (`nectar_get_post_grid_segment`), where `is_admin()` is true, and core's `get_the_title()`
+   only adds the protected prefix outside admin.
+2. **Final (Daniel's choice): show all, no button.** Page 14055's kommuner grid: `pagination="none"`,
+   `posts_per_page="50"` (two attributes, `wp_update_post`, revisions kept). Equivalent in WPBakery: Post Grid →
+   Pagination: None, Posts per page: 50. If kommuner ever exceed 50, raise the number (or give them categories and
+   switch to load more).
+3. Still useful, kept in `functions.php`: the "Granskas:"/"In review:" prefix for Post Grid AJAX cards (password section,
+   `the_title` filter limited to `nectar_get_post_grid_segment`; covers the forskningsprojekt grid and category
+   filters), and Swedish Post Grid texts via `gettext` (`salient-core`): "Load More" → "Visa fler", "All" → "Alla"
+   (Swedish pages only).
+
+**`/sv/forskningsprojekt/` was not broken.** It stops at 18 because Swedish has 18 published network projects (English
+25); the 2 extra per language that a logged-in count shows are **private** posts.
