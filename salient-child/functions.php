@@ -15,6 +15,9 @@ require_once get_stylesheet_directory() . '/includes/guides/bootstrap.php';
    Remove this line (and the files it names) to revert — docs/wpbakery-image-captions/. */
 require_once get_stylesheet_directory() . '/includes/image-captions-demo.php';
 
+/* MailPoet subscription pages (unsubscribe, manage subscription…) in Swedish — docs/mailpoet-unsubscribe-manage/. */
+require_once get_stylesheet_directory() . '/includes/mailpoet.php';
+
 /* ========================================================================
    Blog-like CPT registry
    ------------------------------------------------------------------------

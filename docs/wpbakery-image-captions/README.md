@@ -105,6 +105,11 @@ captioned images; no fallbacks used. Today's text blocks: black 16px, 15px under
 Prod safety: the code is on `main`, so `./upload.sh p` would ship it; it stays inert there unless page 13972 has the slug
 `demo-bildtexter` (checked in `fbhi_image_captions_demo_ids()`).
 
+**On prod since 2026-11-18 (inactive):** the full `./upload.sh p` for the MailPoet fix (docs/mailpoet-unsubscribe-manage/,
+Daniel's choice) also shipped these four files. On prod post 13972 doesn't exist, and `fbhi_image_captions_demo_ids()`
+returns `[]`, so no field, caption or CSS appears. WPML on prod now knows the `fbhi_caption` attribute, which no prod
+content carries. If the demo is reverted, the revert must be deployed to prod as well.
+
 Gate: the field only exists when editing a demo page (`post`, `post_id` or `vc_post_id` in the request: backend
 editor, its AJAX edit form, frontend editor); captions and CSS only on the demo pages. Checked: not on 11066.
 Not tested: WPBakery's frontend editor.
