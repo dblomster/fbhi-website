@@ -27,7 +27,8 @@ Prod state when recorded: guide on prod **as drafts** since 2026-09-24 (root 153
 - [ ] **Chapter 1** (13901 dev / its prod copy): no H3 promotion or callouts yet, unlike chapters 2–4. Check whether
   Annika has handled it by hand.
 - [ ] **Chapter 5 colour**: navy's tint is close to teal's, so the cards look alike. Decision still open.
-- [ ] **Password protection**: if any guide page goes live password-protected, first check that prod's Nginx
+- [x] **Password protection**: checked OK 2026-11-18 on protected page 15377 (unlocked content for the cookie
+  holder, password form still served to visitors without it). Original item: check that prod's Nginx
   cache bypasses the `wp-postpass_*` cookie. Read-only test: on any published prod page, compare the cache
   response header with and without a dummy `wp-postpass_…` cookie set in the browser (Chrome fetch; curl is
   WAF-blocked). See [../password-protection.md](../password-protection.md).

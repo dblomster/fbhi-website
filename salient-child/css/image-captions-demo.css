@@ -1,0 +1,40 @@
+/* ==========================================================================
+   DEMO (2026-11-18): captions for Salient's "Image With Animation" element.
+   Loaded only on the demo page and its translations (includes/image-captions-demo.php).
+   Same look as the guide captions (assets/guides/guides.css, figcaption rule):
+   grey, 14px, left-aligned, .5em (7px) under the image, no bottom margin.
+   If adopted site-wide, move these rules to css/custom.css group 2.
+   ========================================================================== */
+
+/* Salient's .inner box becomes the <figure>: no browser figure margins, so the image keeps its
+   place; Salient's own alignment/max-width rules on .inner still apply. */
+.img-with-aniamtion-wrap figure.fbhi-image-caption__figure {
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+.img-with-aniamtion-wrap.center figure.fbhi-image-caption__figure {
+	margin-left: auto;
+	margin-right: auto;
+}
+.img-with-aniamtion-wrap.right figure.fbhi-image-caption__figure {
+	margin-left: auto;
+}
+
+.fbhi-image-caption {
+	margin: .5em 0 0;
+	padding: 0;
+	color: #4a4a4a;
+	font-size: 14px;
+	line-height: 1.6; /* = guide captions (22.4px at 14px, measured on prod 2026-11-18) */
+	text-align: left;
+}
+.fbhi-image-caption a {
+	color: inherit;
+	text-decoration: underline;
+}
+/* Fallback position (Salient markup changed): caption under the whole element. */
+p.fbhi-image-caption--fallback {
+	padding-bottom: 0;
+}

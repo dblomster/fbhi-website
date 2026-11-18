@@ -11,6 +11,10 @@
 
 require_once get_stylesheet_directory() . '/includes/guides/bootstrap.php';
 
+/* DEMO 2026-11-18: image captions on Salient's Image With Animation, demo page only.
+   Remove this line (and the files it names) to revert — docs/wpbakery-image-captions/. */
+require_once get_stylesheet_directory() . '/includes/image-captions-demo.php';
+
 /* ========================================================================
    Blog-like CPT registry
    ------------------------------------------------------------------------

@@ -8,4 +8,14 @@
     <custom-field action="translate">_fbhi_guide_subtitle</custom-field>
     <custom-field action="translate">_fbhi_guide_print_label</custom-field>
   </custom-fields>
+  <shortcodes>
+    <!-- DEMO 2026-11-18 (includes/image-captions-demo.php): caption text translatable in WPML's
+         Translation Editor. Only demo pages can carry the attribute. -->
+    <shortcode>
+      <tag>image_with_animation</tag>
+      <attributes>
+        <attribute>fbhi_caption</attribute>
+      </attributes>
+    </shortcode>
+  </shortcodes>
 </wpml-config>

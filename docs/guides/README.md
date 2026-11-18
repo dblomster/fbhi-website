@@ -100,8 +100,8 @@ group on 15377 switched to Markerad ruta. Reply sent to Annika 2026-11-10.
 answered along the way are logged at its bottom.
 
 - **Protected-post wording**: reworded site-wide on dev + prod 2026-09-28 ("Granskas:" / "In review:" + "under review"
-  excerpt, see [../password-protection.md](../password-protection.md)). Still open: check
-  prod's Nginx cache bypasses the `wp-postpass_*` cookie before publishing a password-protected guide.
+  excerpt, see [../password-protection.md](../password-protection.md)). Prod's Nginx cache
+  vs the `wp-postpass_*` cookie checked OK 2026-11-18.
 
 - **Guide listing page** (all guides) — not built; only one guide exists. See Q9 in decisions.md.
 - **Chapter 1 (13901)** was loaded before the converter existed: no H3 promotion / callouts yet. Re-run the

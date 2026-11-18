@@ -106,7 +106,12 @@ core excerpt message as the intro, only the password form as content, no cards o
 the intro text anywhere in the page source (meta tags included). Daniel verified the unlocked state in the
 browser.
 
-## Open: page cache and the password cookie on prod
+## Page cache and the password cookie on prod — checked OK 2026-11-18
+
+Checked on published, protected guide page 15377 (headless Chrome, as a visitor): after entering the password the
+unlocked content was served (so the cache is bypassed for the `wp-postpass_*` cookie), and right after that a
+visitor without the cookie still got the password form, on the plain URL too, with none of the unlocked text in the
+HTML (so the unlocked page was not cached for everyone). Original note:
 
 Prod runs the Nginx page cache. Check that it **bypasses the cache when the `wp-postpass_*` cookie is set**
 (usually part of the standard WordPress `fastcgi_cache_bypass` cookie list). If it does not, an unlocked page
