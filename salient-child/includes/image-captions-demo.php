@@ -86,7 +86,7 @@ function fbhi_image_captions_demo_register_param() {
 			'heading'     => __( 'Caption', 'salient-child' ),
 			'param_name'  => 'fbhi_caption',
 			'admin_label' => true,
-			'description' => __( 'Shown below the image: grey, small, left-aligned (same style as in the guides). Leave empty for no caption.', 'salient-child' ),
+			'description' => __( 'Shown below the image. Leave empty for no caption.', 'salient-child' ),
 		)
 	);
 	vc_add_param(
@@ -96,7 +96,7 @@ function fbhi_image_captions_demo_register_param() {
 			'heading'     => __( 'Use Media Library caption', 'salient-child' ),
 			'param_name'  => 'fbhi_caption_media',
 			'value'       => array( __( 'Yes, when the Caption field is empty', 'salient-child' ) => 'yes' ),
-			'description' => __( 'Shows the caption saved on the image in the Media Library (in the page language). Text in the Caption field always wins.', 'salient-child' ),
+			'description' => __( 'Shows the caption saved on the image in the Media Library.', 'salient-child' ),
 		)
 	);
 }
