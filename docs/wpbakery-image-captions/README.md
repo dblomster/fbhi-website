@@ -92,6 +92,9 @@ captioned images; no fallbacks used. Today's text blocks: black 16px, 15px under
 | `salient-child/functions.php` | One `require_once` line (marked DEMO) |
 | `salient-child/wpml-config.xml` | `image_with_animation` / `fbhi_caption` entry (inert elsewhere: only demo pages can carry the attribute) |
 
+Prod safety: the code is on `main`, so `./upload.sh p` would ship it; it stays inert there unless page 13972 has the slug
+`demo-bildtexter` (checked in `fbhi_image_captions_demo_ids()`).
+
 Gate: the field only exists when editing a demo page (`post`, `post_id` or `vc_post_id` in the request: backend
 editor, its AJAX edit form, frontend editor); captions and CSS only on the demo pages. Checked: not on 11066.
 Not tested: WPBakery's frontend editor.

@@ -29,6 +29,11 @@ function fbhi_image_captions_demo_ids() {
 	if ( null !== $ids ) {
 		return $ids;
 	}
+	// Inert anywhere the ID is not the demo page (e.g. if this file reaches prod with ./upload.sh p).
+	if ( 'demo-bildtexter' !== get_post_field( 'post_name', FBHI_IMAGE_CAPTIONS_DEMO_PAGE ) ) {
+		$ids = array();
+		return $ids;
+	}
 	$ids  = array( FBHI_IMAGE_CAPTIONS_DEMO_PAGE );
 	$trid = apply_filters( 'wpml_element_trid', null, FBHI_IMAGE_CAPTIONS_DEMO_PAGE, 'post_page' );
 	if ( $trid ) {
