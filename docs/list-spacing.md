@@ -105,6 +105,9 @@ collapse, no padding in between).
   and 390px mobile emulation: list → heading 34px on Annika's page, the news
   post (sv + en) and both seminar pages, every paragraph → heading still 34px;
   Umeå fact box (list → H6) unchanged at 10px, paragraph → list still 12px.
+- Reply to Annika: drafted 2026-11-26 in
+  `incoming/2026-11-26-svar-annika-avstand-efter-punktlista.md` (git-ignored);
+  Daniel sends it, then mark it SENT here.
 
 ## What it touches / does not touch
 
