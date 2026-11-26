@@ -89,7 +89,11 @@ collapse, no padding in between).
   `gzuncompress(): data error` warnings from FieldCompression.php on both
   sites — not a dev-only quirk; the saves went through fine. sv 10618 is the
   WPML source, so the save flagged the en translation 10638 `needs_update = 1`
-  (en already has the same fix, nothing to retranslate).
+  (en already has the same fix, nothing to retranslate). Flag cleared on prod
+  and dev the same day: `icl_translation_status.needs_update = 0` for
+  translation_id 1286; the stored md5 already equalled
+  `WPML_TM_Action_Helper::post_md5()` of 10618, so it stays cleared (prod
+  Novamira request `wpmlflag1126`).
 - A CSS fix for the `<br>` was rejected: `br:first-child` ignores text nodes, so
   it would also hide intended breaks like `Line one<br>line two`.
 - Crawl 2026-11-26 for headings starting/ending with `<br>` or empty (prod):
