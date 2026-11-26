@@ -1,6 +1,6 @@
 # Body-text list spacing (ul/ol in WPBakery text columns)
 
-**Status:** live on dev and prod since 2026-09-17. Pure CSS, easy to revert (see below).
+**Status:** live on dev and prod since 2026-09-17; list → heading rule added 2026-11-26 (see below). Pure CSS, easy to revert (see below).
 
 ## The problem
 
@@ -83,10 +83,13 @@ collapse, no padding in between).
   `wpautop` turns that raw line break into a leading `<br>`, i.e. an empty line
   inside the heading. Before the rule, 10px + that hidden line happened to look
   right. Fixed on **dev** 2026-11-26 via Novamira execute-php (exact-string
-  replace, `substr_count === 1` guard, `wp_update_post`; WPML languages kept;
-  WPML logged `gzuncompress(): data error` warnings from FieldCompression.php,
-  harmless on dev). **Prod still has the line break** — apply the same replace
-  there together with the CSS deploy, or the gap gets bigger on prod.
+  replace, `substr_count === 1` guard, `wp_update_post`; WPML languages kept),
+  then on **prod** the same day, same procedure (Novamira request
+  `listhead1126`, restorable via `novamira/list-changes`). WPML logged
+  `gzuncompress(): data error` warnings from FieldCompression.php on both
+  sites — not a dev-only quirk; the saves went through fine. sv 10618 is the
+  WPML source, so the save flagged the en translation 10638 `needs_update = 1`
+  (en already has the same fix, nothing to retranslate).
 - A CSS fix for the `<br>` was rejected: `br:first-child` ignores text nodes, so
   it would also hide intended breaks like `Line one<br>line two`.
 - Crawl 2026-11-26 for headings starting/ending with `<br>` or empty (prod):
@@ -96,8 +99,12 @@ collapse, no padding in between).
   there are empty `<h5></h5>`s on `/network-projects/`, `/network-projects-2/`,
   `/sv/forskningsprojekt/` and `/network-project/pensa-pensaplus-spain/`. Left
   as they are.
-- Status: CSS + heading fix on dev 2026-11-26. **Not on prod yet** (Daniel:
-  wait with prod).
+- Status: **live on dev and prod 2026-11-26.** Prod: `./upload.sh p` (only
+  custom.css changed), heading fix as above, Nginx purge via
+  `rt_nginx_helper_purge_all`. Verified on prod without cache-buster at 1400px
+  and 390px mobile emulation: list → heading 34px on Annika's page, the news
+  post (sv + en) and both seminar pages, every paragraph → heading still 34px;
+  Umeå fact box (list → H6) unchanged at 10px, paragraph → list still 12px.
 
 ## What it touches / does not touch
 
