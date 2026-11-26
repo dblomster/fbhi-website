@@ -134,6 +134,14 @@ html body.single.single-post .section-title h1 {
 .wpb_text_column ol li {
   margin-bottom: 10px; /* 0 → 10px between numbered items, same as ul li */
 }
+/* A heading straight after a list (added 2026-11-26): paragraph → heading is
+   34px (24px paragraph padding + the heading's 10px margin) but list → heading
+   was 10px. The space goes on the list because Salient's own heading-margin
+   rule (`body.single .post .wpb_text_column h4`) out-specifies a margin set on
+   the heading. Stops at h4 so the kommun fact boxes (list → h6) are untouched. */
+.wpb_text_column :is(ul, ol):has(+ :is(h2, h3, h4)) {
+  margin-bottom: calc(1.5em + 10px); /* 10px → 34px, same as paragraph → heading */
+}
 
 /* --------------------------------------------------------------------------
    Research results section spacing

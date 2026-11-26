@@ -50,6 +50,55 @@ text column were already fine — the column's own 24px margin takes over.
 - `:has()` is supported by all current browsers. Fallback if ever needed:
   `.wpb_text_column p + ul, .wpb_text_column p + ol { margin-top: -0.75em; }`.
 
+## Heading straight after a list (2026-11-26)
+
+Annika noticed that "En växande kunskapsbas" on
+https://fbhi.se/sv/fran-global-forskning-till-implementering/ sat too close to
+the bullet list above it. The September rules only covered a *paragraph* after a
+list. Paragraph → heading is 34px (24px paragraph padding + the heading's 10px
+top margin), but list → heading was 10px (list margin and heading margin
+collapse, no padding in between).
+
+```css
+.wpb_text_column :is(ul, ol):has(+ :is(h2, h3, h4)) { margin-bottom: calc(1.5em + 10px); } /* 10px → 34px */
+```
+
+- The space goes on the list, not the heading: Salient's own rule
+  `body.single .post .wpb_text_column h4 { margin-top: 10px }` out-specifies a
+  margin set on the heading (tried, had no effect).
+- Stops at h4 so the kommun fact boxes (list → H6, 12 of them) stay as they are.
+- Sitemap crawl 2026-11-26 (275 URLs, 324 lists in text columns): a list
+  directly followed by an h2–h4 exists in 5 places — Annika's page, the news
+  post "New initiative for detection, prevention and treatment…" (sv + en), and
+  the seminar programme pages `/seminarium-26-september/` and
+  `/online-seminarium-28-november/` (H4 → list → H4, included by Daniel's
+  decision). No list is followed by anything other than a paragraph, a heading
+  or another list.
+- Verified on dev at 1400px and in mobile emulation (390px): 34px on the news
+  post and both seminar pages. Annika's page does not exist on dev; the same
+  rule injected into the prod page in the browser gave 34px at both widths.
+- **Content fix needed with it.** On the news post (sv 10618 / en 10638) the gap
+  still looked ~57px on mobile: the stored heading was
+  `<h4><strong>\r\nAbout the Innovative Health Initiative </strong></h4>` and
+  `wpautop` turns that raw line break into a leading `<br>`, i.e. an empty line
+  inside the heading. Before the rule, 10px + that hidden line happened to look
+  right. Fixed on **dev** 2026-11-26 via Novamira execute-php (exact-string
+  replace, `substr_count === 1` guard, `wp_update_post`; WPML languages kept;
+  WPML logged `gzuncompress(): data error` warnings from FieldCompression.php,
+  harmless on dev). **Prod still has the line break** — apply the same replace
+  there together with the CSS deploy, or the gap gets bigger on prod.
+- A CSS fix for the `<br>` was rejected: `br:first-child` ignores text nodes, so
+  it would also hide intended breaks like `Line one<br>line two`.
+- Crawl 2026-11-26 for headings starting/ending with `<br>` or empty (prod):
+  besides the news post, the kommun fact-box "Läs mer" H6s start with `<br>`
+  (their spacing relies on it; the rule stops at h4 so they are untouched),
+  five sv seminar pages have an H3 "FINGER-seminarium" ending in `<br>`, and
+  there are empty `<h5></h5>`s on `/network-projects/`, `/network-projects-2/`,
+  `/sv/forskningsprojekt/` and `/network-project/pensa-pensaplus-spain/`. Left
+  as they are.
+- Status: CSS + heading fix on dev 2026-11-26. **Not on prod yet** (Daniel:
+  wait with prod).
+
 ## What it touches / does not touch
 
 Touched (paragraph directly before and/or after a list):
