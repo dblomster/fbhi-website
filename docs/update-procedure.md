@@ -2,7 +2,7 @@
 
 The standing checklist for update rounds. It condenses what the rounds in `updates-2026-*/` and `archive/` actually
 did. Each round still gets its own record folder (`docs/updates-YYYY-MM-DD/README.md`) with before/after tables and
-anything new. Last revised 2026-11-18.
+anything new. Last revised 2026-11-26.
 
 ## Ground rules
 
@@ -46,7 +46,7 @@ without doing anything. Prefix all PHP variables (wrapper quirk); add `@set_time
 | Batch | What |
 | --- | --- |
 | A | Plugins inactive on dev (MailPoet, Redis Object Cache) — dev only, as a rehearsal |
-| B | Low-risk plugins (ACF, AIOSEO, Autoptimize, Complianz, FluentSMTP, MapPress, FluentCommunity on dev) |
+| B | Low-risk plugins (ACF, AIOSEO, Autoptimize, Complianz, FluentSMTP, MapPress, TablePress (inactive on both sites), FluentCommunity on dev) |
 | R | Redis Object Cache on its own (prod). The drop-in `wp-content/object-cache.php` is **not** replaced by the upgrade; it's copied on the next wp-admin page load. Verify its version after an admin load. |
 | C | WPML Multilingual CMS, then String Translation in a separate call |
 | D | The Events Calendar + MailPoet, then MailPoet Premium if it's offered afterwards |
@@ -56,7 +56,10 @@ without doing anything. Prefix all PHP variables (wrapper quirk); add `@set_time
 Leave dev-only plugins (Jetpack Boost, LiteSpeed Cache, WP Mail SMTP, WP Super Cache) as they are.
 
 **Prod Nginx 504** on the bigger batches is normal: PHP keeps running. Don't rerun; check read-only (versions, no
-`.maintenance`, empty upgrade folders, MailPoet `db_version` in `{prefix}mailpoet_settings`).
+`.maintenance`, empty upgrade folders, MailPoet DB version). Read the MailPoet DB version through its API, not raw SQL
+(a raw `mailpoet_settings` query got "fetch failed" on 2026-11-26):
+`\MailPoet\DI\ContainerWrapper::getInstance()->get( \MailPoet\Settings\SettingsController::class )->get( 'db_version' )`.
+If a call fails with "fetch failed" right after a 504, send a trivial call first, then the check.
 
 After the prod batches: `do_action('rt_nginx_helper_purge_all'); wp_cache_flush();`. It emits ~1,300 harmless "unlink …
 Operation not permitted" warnings; since 2026-11-18 a call that returns them all can fail with "fetch failed", so swallow
@@ -66,7 +69,10 @@ them: `set_error_handler( fn() => true ); do_action( 'rt_nginx_helper_purge_all'
 
 - After-HTML of the 8 pages into `html-after/`; token-level diff that ignores Salient `fws_…` ids, TEC UUIDs,
   `data-wp-key` ids, cache-busters and base64 blobs. Expect only version strings and Autoptimize `ver` timestamps.
-  The first uncached load after a purge can time out once; retry.
+  The first uncached load after a purge can time out once; retry. The prod calendar's JSON-LD for the past test
+  events comes and goes between loads. That's not a regression; compare the visible text instead.
+- AIOSEO updates can add `admin_texts_aioseo_options_dynamic_localized` rows to `icl_strings` (+41 dev / +48 prod on
+  2026-11-26). Check the context of the new rows before calling it a regression.
 - Counts identical to the baseline.
 - Chrome as visitor (separate isolated context): console clean on home, calendar, a guide page and the IWG form
   (14741: `novalidate`, jQuery validator attached, `wpforms_settings` present, same real fields; honeypots

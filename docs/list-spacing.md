@@ -77,6 +77,9 @@ collapse, no padding in between).
 - Verified on dev at 1400px and in mobile emulation (390px): 34px on the news
   post and both seminar pages. Annika's page does not exist on dev; the same
   rule injected into the prod page in the browser gave 34px at both widths.
+- Numbered lists: the selector covers `ol` too, but all 5 live cases are `ul`. Checked on prod 2026-11-26 by swapping
+  the list above "En växande kunskapsbas" for an `<ol>` in the browser (nothing saved): 34px to the heading and 10px
+  between items, identical to the `ul`. Measured at desktop width only.
 - **Content fix needed with it.** On the news post (sv 10618 / en 10638) the gap
   still looked ~57px on mobile: the stored heading was
   `<h4><strong>\r\nAbout the Innovative Health Initiative </strong></h4>` and
